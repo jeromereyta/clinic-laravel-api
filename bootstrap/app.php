@@ -1,0 +1,81 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Create The Application
+|--------------------------------------------------------------------------
+|
+| The first thing we will do is create a new Laravel application instance
+| which serves as the "glue" for all the components of Laravel, and is
+| the IoC container for the system binding all of the various parts.
+|
+*/
+
+$app = new Illuminate\Foundation\Application(
+    $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
+);
+
+$app->bind(\Illuminate\Validation\PresenceVerifierInterface::class, \LaravelDoctrine\ORM\Validation\DoctrinePresenceVerifier::class);
+
+$app->register(App\Providers\AuthServiceProvider::class);
+
+$app->register(\LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class);
+
+$app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\OrmServiceProvider::class);
+
+// $app->register(\EoneoPay\Utils\Bridge\Lumen\Providers\ConfigurationServiceProvider::class);
+// $app->register(\LaravelDoctrine\ORM\DoctrineServiceProvider::class);
+// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\FilesystemServiceProvider::class);
+// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\TranslatorServiceProvider::class);
+// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\ValidationServiceProvider::class);
+//
+// // EonX Packages service providers
+// $app->register(\EonX\EasyCore\Bridge\Laravel\Providers\EasyCoreServiceProvider::class);
+// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\ContainerServiceProvider::class);
+// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\EventDispatcherServiceProvider::class);
+// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\HttpClientServiceProvider::class);
+// $app->register(\EonX\EasyRandom\Bridge\Laravel\EasyRandomServiceProvider::class);
+// $app->register(\EonX\EasyCore\Bridge\Laravel\Providers\CachedConfigServiceProvider::class);
+// $app->register(\EonX\EasyErrorHandler\Bridge\Laravel\Provider\EasyErrorHandlerServiceProvider::class);
+// $app->register(\EonX\EasyLogging\Bridge\Laravel\EasyLoggingServiceProvider::class);
+// $app->register(\EonX\EasyPagination\Bridge\Laravel\Providers\StartSizeInQueryEasyPaginationProvider::class);
+// $app->register(\EonX\EasyPsr7Factory\Bridge\Laravel\EasyPsr7FactoryServiceProvider::class);
+
+/*
+|--------------------------------------------------------------------------
+| Bind Important Interfaces
+|--------------------------------------------------------------------------
+|
+| Next, we need to bind some important interfaces into the container so
+| we will be able to resolve them when needed. The kernels serve the
+| incoming requests to this application from both the web and CLI.
+|
+*/
+
+$app->singleton(
+    Illuminate\Contracts\Http\Kernel::class,
+    App\Http\Kernel::class
+);
+
+$app->singleton(
+    Illuminate\Contracts\Console\Kernel::class,
+    App\Console\Kernel::class
+);
+
+$app->singleton(
+    Illuminate\Contracts\Debug\ExceptionHandler::class,
+    App\Exceptions\Handler::class
+);
+
+/*
+|--------------------------------------------------------------------------
+| Return The Application
+|--------------------------------------------------------------------------
+|
+| This script returns the application instance. The instance is given to
+| the calling script so we can separate the building of the instances
+| from the actual running of the application and sending responses.
+|
+*/
+
+return $app;

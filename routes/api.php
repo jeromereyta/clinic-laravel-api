@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\RegisterUser\RegisterAdminUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group([
+    'prefix' => 'admin',
+], static function (): void {
+    Route::post('/register', [
+        'as' => 'register-admin',
+        'uses' => RegisterAdminUserController::class,
+    ]);
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+
     return $request->user();
 });

@@ -23,23 +23,8 @@ $app->register(\LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class
 
 $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\OrmServiceProvider::class);
 
-// $app->register(\EoneoPay\Utils\Bridge\Lumen\Providers\ConfigurationServiceProvider::class);
-// $app->register(\LaravelDoctrine\ORM\DoctrineServiceProvider::class);
-// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\FilesystemServiceProvider::class);
-// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\TranslatorServiceProvider::class);
-// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\ValidationServiceProvider::class);
-//
-// // EonX Packages service providers
-// $app->register(\EonX\EasyCore\Bridge\Laravel\Providers\EasyCoreServiceProvider::class);
-// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\ContainerServiceProvider::class);
-// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\EventDispatcherServiceProvider::class);
-// $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\HttpClientServiceProvider::class);
-// $app->register(\EonX\EasyRandom\Bridge\Laravel\EasyRandomServiceProvider::class);
-// $app->register(\EonX\EasyCore\Bridge\Laravel\Providers\CachedConfigServiceProvider::class);
-// $app->register(\EonX\EasyErrorHandler\Bridge\Laravel\Provider\EasyErrorHandlerServiceProvider::class);
-// $app->register(\EonX\EasyLogging\Bridge\Laravel\EasyLoggingServiceProvider::class);
-// $app->register(\EonX\EasyPagination\Bridge\Laravel\Providers\StartSizeInQueryEasyPaginationProvider::class);
-// $app->register(\EonX\EasyPsr7Factory\Bridge\Laravel\EasyPsr7FactoryServiceProvider::class);
+// Service Providers
+$app->register(\App\Providers\FactoryServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

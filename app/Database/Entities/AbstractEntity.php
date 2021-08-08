@@ -30,6 +30,11 @@ abstract class AbstractEntity extends BaseEntity implements
         parent::__construct($data);
     }
 
+    public function getCreatedAtAsString(): string
+    {
+        return $this->dateTimeToZuluFormat($this->getCreatedAt());
+    }
+
     /**
      * Get validation rules.
      *
@@ -106,7 +111,7 @@ abstract class AbstractEntity extends BaseEntity implements
     /**
      * Transform datetime object to Zulu formatted string.
      */
-    protected function dateTimeToZuluFormat(?DateTime $dateTime = null): ?string
+    protected function dateTimeToZuluFormat(?\DateTimeInterface $dateTime = null): ?string
     {
         return $dateTime ? $dateTime->format('Y-m-d\TH:i:s\Z') : null;
     }

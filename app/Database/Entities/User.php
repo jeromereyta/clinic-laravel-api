@@ -6,6 +6,7 @@ namespace App\Database\Entities;
 
 use App\Database\Interfaces\UserTypes;
 use App\Database\Schemas\UserSchema;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Illuminate\Contracts\Auth\Authenticatable as AuthContract;
@@ -29,36 +30,112 @@ class User extends AbstractEntity implements JWTSubject, AuthContract
      */
     protected $createdAt;
 
-    public function getCreatedAt(): \DateTime
+    /**
+     * @var \DateTimeInterface
+     * @ORM\Column(type="datetime")
+     */
+    protected $updatedAt;
+
+    public function getAuthIdentifierName(): string
+    {
+        return 'id';
+    }
+
+    public function getAuthIdentifier(): string
+    {
+        return $this->getId();
+    }
+
+    public function getAuthPassword(): string
+    {
+        return $this->getPassword();
+    }
+
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): self
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function getEmailVerifiedAt(): ?DateTimeInterface
+    {
+        return $this->emailVerifiedAt;
+    }
+
+    public function getEmailVerifiedAtAsString(): ?string
+    {
+        if ($this->emailVerifiedAt === null) {
+            return null;
+        }
+
+        return $this->dateTimeToZuluFormat($this->emailVerifiedAt);
+    }
+
+    public function getFullName(): string
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getId();
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public function getJWTCustomClaims(): array
+    {
+        return [];
+    }
+
+    public function getRememberToken()
+    {
+        // TODO: Implement getRememberToken() method.
+    }
+
+    public function getRememberTokenName()
+    {
+        // TODO: Implement getRememberTokenName() method.
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function getUpdatedAt(): \DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-
-    public function getUpdatedAt(): \DateTime
+    public function setRememberToken($value)
     {
-        return $this->updatedAt;
+        // TODO: Implement setRememberToken() method.
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime")
-     */
-    protected $updatedAt;
+    protected function getIdProperty(): string
+    {
+        return 'userId';
+    }
 
     /**
      * @return mixed[]
@@ -68,6 +145,7 @@ class User extends AbstractEntity implements JWTSubject, AuthContract
         return [
             'active' => 'nullable|boolean',
             'email' => 'required|email|' . $this->uniqueRuleAsString('email'),
+            'emailVerifiedAt' => 'date',
             'firstName' => 'required|string',
             'lastName' => 'required|string',
             'type' => \sprintf('nullable|string|%s', $this->inRuleString(UserTypes::TYPES)),
@@ -79,69 +157,10 @@ class User extends AbstractEntity implements JWTSubject, AuthContract
         return [
             'active' => $this->isActive(),
             'email' => $this->getEmail(),
+            'email_verified_at' => $this->getEmailVerifiedAt(),
             'fullName' => $this->getFullName(),
             'type' => $this->getType(),
         ];
-    }
-
-    protected function getIdProperty(): string
-    {
-        return 'userId';
-    }
-
-    public function getJWTIdentifier()
-    {
-        return $this->getId();
-    }
-
-    public function getJWTCustomClaims()
-    {
-        // TODO: Implement getJWTCustomClaims() method.
-    }
-
-    public function getAuthIdentifierName()
-    {
-        // TODO: Implement getAuthIdentifierName() method.
-    }
-
-    public function getAuthIdentifier()
-    {
-        // TODO: Implement getAuthIdentifier() method.
-    }
-
-    public function getAuthPassword(): string
-    {
-        return $this->getPassword();
-    }
-
-    public function getRememberToken()
-    {
-        // TODO: Implement getRememberToken() method.
-    }
-
-    public function setRememberToken($value)
-    {
-        // TODO: Implement setRememberToken() method.
-    }
-
-    public function getRememberTokenName()
-    {
-        // TODO: Implement getRememberTokenName() method.
-    }
-
-    private function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    private function getFullName(): string
-    {
-        return $this->firstName . ' ' . $this->lastName;
-    }
-
-    private function getType(): string
-    {
-        return $this->type;
     }
 
     private function isActive(): bool

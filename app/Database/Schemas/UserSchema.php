@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace App\Database\Schemas;
 
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @method bool isActive()
  * @method null|string getEmail()
+ * @method null|DateTimeInterface getEmailVerifiedAt()
  * @method null|string getFirstName()
  * @method null|string getLastName()
  * @method null|string getUserId()
  * @method self setActive(bool $active)
  * @method self setEmail(string $email)
+ * @method self setEmailVerifiedAt(DateTimeInterface $emailVerifiedAt)
  * @method self setFirstName(string $firstName)
  * @method self setPassword(string $password)
  * @method self setType(string $type)
@@ -34,6 +37,13 @@ trait UserSchema
      * @var string
      */
     protected $email;
+
+    /**
+     * @ORM\Column(name="email_verified_at", nullable=true, type="datetime")
+     *
+     * @var DateTimeInterface
+     */
+    protected $emailVerifiedAt;
 
     /**
      * @ORM\Column(name="first_name", nullable=true, type="string", length=191)

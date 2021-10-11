@@ -43,6 +43,17 @@ final class UserGuest extends AbstractEntity
 
     /**
      * @ORM\OneToMany(
+     *     targetEntity="App\Database\Entities\PatientVisit",
+     *     mappedBy="createdBy",
+     *     cascade={"persist"}
+     * )
+     *
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    protected ArrayCollection $patientVisits;
+
+    /**
+     * @ORM\OneToMany(
      *     targetEntity="App\Database\Entities\Patient",
      *     mappedBy="updatedBy",
      *     cascade={"persist"}
@@ -53,15 +64,15 @@ final class UserGuest extends AbstractEntity
     protected Collection $updatedPatients;
 
     /**
-     * @ORM\OneToMany(
-     *     targetEntity="App\Database\Entities\PatientVisit",
-     *     mappedBy="createdBy",
+     * @ORM\OneToOne (
+     *     targetEntity="App\Database\Entities\User",
+     *     mappedBy="user",
      *     cascade={"persist"}
      * )
      *
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var \App\Database\Entities\User
      */
-    private ArrayCollection $patientVisits;
+    protected User $user;
 
     public function __construct() {
         $this->createdPatients = new ArrayCollection();
@@ -83,6 +94,16 @@ final class UserGuest extends AbstractEntity
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function getUserId(): string
+    {
+        return $this->userId;
     }
 
     public function getUpdatedAt(): \DateTimeInterface
@@ -123,6 +144,13 @@ final class UserGuest extends AbstractEntity
         return $this;
     }
 
+    public function setUser(User $user): self
+    {
+        $this->userId = (string) $user->getUserId();
+        $this->user = $user;
+
+        return $this;
+    }
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -138,6 +166,7 @@ final class UserGuest extends AbstractEntity
         return [
             'active' => 'nullable|boolean',
             'type' => \sprintf('nullable|string|%s', $this->inRuleString(UserTypeEnum::toArray())),
+            'userId' => \sprintf('required|%s', $this->instanceOfRuleAsString(User::class)),
         ];
     }
 
@@ -151,6 +180,7 @@ final class UserGuest extends AbstractEntity
             'id' => $this->getId(),
             'name' => $this->getName(),
             'type' => $this->getType(),
+            'user_id' => $this->getUserId(),
         ];
     }
 

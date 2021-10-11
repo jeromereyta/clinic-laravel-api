@@ -46,4 +46,11 @@ trait UserGuestSchema
      * @var string
      */
     protected string $userGuestId;
+
+    /**
+     * @ORM\Column(name="user_id", type="guid")
+     *
+     * @var string
+     */
+    protected $userId;
 }

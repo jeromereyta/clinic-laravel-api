@@ -21,7 +21,7 @@ return [
     | This is the entity that has implemented Authenticatable
     |
     */
-    'model' => App\Database\Entities\User::class,
+    'model' => App\Database\Entities\UserGuest::class,
     'defaults' => [
         'guard' => 'api',
         'passwords' => 'users',
@@ -35,7 +35,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'doctrine',
-            'model' => App\Database\Entities\User::class,
+            'model' => App\Database\Entities\UserGuest::class,
         ]
     ],
     /*

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Repositories\Doctrine\ORM;
 
-use App\Database\Entities\User;
+use App\Database\Entities\UserGuest;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 
 final class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {
-    public function findByEmail(string $email): ?User
+    public function findByEmail(string $email): ?UserGuest
     {
         $query = $this->createQueryBuilder('u');
 
@@ -25,6 +25,6 @@ final class UserRepository extends AbstractRepository implements UserRepositoryI
 
     protected function getEntityClass(): string
     {
-        return User::class;
+        return UserGuest::class;
     }
 }

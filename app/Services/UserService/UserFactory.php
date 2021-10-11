@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\UserService;
 
-use App\Database\Entities\User;
+use App\Database\Entities\UserGuest;
 use App\Services\UserService\Interfaces\UserFactoryInterface;
 use App\Services\UserService\Resources\CreateAdminUserResource;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,11 +21,11 @@ final class UserFactory implements UserFactoryInterface
     /**
      * @param \App\Services\UserService\Resources\CreateAdminUserResource $user
      */
-    public function create(CreateAdminUserResource $user): User
+    public function create(CreateAdminUserResource $user): UserGuest
     {
         $password = $this->hash->make($user->getPassword());
 
-        $newUser = new User();
+        $newUser = new UserGuest();
 
         $newUser->fill([
             'email' => $user->getEmail(),

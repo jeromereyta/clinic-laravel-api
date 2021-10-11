@@ -6,6 +6,7 @@ namespace App\Database\Entities;
 
 use App\Exceptions\EntityValidationFailedException;
 use DateTime;
+use DateTimeInterface;
 use EoneoPay\Externals\ORM\Entity as BaseEntity;
 use EoneoPay\Externals\ORM\Interfaces\ValidatableInterface;
 use EoneoPay\Utils\Str;
@@ -15,6 +16,10 @@ abstract class AbstractEntity extends BaseEntity implements
     ValidatableInterface,
     SerializableInterface
 {
+    public DateTimeInterface $createdAt;
+
+    public DateTimeInterface $updatedAt;
+
     /**
      * AbstractEntity constructor.
      *

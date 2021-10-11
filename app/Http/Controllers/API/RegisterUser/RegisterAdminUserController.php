@@ -4,60 +4,68 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\RegisterUser;
 
-use App\Database\Entities\User;
 use App\Database\Interfaces\UserTypes;
 use App\Http\Controllers\API\AbstractAPIController;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Services\UserService\Interfaces\UserFactoryInterface;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Services\UserService\Resources\CreateAdminUserResource;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\JWT;
+use Tymon\JWTAuth\JWTAuth;
 
 final class RegisterAdminUserController extends AbstractAPIController
 {
-    /**
-     * @var \App\Services\UserService\Interfaces\UserFactoryInterface
-     */
-    protected $userFactory;
+    protected UserFactoryInterface $userFactory;
+
+    private JWTAuth $jwt;
+
+    private UserRepositoryInterface $userRepository;
 
     /**
      * RegisterAdminUserController constructor.
      */
-    public function __construct(UserFactoryInterface $userFactory)
-    {
+    public function __construct(
+        JWTAuth $jwt,
+        UserFactoryInterface $userFactory,
+        UserRepositoryInterface $userRepository
+    ) {
+        $this->jwt = $jwt;
         $this->userFactory = $userFactory;
+        $this->userRepository = $userRepository;
     }
 
-    public function __invoke(Request $request, EntityManagerInterface $entityManager): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         $user = $request->toArray();
         $email = $request->get('email');
 
-        if ($this->checkUserByEmail($email, $entityManager) === false) {
+        $exist = $this->userRepository->findByEmail($email);
+
+        if ($exist !== null) {
             return $this->respondBadRequest([
                 'error' => 'User is already registered.'
             ]);
         }
 
-        $password = $user['password'];
-
         try {
             $user['type'] = UserTypes::ADMIN;
 
-            $user['password'] = app('hash')->make($password);
-
-            $newUser = $this->userFactory->create($user);
-
-            $entityManager->persist($newUser);
-            $entityManager->flush();
+            $newUser = $this->userFactory->create(new CreateAdminUserResource([
+                'email' => $email,
+                'firstName' => $user['firstName'],
+                'lastName' => $user['lastName'],
+                'password' => $user['password'],
+                'userType' => UserTypes::ADMIN,
+            ]));
 
             $credentials = [
                 'email' => $email,
-                'password' => $password
+                'password' => $user['password'],
             ];
 
-            $token = JWTAuth::attempt($credentials);
+            $token = $this->jwt->attempt($credentials);
 
             if ($token === null) {
                 return $this->respondUnauthorised();
@@ -68,19 +76,9 @@ final class RegisterAdminUserController extends AbstractAPIController
             ]);
         } catch (Exception $exception) {
             return $this->respondInternalError([
-                'error' => $exception,
+                'error' => $exception->getMessage(),
+                'code' => $exception->getCode(),
             ]);
         }
-    }
-
-    protected function checkUserByEmail($email, EntityManagerInterface $entityManager): bool
-    {
-        $user = $entityManager
-            ->getRepository(User::class)
-            ->findOneBy([
-                'email' => $email
-            ]);
-
-        return $user === null;
     }
 }

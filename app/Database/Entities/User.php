@@ -25,16 +25,16 @@ class User extends AbstractEntity implements JWTSubject, AuthContract
     use UserSchema, Authenticatable;
 
     /**
-     * @var \DateTime
+     * @var DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    protected $createdAt;
+    public DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    protected $updatedAt;
+    public DateTimeInterface $updatedAt;
 
     public function getAuthIdentifierName(): string
     {
@@ -51,7 +51,7 @@ class User extends AbstractEntity implements JWTSubject, AuthContract
         return $this->getPassword();
     }
 
-    public function getCreatedAt(): \DateTimeInterface
+    public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;
     }
@@ -120,9 +120,10 @@ class User extends AbstractEntity implements JWTSubject, AuthContract
         return $this;
     }
 
-    public function setRememberToken($value)
+    public function setRememberToken($value): self
     {
         // TODO: Implement setRememberToken() method.
+        return $this;
     }
 
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self

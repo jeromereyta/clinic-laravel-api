@@ -6,20 +6,38 @@ namespace App\Services\UserService;
 
 use App\Database\Entities\User;
 use App\Services\UserService\Interfaces\UserFactoryInterface;
+use App\Services\UserService\Resources\CreateAdminUserResource;
+use Doctrine\ORM\EntityManagerInterface;
+use Illuminate\Hashing\HashManager;
 
 final class UserFactory implements UserFactoryInterface
 {
-    /**
-     * @param mixed[] $data
-     *
-     * @throws \Exception
-     */
-    public function create(array $data): User
+    public function __construct(EntityManagerInterface $entityManager, HashManager $hash)
     {
-        $user = new User();
+        $this->entityManager = $entityManager;
+        $this->hash = $hash;
+    }
 
-        $user->fill($data);
+    /**
+     * @param \App\Services\UserService\Resources\CreateAdminUserResource $user
+     */
+    public function create(CreateAdminUserResource $user): User
+    {
+        $password = $this->hash->make($user->getPassword());
 
-        return $user;
+        $newUser = new User();
+
+        $newUser->fill([
+            'email' => $user->getEmail(),
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
+            'password' => $password,
+            'type' => $user->getUserType(),
+        ]);
+
+        $this->entityManager->persist($newUser);
+        $this->entityManager->flush();
+
+        return $newUser;
     }
 }

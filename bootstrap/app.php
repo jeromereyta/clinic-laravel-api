@@ -15,6 +15,11 @@ $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
+
+// $app->register(\EonX\EasyCore\Bridge\Laravel\Providers\EasyCoreServiceProvider::class);
+
+// $app->register(\EonX\EasyPagination\Bridge\Laravel\Providers\StartSizeInQueryEasyPagination Provider::class);
+
 $app->bind(\Illuminate\Validation\PresenceVerifierInterface::class, \LaravelDoctrine\ORM\Validation\DoctrinePresenceVerifier::class);
 
 $app->register(App\Providers\AuthServiceProvider::class);
@@ -23,9 +28,9 @@ $app->register(\LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class
 
 $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\OrmServiceProvider::class);
 
-// Service Providers
 $app->register(\App\Providers\FactoryServiceProvider::class);
 
+$app->register(\App\Providers\RepositoryProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces

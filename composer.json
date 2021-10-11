@@ -5,11 +5,11 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "doctrine/inflector": "^1.4|^2.0",
         "eonx-com/easy-core": "^3.0",
         "eonx-com/easy-error-handler": "^3.0.4",
-        "eonx-com/easy-pagination": "^3.0",
+        "eonx-com/easy-pagination": "^3.3",
         "eonx-com/easy-psr7-factory": "^3.0",
         "eonx-com/easy-repository": "^3.0",
         "eonx-com/easy-ssm": "^3.0",
@@ -25,6 +25,7 @@
         "laravel-doctrine/orm": "^1.7",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
+        "spatie/data-transfer-object": "^2.8",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

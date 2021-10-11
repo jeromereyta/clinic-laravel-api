@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46f941cdc6573a011ca93826d208da0c",
+    "content-hash": "b75348a8cc33ebcffd5a6ad2117aac8c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1824,23 +1824,23 @@
         },
         {
             "name": "eonx-com/easy-pagination",
-            "version": "3.2.6",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eonx-com/easy-pagination.git",
-                "reference": "b812ae1c4101967d4b50bf4f04360b49fa3d30dd"
+                "reference": "a9fb1d60c6db9e99ff1259ea68b226d116af438b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eonx-com/easy-pagination/zipball/b812ae1c4101967d4b50bf4f04360b49fa3d30dd",
-                "reference": "b812ae1c4101967d4b50bf4f04360b49fa3d30dd",
+                "url": "https://api.github.com/repos/eonx-com/easy-pagination/zipball/a9fb1d60c6db9e99ff1259ea68b226d116af438b",
+                "reference": "a9fb1d60c6db9e99ff1259ea68b226d116af438b",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2"
             },
             "require-dev": {
-                "eonx-com/easy-psr7-factory": "^3.2.6",
+                "eonx-com/easy-psr7-factory": "^3.0",
                 "laravel/lumen-framework": "^5.5",
                 "mockery/mockery": "^1.2",
                 "phpunit/phpunit": "^8.4 || ^9.5",
@@ -1850,13 +1850,12 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "EonX\\EasyPagination\\": "src",
-                    "EonX\\EasyPagination\\Bridge\\Symfony\\": "src/Bridge/Symfony"
+                    "EonX\\EasyPagination\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1866,9 +1865,9 @@
             "description": "Provides a generic way to handle pagination data from clients",
             "support": {
                 "issues": "https://github.com/eonx-com/easy-pagination/issues",
-                "source": "https://github.com/eonx-com/easy-pagination/tree/3.2.6"
+                "source": "https://github.com/eonx-com/easy-pagination/tree/3.x"
             },
-            "time": "2021-07-20T05:40:14+00:00"
+            "time": "2020-12-17T02:52:48+00:00"
         },
         {
             "name": "eonx-com/easy-psr7-factory",
@@ -5563,6 +5562,65 @@
                 "source": "https://github.com/reactphp/promise/tree/v2.8.0"
             },
             "time": "2020-05-12T15:16:56+00:00"
+        },
+        {
+            "name": "spatie/data-transfer-object",
+            "version": "2.8.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/data-transfer-object.git",
+                "reference": "2625a59566804ec63f01947d85947336237cbda6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/data-transfer-object/zipball/2625a59566804ec63f01947d85947336237cbda6",
+                "reference": "2625a59566804ec63f01947d85947336237cbda6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0"
+            },
+            "suggest": {
+                "phpstan/phpstan": "Take advantage of checkUninitializedProperties with \\Spatie\\DataTransferObject\\PHPstan\\PropertiesAreAlwaysInitializedExtension"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\DataTransferObject\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brent Roose",
+                    "email": "brent@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Data transfer objects with batteries included",
+            "homepage": "https://github.com/spatie/data-transfer-object",
+            "keywords": [
+                "data-transfer-object",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/data-transfer-object/issues",
+                "source": "https://github.com/spatie/data-transfer-object/tree/2.8.3"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/spatie",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-02-12T08:46:52+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -11882,7 +11940,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": "^7.4|^8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"

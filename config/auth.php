@@ -35,7 +35,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'doctrine',
-            'model' => App\Database\Entities\UserGuest::class,
+            'model' => App\Database\Entities\User::class,
         ]
     ],
     /*

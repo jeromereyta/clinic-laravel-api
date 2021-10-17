@@ -19,31 +19,6 @@ class UserGuestSeeder extends Seeder
     }
 
     /**
-     * @return mixed[]
-     */
-    public function generateUserGuests(): iterable
-    {
-        return [
-            [
-                'name' => 'Admin',
-                'type' => UserTypeEnum::ADMIN,
-            ],
-            [
-                'name' => 'Cashier',
-                'type' => UserTypeEnum::CASHIER,
-            ],
-            [
-                'name' => 'Staff',
-                'type' => UserTypeEnum::STAFF,
-            ],
-            [
-                'name' => 'Receptionist',
-                'type' => UserTypeEnum::RECEPTIONIST,
-            ],
-        ];
-    }
-
-    /**
      * Run the database seeds.
      *
      * @throws \Exception
@@ -83,5 +58,30 @@ class UserGuestSeeder extends Seeder
             'password' => $name,
             'userType' => UserTypes::ADMIN,
         ]));
+    }
+
+    /**
+     * @return mixed[]
+     */
+    private function generateUserGuests(): array
+    {
+        return [
+            [
+                'name' => 'Admin',
+                'type' => UserTypeEnum::ADMIN,
+            ],
+            [
+                'name' => 'Cashier',
+                'type' => UserTypeEnum::CASHIER,
+            ],
+            [
+                'name' => 'Staff',
+                'type' => UserTypeEnum::STAFF,
+            ],
+            [
+                'name' => 'Receptionist',
+                'type' => UserTypeEnum::RECEPTIONIST,
+            ],
+        ];
     }
 }

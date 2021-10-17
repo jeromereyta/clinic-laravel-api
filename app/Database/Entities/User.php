@@ -20,7 +20,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  *     name="users"
  * )
  */
-final class User extends AbstractEntity implements JWTSubject, AuthContract
+class User extends AbstractEntity implements JWTSubject, AuthContract
 {
     use UserSchema, Authenticatable;
 
@@ -35,6 +35,15 @@ final class User extends AbstractEntity implements JWTSubject, AuthContract
      * @ORM\Column(type="datetime")
      */
     public DateTimeInterface $updatedAt;
+
+    /**
+     * @ORM\OneToOne (
+     *     targetEntity="App\Database\Entities\UserGuest",
+     *     mappedBy="user",
+     *     cascade={"persist"}
+     * )
+     */
+    public $userGuest;
 
     public function getAuthIdentifierName(): string
     {
@@ -143,13 +152,13 @@ final class User extends AbstractEntity implements JWTSubject, AuthContract
      */
     protected function doGetRules(): array
     {
-            return [
-                'active' => 'nullable|boolean',
-                'email' => 'required|email|' . $this->uniqueRuleAsString('email'),
-                'emailVerifiedAt' => 'date',
-                'firstName' => 'required|string',
-                'lastName' => 'required|string',
-                'type' => \sprintf('nullable|string|%s', $this->inRuleString(UserTypes::TYPES)),
+        return [
+            'active' => 'nullable|boolean',
+            'email' => 'required|email|' . $this->uniqueRuleAsString('email'),
+            'emailVerifiedAt' => 'date',
+            'firstName' => 'required|string',
+            'lastName' => 'required|string',
+            'type' => \sprintf('nullable|string|%s', $this->inRuleString(UserTypes::TYPES)),
         ];
     }
 

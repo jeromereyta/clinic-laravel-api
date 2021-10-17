@@ -7,32 +7,32 @@ namespace App\Http\Controllers\API\RegisterUser;
 use App\Database\Interfaces\UserTypes;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Services\UserService\Interfaces\UserFactoryInterface;
 use App\Services\UserService\Resources\CreateAdminUserResource;
 use Exception;
+use Illuminate\Hashing\HashManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\JWT;
-use Tymon\JWTAuth\JWTAuth;
 
 final class RegisterAdminUserController extends AbstractAPIController
 {
-    protected UserFactoryInterface $userFactory;
+    /**
+     * @var \Illuminate\Hashing\HashManager
+     */
+    private HashManager $hash;
 
-    private JWTAuth $jwt;
-
+    /**
+     * @var \App\Repositories\Interfaces\UserRepositoryInterface
+     */
     private UserRepositoryInterface $userRepository;
 
     /**
      * RegisterAdminUserController constructor.
      */
     public function __construct(
-        JWTAuth $jwt,
-        UserFactoryInterface $userFactory,
+        HashManager $hash,
         UserRepositoryInterface $userRepository
     ) {
-        $this->jwt = $jwt;
-        $this->userFactory = $userFactory;
+        $this->hash = $hash;
         $this->userRepository = $userRepository;
     }
 
@@ -52,27 +52,20 @@ final class RegisterAdminUserController extends AbstractAPIController
         try {
             $user['type'] = UserTypes::ADMIN;
 
-            $newUser = $this->userFactory->create(new CreateAdminUserResource([
+            $newUser =$this->userRepository->create(new CreateAdminUserResource([
                 'email' => $email,
                 'firstName' => $user['firstName'],
                 'lastName' => $user['lastName'],
-                'password' => $user['password'],
+                'password' => $this->hash->make($user['password']),
                 'userType' => UserTypes::ADMIN,
             ]));
 
-            $credentials = [
-                'email' => $email,
-                'password' => $user['password'],
-            ];
-
-            $token = $this->jwt->attempt($credentials);
-
-            if ($token === null) {
+            if ($newUser === null) {
                 return $this->respondUnauthorised();
             }
 
             return response()->json([
-                'token' => $user,
+                'user' => $user,
             ]);
         } catch (Exception $exception) {
             return $this->respondInternalError([

@@ -52,5 +52,5 @@ trait UserGuestSchema
      *
      * @var string
      */
-    protected $userId;
+    protected string $userId;
 }

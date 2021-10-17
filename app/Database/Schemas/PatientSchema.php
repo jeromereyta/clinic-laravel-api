@@ -18,6 +18,7 @@ use DateTimeInterface;
  * @method string getName()
  * @method string getPatientCode()
  * @method string getPhoneNumber()
+ * @method string getProfilePicture()
  * @method string getUpdatedById()
  * @method self setActive(bool $active)
  * @method self setAge(string $age)
@@ -28,6 +29,7 @@ use DateTimeInterface;
  * @method self setName(string $name)
  * @method self setPatientCode(string $patientCode)
  * @method self setPhoneNumber(string $phoneNumber)
+ * @method self setProfilePicture(string $profilePicture)
  */
 trait PatientSchema
 {
@@ -110,6 +112,13 @@ trait PatientSchema
      * @var string
      */
     protected string $phoneNumber;
+
+    /**
+     * @ORM\Column(name="`profile_picture`", type="string")
+     *
+     * @var string
+     */
+    protected string $profilePicture;
 
     /**
      * @ORM\Column(name="updated_by_id", type="integer", nullable="true")

@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     name="user_guests"
  * )
  */
-final class UserGuest extends AbstractEntity
+class UserGuest extends AbstractEntity
 {
     use UserGuestSchema;
 
@@ -50,7 +50,7 @@ final class UserGuest extends AbstractEntity
      *
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
-    protected ArrayCollection $patientVisits;
+    protected $patientVisits;
 
     /**
      * @ORM\OneToMany(
@@ -66,13 +66,13 @@ final class UserGuest extends AbstractEntity
     /**
      * @ORM\OneToOne (
      *     targetEntity="App\Database\Entities\User",
-     *     mappedBy="user",
+     *     inversedBy="userGuest",
      *     cascade={"persist"}
      * )
-     *
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * @var \App\Database\Entities\User
      */
-    protected User $user;
+    protected $user;
 
     public function __construct() {
         $this->createdPatients = new ArrayCollection();
@@ -177,7 +177,7 @@ final class UserGuest extends AbstractEntity
     {
         return [
             'active' => $this->isActive(),
-            'id' => $this->getId(),
+            'user_guest_id' => $this->getId(),
             'name' => $this->getName(),
             'type' => $this->getType(),
             'user_id' => $this->getUserId(),

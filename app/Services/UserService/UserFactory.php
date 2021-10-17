@@ -12,6 +12,16 @@ use Illuminate\Hashing\HashManager;
 
 final class UserFactory implements UserFactoryInterface
 {
+    /**
+     * @var \Doctrine\ORM\EntityManagerInterface
+     */
+    private EntityManagerInterface $entityManager;
+
+    /**
+     * @var \Illuminate\Hashing\HashManager
+     */
+    private HashManager $hash;
+
     public function __construct(EntityManagerInterface $entityManager, HashManager $hash)
     {
         $this->entityManager = $entityManager;

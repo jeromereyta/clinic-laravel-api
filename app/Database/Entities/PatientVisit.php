@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     name="patient_visits"
  * )
  */
-final class PatientVisit extends AbstractEntity
+class PatientVisit extends AbstractEntity
 {
     use PatientVisitSchema;
 
@@ -181,7 +181,6 @@ final class PatientVisit extends AbstractEntity
     protected function doGetRules(): array
     {
         return [
-            'active' => 'nullable|boolean',
             'attendingDoctor' => 'string',
             'createdBy' => \sprintf('required|%s', $this->instanceOfRuleAsString(UserGuest::class)),
             'patient' => \sprintf('required|%s', $this->instanceOfRuleAsString(Patient::class)),
@@ -198,14 +197,13 @@ final class PatientVisit extends AbstractEntity
     protected function doToArray(): array
     {
         return [
-            'active' => 'nullable|boolean',
-            'attendingDoctor' => 'string',
-            'createdBy' => \sprintf('required|%s', $this->instanceOfRuleAsString(UserGuest::class)),
-            'patient' => \sprintf('required|%s', $this->instanceOfRuleAsString(Patient::class)),
-            'patientBp' => 'required|string',
-            'patientHeight' => 'required|string',
-            'patientWeight' => 'required|string',
-            'remarks' => 'string',
+            'attending_doctor' => $this->getAttendingDoctor(),
+            'created_by_id' => $this->getCreatedById(),
+            'patient_id' => $this->getPatientId(),
+            'patient_bp' => $this->getPatientBP(),
+            'patient_height' => $this->getPatientHeight(),
+            'patient_weight' => $this->getPatientWeight(),
+            'remarks' => $this->getRemarks(),
         ];
     }
 

@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     name="patients"
  * )
  */
-final class Patient extends AbstractEntity
+class Patient extends AbstractEntity
 {
     use PatientSchema;
 
@@ -56,7 +56,7 @@ final class Patient extends AbstractEntity
      *
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
-    protected ArrayCollection $patientVisits;
+    protected $patientVisits;
 
     /**
      * @ORM\ManyToOne(
@@ -125,6 +125,14 @@ final class Patient extends AbstractEntity
     public function getPatientCode(): string
     {
         return $this->patientCode;
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public function getPatientVisits(): ArrayCollection
+    {
+        return $this->patientVisits;
     }
 
     public function getPhoneNumber(): string
@@ -246,6 +254,7 @@ final class Patient extends AbstractEntity
             'name' => 'required|string',
             'patientCode' => 'required|string'. $this->uniqueRuleAsString('patient_code'),
             'phoneNumber' => 'required|string',
+            'profilePicture' => 'required|string',
             'updatedBy' => \sprintf('nullable|%s', $this->instanceOfRuleAsString(UserGuest::class)),
         ];
     }
@@ -261,10 +270,11 @@ final class Patient extends AbstractEntity
             'birth_date' => $this->getBirthDate(),
             'civil_status' => $this->getCivilStatus(),
             'created_by_id' => $this->getCreatedById(),
-            'email' => 'required|email|'. $this->uniqueRuleAsString('email'),
-            'name' => 'required|string',
-            'patient_code' => 'required|string'. $this->uniqueRuleAsString('patient_code'),
-            'phone_number' => 'required|string',
+            'email' => $this->getEmail(),
+            'name' => $this->getName(),
+            'patient_code' => $this->getPatientCode(),
+            'phone_number' => $this->getPhoneNumber(),
+            'profile_picture' => $this->getProfilePicture(),
             'updated_by_id' => $this->getUpdatedById(),
         ];
     }

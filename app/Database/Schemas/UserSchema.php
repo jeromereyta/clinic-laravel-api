@@ -36,7 +36,7 @@ trait UserSchema
      *
      * @var string
      */
-    protected $email;
+    protected string $email;
 
     /**
      * @ORM\Column(name="email_verified_at", nullable=true, type="datetime")

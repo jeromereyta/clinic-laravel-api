@@ -36,6 +36,15 @@ class User extends AbstractEntity implements JWTSubject, AuthContract
      */
     public DateTimeInterface $updatedAt;
 
+    /**
+     * @ORM\OneToOne (
+     *     targetEntity="App\Database\Entities\UserGuest",
+     *     mappedBy="user",
+     *     cascade={"persist"}
+     * )
+     */
+    public $userGuest;
+
     public function getAuthIdentifierName(): string
     {
         return 'id';

@@ -4,11 +4,20 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
+use App\Database\Entities\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 abstract class AbstractAPIController
 {
+    public function getUser(): ?Authenticatable
+    {
+        return JWTAuth::user();
+    }
+
     /**
      * Return HTTP OK (200) response
      *
@@ -69,9 +78,15 @@ abstract class AbstractAPIController
      * @param mixed[] $data
      * @param mixed[] $headers
      */
-    protected function respondForbidden(array $data = [], array $headers = []): JsonResponse
+    protected function respondForbidden(array $data = null, array $headers = []): JsonResource
     {
-        return new JsonResponse($data, Response::HTTP_FORBIDDEN, $headers);
+        if ($data === null) {
+            $data = [
+                'message' => 'Invalid credentials',
+            ];
+        }
+
+        return new JsonResource($data, Response::HTTP_FORBIDDEN, $headers);
     }
 
     /**
@@ -90,9 +105,9 @@ abstract class AbstractAPIController
      * @param mixed[] $data
      * @param mixed[] $headers
      */
-    protected function respondNotFound(array $data = [], array $headers = []): JsonResponse
+    protected function respondNotFound(array $data = [], array $headers = []): JsonResource
     {
-        return new JsonResponse($data, Response::HTTP_NOT_FOUND, $headers);
+        return new JsonResource($data, Response::HTTP_NOT_FOUND, $headers);
     }
 
     /**
@@ -112,8 +127,8 @@ abstract class AbstractAPIController
      * @param mixed[] $data
      * @param mixed[] $headers
      */
-    protected function respondUnprocessable(array $data = [], array $headers = []): JsonResponse
+    protected function respondUnprocessable(array $data = [], array $headers = []): JsonResource
     {
-        return new JsonResponse($data, Response::HTTP_UNPROCESSABLE_ENTITY, $headers);
+        return new JsonResource($data, Response::HTTP_UNPROCESSABLE_ENTITY, $headers);
     }
 }

@@ -6,11 +6,32 @@ namespace App\Repositories\Doctrine\ORM;
 
 use App\Exceptions\EntityNotFoundException;
 use App\Repositories\Interfaces\AppRepositoryInterface;
+use Doctrine\ORM\EntityManager;
+use Doctrine\Persistence\ManagerRegistry;
 use EonX\EasyRepository\Implementations\Doctrine\ORM\AbstractDoctrineOrmRepository;
 use Throwable;
 
 abstract class AbstractRepository extends AbstractDoctrineOrmRepository implements AppRepositoryInterface
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    protected EntityManager $entityManager;
+
+    public function __construct(ManagerRegistry $registry, EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+        parent::__construct($registry);
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public function findAll(): array
+    {
+        return $this->repository->findAll();
+    }
+
     /**
      * @param string[] $entityIds
      *
@@ -72,7 +93,7 @@ abstract class AbstractRepository extends AbstractDoctrineOrmRepository implemen
 
     public function findOrFail($identifier): object
     {
-        $entity = parent::find($identifier);
+        $entity = $this->find($identifier);
 
         if ($entity !== null) {
             return $entity;

@@ -30,6 +30,9 @@ $app->register(\EoneoPay\Externals\Bridge\Laravel\Providers\OrmServiceProvider::
 
 $app->register(\App\Providers\FactoryServiceProvider::class);
 
+$app->register(\App\Providers\PatientServiceProvider::class);
+
+
 $app->register(\App\Providers\RepositoryProvider::class);
 /*
 |--------------------------------------------------------------------------

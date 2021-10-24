@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Database\Entities;
 
 use App\Database\Schemas\PatientSchema;
+use Carbon\Carbon;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -84,7 +85,7 @@ class Patient extends AbstractEntity
 
     public function getAge(): string
     {
-        return $this->age;
+        return (string) $this->getBirthDate()->diff(Carbon::now())->y;
     }
 
     public function getBirthDate(): DateTimeInterface
@@ -202,6 +203,95 @@ class Patient extends AbstractEntity
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBarangay(): string
+    {
+        return $this->barangay;
+    }
+
+    /**
+     * @param string $barangay
+     *
+     * @return Patient
+     */
+    public function setBarangay(string $barangay): Patient
+    {
+        $this->barangay = $barangay;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): Patient
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProfilePicture(): string
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(string $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProvince(): string
+    {
+        return $this->province;
+    }
+
+    public function setProvince(string $province): self
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    public function getStreetAddress(): string
+    {
+        return $this->streetAddress;
+    }
+
+    public function setStreetAddress(string $streetAddress): self
+    {
+        $this->streetAddress = $streetAddress;
 
         return $this;
     }

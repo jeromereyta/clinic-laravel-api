@@ -15,14 +15,14 @@ final class CreatePatientRequest extends BaseRequest
         return true;
     }
 
-    public function getAge(): string
-    {
-        return $this->getString('age');
-    }
-
     public function getAttendingDoctor(): string
     {
         return $this->getString('attending_doctor');
+    }
+
+    public function getBarangay(): string
+    {
+        return $this->getString('barangay');
     }
 
     public function getBirthDate(): DateTimeInterface
@@ -30,6 +30,11 @@ final class CreatePatientRequest extends BaseRequest
         $birthDate = $this->getString('birth_date');
 
         return Carbon::parse($birthDate);
+    }
+
+    public function getCity(): string
+    {
+        return $this->getString('city');
     }
 
     public function getCivilStatus(): string
@@ -42,7 +47,7 @@ final class CreatePatientRequest extends BaseRequest
         return $this->getString('email');
     }
 
-    public function getGender()
+    public function getGender(): string
     {
         return $this->getString('gender');
     }
@@ -77,6 +82,16 @@ final class CreatePatientRequest extends BaseRequest
         return $this->getString('profile_picture');
     }
 
+    public function getProvince(): string
+    {
+        return $this->getString('province');
+    }
+
+    public function getStreetAddress(): string
+    {
+        return $this->getString('street_address');
+    }
+
     public function getRemarks(): string
     {
         return $this->getString('remarks');
@@ -88,9 +103,10 @@ final class CreatePatientRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'age' => 'required|string',
             'attending_doctor' => 'string',
+            'barangay' => 'required|string',
             'birth_date' => 'required|date',
+            'city' => 'required|string',
             'civil_status' => 'required|string',
             'email' => 'required|max:255',
             'gender' => 'required|string',
@@ -100,6 +116,8 @@ final class CreatePatientRequest extends BaseRequest
             'patient_weight' => 'required|string',
             'phone_number' => 'required|string',
             'profile_picture' => 'string',
+            'province' => 'required|string',
+            'street_address' => 'required|string',
             'remarks' => 'string',
         ];
     }

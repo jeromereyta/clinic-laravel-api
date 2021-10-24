@@ -14,9 +14,13 @@ final class CreatePatientResource extends DataTransferObject
 
     public string $age;
 
+    public string $barangay;
+
     public DateTimeInterface $birthDate;
 
     public string $civilStatus;
+
+    public string $city;
 
     public string $email;
 
@@ -30,9 +34,13 @@ final class CreatePatientResource extends DataTransferObject
 
     public string $patientCode;
 
+    public string $province;
+
+    public string $streetAddress;
+
     public UserGuest $createdBy;
 
-    public $gender;
+    public string $gender;
 
     public function getActive(): bool
     {
@@ -177,4 +185,77 @@ final class CreatePatientResource extends DataTransferObject
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getBarangay(): string
+    {
+        return $this->barangay;
+    }
+
+    /**
+     * @param string $barangay
+     *
+     * @return CreatePatientResource
+     */
+    public function setBarangay(string $barangay): CreatePatientResource
+    {
+        $this->barangay = $barangay;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     *
+     * @return CreatePatientResource
+     */
+    public function setCity(string $city): CreatePatientResource
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return 'Philippines';
+    }
+
+    public function getProvince(): string
+    {
+        return $this->province;
+    }
+
+    public function setProvince(string $province): self
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    public function getStreetAddress(): string
+    {
+        return $this->streetAddress;
+    }
+
+    public function setStreetAddress(string $streetAddress): self
+    {
+        $this->streetAddress = $streetAddress;
+
+        return $this;
+    }
+
 }

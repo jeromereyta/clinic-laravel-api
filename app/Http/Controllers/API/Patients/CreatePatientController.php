@@ -59,9 +59,11 @@ final class CreatePatientController extends AbstractAPIController
 
         $patient = $this->patientRepository->create( new CreatePatientResource([
             'active' => true,
-            'age' => $request->getAge(),
+            'age' => '0',
+            'barangay' => $request->getBarangay(),
             'birthDate' => $request->getBirthDate(),
             'civilStatus' => $request->getCivilStatus(),
+            'city' => $request->getCity(),
             'createdBy' => $userGuest,
             'email' => $request->getEmail(),
             'gender' => $request->getGender(),
@@ -69,6 +71,8 @@ final class CreatePatientController extends AbstractAPIController
             'patientCode' => $patientCode,
             'phoneNumber' => $request->getPhoneNumber(),
             'profilePicture' => $request->getProfilePicture(),
+            'province' => $request->getProvince(),
+            'streetAddress' => $request->getStreetAddress(),
             'updatedBy' => $userGuest,
         ]));
 

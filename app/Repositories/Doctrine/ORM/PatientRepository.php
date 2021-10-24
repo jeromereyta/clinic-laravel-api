@@ -38,8 +38,11 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
         $patient->fill([
             'active' => $resource->getActive(),
             'age' => $resource->getAge(),
+            'barangay' => $resource->getBarangay(),
             'birthDate' => $resource->getBirthDate(),
+            'city' => $resource->getCity(),
             'civilStatus' => $resource->getCivilStatus(),
+            'country' => $resource->getCountry(),
             'createdBy' => $resource->getCreatedBy(),
             'email' => $resource->getEmail(),
             'gender' => $resource->getGender(),
@@ -47,6 +50,8 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
             'patientCode' => $resource->getPatientCode(),
             'phoneNumber' => $resource->getPhoneNumber(),
             'profilePicture' => $resource->getProfilePicture(),
+            'province' => $resource->getProvince(),
+            'streetAddress' => $resource->getStreetAddress(),
             'updatedBy' => $resource->getCreatedBy(),
         ]);
 
@@ -85,7 +90,7 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
                 ->select($expr->max('p.id'))
                 ->from($this->getEntityClass(), 'p')
                 ->getQuery()
-                ->getSingleScalarResult();
+                ->getSingleScalarResult() ?? "1";
         } catch (NoResultException | NonUniqueResultException $e) {
             return null;
         }

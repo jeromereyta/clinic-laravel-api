@@ -32,14 +32,18 @@ final class PatientResource extends Resource
         return [
             'id' => $this->resource->getPatientCode(),
             'active' => $this->resource->getName(),
-            'age' => $this->resource->getName(),
+            'age' => $this->resource->getAge(),
             'birth_date' => $birthDate,
+            'barangay' => $this->resource->getBarangay(),
             'civil_status' => $this->resource->getCivilStatus(),
+            'city' => $this->resource->getCity(),
             'email' => $this->resource->getEmail(),
             'gender' => $this->resource->getGender(),
             'name' => $this->resource->getName(),
             'phone_number' => $this->resource->getPhoneNumber(),
             'profile_picture' => $this->resource->getProfilePicture(),
+            'province' => $this->resource->getProvince(),
+            'street_address' => $this->resource->getStreetAddress(),
             'created_at' => $createdAt,
             'updated_at' => $updatedAt
         ];

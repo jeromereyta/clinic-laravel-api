@@ -43,8 +43,6 @@ class Patient extends AbstractEntity
      * )
      *
      * @ORM\JoinColumn(name="created_by_id", referencedColumnName="user_guest_id")
-     *
-     * @var \App\Database\Entities\UserGuest
      */
     protected UserGuest $createdBy;
 

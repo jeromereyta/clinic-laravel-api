@@ -35,9 +35,9 @@ abstract class AbstractAPIController
      * @param mixed[] $data
      * @param mixed[] $headers
      */
-    protected function respondBadRequest(array $data = [], array $headers = []): JsonResponse
+    protected function respondBadRequest(array $data = [], array $headers = []): JsonResource
     {
-        return new JsonResponse($data, Response::HTTP_BAD_REQUEST, $headers);
+        return new JsonResource($data, Response::HTTP_BAD_REQUEST, $headers);
     }
 
     /**
@@ -67,9 +67,9 @@ abstract class AbstractAPIController
      * @param mixed[] $data
      * @param mixed[] $headers
      */
-    protected function respondInternalError(array $data = [], array $headers = []): JsonResponse
+    protected function respondInternalError(array $data = [], array $headers = []): JsonResource
     {
-        return new JsonResponse($data, Response::HTTP_BAD_REQUEST, $headers);
+        return new JsonResource($data, Response::HTTP_BAD_REQUEST, $headers);
     }
 
     /**
@@ -116,9 +116,9 @@ abstract class AbstractAPIController
      * @param mixed[] $data
      * @param mixed[] $headers
      */
-    protected function respondUnauthorised(array $data = [], array $headers = []): JsonResponse
+    protected function respondUnauthorised(array $data = [], array $headers = []): JsonResource
     {
-        return new JsonResponse($data, Response::HTTP_UNAUTHORIZED, $headers);
+        return new JsonResource($data, Response::HTTP_UNAUTHORIZED, $headers);
     }
 
     /**

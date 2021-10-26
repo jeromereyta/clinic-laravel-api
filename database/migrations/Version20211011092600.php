@@ -7,9 +7,6 @@ use Doctrine\DBAL\Schema\Schema as Schema;
 
 class Version20211011092600 extends AbstractMigration
 {
-    /**
-     * @param Schema $schema
-     */
     public function up(Schema $schema): void
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
@@ -24,9 +21,6 @@ class Version20211011092600 extends AbstractMigration
         $this->addSql('ALTER TABLE patients ADD CONSTRAINT FK_2CCC2E2C896DBBDE FOREIGN KEY (updated_by_id) REFERENCES user_guests (user_guest_id)');
     }
 
-    /**
-     * @param Schema $schema
-     */
     public function down(Schema $schema): void
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');

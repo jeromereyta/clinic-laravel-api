@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Hashing\HashManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 final class RegisterAdminUserController extends AbstractAPIController
 {
@@ -36,7 +37,7 @@ final class RegisterAdminUserController extends AbstractAPIController
         $this->userRepository = $userRepository;
     }
 
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(Request $request): JsonResource
     {
         $user = $request->toArray();
         $email = $request->get('email');
@@ -64,7 +65,7 @@ final class RegisterAdminUserController extends AbstractAPIController
                 return $this->respondUnauthorised();
             }
 
-            return response()->json([
+            return new JsonResource([
                 'user' => $user,
             ]);
         } catch (Exception $exception) {

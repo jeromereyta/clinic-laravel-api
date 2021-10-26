@@ -36,8 +36,6 @@ class UserGuest extends AbstractEntity
      *     mappedBy="createdBy",
      *     cascade={"persist"}
      * )
-     *
-     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected Collection $createdPatients;
 

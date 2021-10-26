@@ -9,6 +9,7 @@ use App\Http\Requests\API\Authentication\AdminLoginRequest;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Tymon\JWTAuth\JWT;
 use Tymon\JWTAuth\JWTAuth;
 
@@ -29,7 +30,7 @@ final class AdminLoginController extends AbstractAPIController
         $this->userRepository = $userRepository;
     }
 
-    public function __invoke(AdminLoginRequest $request): JsonResponse
+    public function __invoke(AdminLoginRequest $request): JsonResource
     {
         $email = $request->getEmail('email');
 
@@ -55,7 +56,7 @@ final class AdminLoginController extends AbstractAPIController
                 ]);
             }
 
-            return response()->json([
+            return new JsonResource([
                 'access_token' => $token,
                 'token_type' => 'bearer',
                 'expires_in' => auth()->factory()->getTTL() * 60,

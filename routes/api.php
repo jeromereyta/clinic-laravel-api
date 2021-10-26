@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\API\Authentication\AdminLoginController;
+use App\Http\Controllers\API\CategoryProcedures\CreateCategoryProcedureController;
 use App\Http\Controllers\API\Patients\CreatePatientController;
 use App\Http\Controllers\API\Patients\CreatePatientVisitsController;
 use App\Http\Controllers\API\Patients\ListPatientController;
 use App\Http\Controllers\API\Patients\ShowPatientController;
 use App\Http\Controllers\API\Patients\ShowPatientVisitsController;
+use App\Http\Controllers\API\Procedures\CreateProcedureController;
 use App\Http\Controllers\API\RegisterUser\RegisterAdminUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -69,6 +71,18 @@ Route::group([
     Route::post('/patient-visits', [
         'as' => 'patient-visit-create',
         'uses' => CreatePatientVisitsController::class,
+    ]);
+
+    // Category Procedures
+    Route::post('/category-procedures', [
+        'as' => 'category-procedures-create',
+        'uses' => CreateCategoryProcedureController::class,
+    ]);
+
+    // Procedures
+    Route::post('/procedures', [
+        'as' => 'procedures-create',
+        'uses' => CreateProcedureController::class,
     ]);
 
 });

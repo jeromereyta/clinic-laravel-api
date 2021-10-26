@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Database\Entities;
 
 use App\Exceptions\EntityValidationFailedException;
+use Carbon\Carbon;
 use DateTime;
 use DateTimeInterface;
 use EoneoPay\Externals\ORM\Entity as BaseEntity;
@@ -37,7 +38,11 @@ abstract class AbstractEntity extends BaseEntity implements
 
     public function getCreatedAtAsString(): string
     {
-        return $this->dateTimeToZuluFormat($this->getCreatedAt());
+        if ($this->getCreatedAt() !== null){
+            return $this->dateTimeToZuluFormat($this->getCreatedAt());
+        }
+
+        return (Carbon::now())->toIso8601ZuluString();
     }
 
     /**

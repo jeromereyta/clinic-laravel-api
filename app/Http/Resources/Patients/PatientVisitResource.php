@@ -7,6 +7,7 @@ namespace App\Http\Resources\Patients;
 use App\Database\Entities\PatientVisit;
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
+use Carbon\Carbon;
 
 final class PatientVisitResource extends Resource
 {
@@ -14,7 +15,7 @@ final class PatientVisitResource extends Resource
      * Return response for this resource.
      *
      * @return mixed[]
-     * @throws \App\Exceptions\InvalidResourceTypeException
+     * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array
     {
@@ -26,16 +27,21 @@ final class PatientVisitResource extends Resource
         }
 
         // did not include updated by since this one record is not updatable
-        $createdAt = $this->resource->getCreatedAtAsString();
+        $createdAt = $this->resource->getCreatedAt();
+        $localDate = new Carbon($createdAt);
+        $patient = $this->resource->getPatient();
 
         return [
+            'id' => $this->resource->getId(),
             'attending_doctor' => $this->resource->getAttendingDoctor(),
+            'patient_code' => $patient->getPatientCode(),
+            'patient_name' => $patient->getName(),
             'patient_bp' => $this->resource->getPatientBP(),
             'patient_height' => $this->resource->getPatientHeight(),
             'patient_weight' => $this->resource->getPatientWeight(),
             'remarks' => $this->resource->getRemarks(),
             'created_by' => $this->resource->getCreatedById(),
-            'created_at' => $createdAt,
+            'created_at' => $localDate->setTimezone('Asia/Taipei')->toDayDateTimeString(),
         ];
     }
 }

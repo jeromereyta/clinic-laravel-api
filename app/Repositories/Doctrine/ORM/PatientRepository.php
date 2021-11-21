@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace App\Repositories\Doctrine\ORM;
 
 use App\Database\Entities\Patient;
+use App\Database\Entities\PatientVisit;
 use App\Database\Entities\User;
 use App\Database\Entities\UserGuest;
 use App\Repositories\Interfaces\PatientRepositoryInterface;
 use App\Services\PatientService\Resources\CreatePatientResource;
+use Carbon\Carbon;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 
 final class PatientRepository extends AbstractRepository implements PatientRepositoryInterface
 {
@@ -28,8 +32,8 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
     }
 
     /**
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\ORMException
+     * @throws OptimisticLockException
+     * @throws ORMException
      */
     public function create(CreatePatientResource $resource): Patient
     {
@@ -49,6 +53,7 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
             'name' => $resource->getName(),
             'patientCode' => $resource->getPatientCode(),
             'phoneNumber' => $resource->getPhoneNumber(),
+            'mobileNumber' => $resource->getMobileNumber(),
             'profilePicture' => $resource->getProfilePicture(),
             'province' => $resource->getProvince(),
             'streetAddress' => $resource->getStreetAddress(),
@@ -94,6 +99,49 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
         } catch (NoResultException | NonUniqueResultException $e) {
             return null;
         }
+    }
+
+
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    public function updatePatientProfile(Patient $patient, string $profilePicture): Patient
+    {
+        $patient->setProfilePicture($profilePicture);
+
+        $this->entityManager->persist($patient);
+        $this->entityManager->flush();
+
+        return $patient;
+    }
+
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    public function updatePatient(Patient $patient, CreatePatientResource $resource): Patient
+    {
+        $patient
+            ->setBarangay($resource->getBarangay())
+            ->setBirthDate($resource->getBirthDate())
+            ->setCity($resource->getCity())
+            ->setCivilStatus($resource->getCivilStatus())
+            ->setEmail($resource->getEmail())
+            ->setGender($resource->getGender())
+            ->setPhoneNumber($resource->getPhoneNumber())
+            ->setMobileNumber($resource->getMobileNumber())
+            ->setProvince($resource->getProvince())
+            ->setStreetAddress($resource->getStreetAddress());
+
+        if ($patient->getName() !== $resource->getName()) {
+            $patient->setName($resource->getName());
+        }
+
+        $this->entityManager->persist($patient);
+        $this->entityManager->flush();
+
+        return $patient;
     }
 
     protected function getEntityClass(): string

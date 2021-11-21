@@ -14,7 +14,7 @@ final class PatientResource extends Resource
      * Return response for this resource.
      *
      * @return mixed[]
-     * @throws \App\Exceptions\InvalidResourceTypeException
+     * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array
     {
@@ -25,7 +25,7 @@ final class PatientResource extends Resource
             );
         }
 
-        $birthDate = $this->resource->getBirthDate()->format('Y-m-d');
+        $birthDate = $this->resource->getBirthDate()->format('Y/m/d');
         $createdAt = $this->resource->getCreatedAtAsString();
         $updatedAt = $this->resource->getUpdatedAtAsString();
 
@@ -41,6 +41,7 @@ final class PatientResource extends Resource
             'gender' => $this->resource->getGender(),
             'name' => $this->resource->getName(),
             'phone_number' => $this->resource->getPhoneNumber(),
+            'mobile_number' => $this->resource->getMobileNumber(),
             'profile_picture' => $this->resource->getProfilePicture(),
             'province' => $this->resource->getProvince(),
             'street_address' => $this->resource->getStreetAddress(),

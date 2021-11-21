@@ -34,6 +34,7 @@ trait UserGuestSchema
     /**
      * @ORM\Column(name="`type`", type="string")
      *
+     *
      * @var string
      */
     protected string $type;
@@ -42,10 +43,8 @@ trait UserGuestSchema
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @var string
      */
-    protected string $userGuestId;
+    protected int $userGuestId;
 
     /**
      * @ORM\Column(name="user_id", type="guid")

@@ -27,7 +27,7 @@ final class CreateCategoryProcedureRequest extends BaseRequest
     {
         $type = $this->getString('type');
 
-        return new CategoryProcedureTypeEnum($type);
+        return new CategoryProcedureTypeEnum(\strtolower($type));
     }
 
     /**
@@ -38,11 +38,7 @@ final class CreateCategoryProcedureRequest extends BaseRequest
         return [
             'name' => 'required|string|unique:App\Database\Entities\CategoryProcedure,name',
             'description' => 'required|string',
-            'type' => [
-                'required',
-                'string',
-                Rule::in(CategoryProcedureTypeEnum::toArray())
-            ],
+            'type' => 'required|string',
         ];
     }
 }

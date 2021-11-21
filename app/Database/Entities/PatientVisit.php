@@ -6,10 +6,13 @@ namespace App\Database\Entities;
 
 use App\Database\Schemas\PatientVisitSchema;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @method \App\Database\Entities\Patient getPatient()
+ * @method \App\Database\Entities\PatientProcedure getPatientProcedures()
  *
  * @ORM\Entity()
  * @ORM\Table(
@@ -40,11 +43,18 @@ class PatientVisit extends AbstractEntity
      * )
      *
      * @ORM\JoinColumn(name="created_by_id", referencedColumnName="user_guest_id")
-     *
-     * @var \App\Database\Entities\UserGuest
      */
     protected UserGuest $createdBy;
 
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="App\Database\Entities\PatientProcedure",
+     *     mappedBy="patientVisit",
+     *     cascade={"persist"}
+     * )
+     */
+    protected Collection $patientProcedures;
 
     /**
      * @ORM\ManyToOne(
@@ -54,8 +64,6 @@ class PatientVisit extends AbstractEntity
      * )
      *
      * @ORM\JoinColumn(name="patient_id", referencedColumnName="id")
-     *
-     * @var \App\Database\Entities\Patient
      */
     protected Patient $patient;
 

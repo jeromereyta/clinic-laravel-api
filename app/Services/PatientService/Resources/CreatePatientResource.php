@@ -28,6 +28,8 @@ final class CreatePatientResource extends DataTransferObject
 
     public string $phoneNumber;
 
+    public string $mobileNumber;
+
     public ?string $profilePicture;
 
     public UserGuest $updatedBy;
@@ -90,6 +92,11 @@ final class CreatePatientResource extends DataTransferObject
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
+    }
+
+    public function getMobileNumber(): string
+    {
+        return $this->mobileNumber;
     }
 
     public function getProfilePicture(): ?string
@@ -168,6 +175,13 @@ final class CreatePatientResource extends DataTransferObject
     public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function setMobileNumber(string $mobileNumber): self
+    {
+        $this->mobileNumber = $mobileNumber;
 
         return $this;
     }

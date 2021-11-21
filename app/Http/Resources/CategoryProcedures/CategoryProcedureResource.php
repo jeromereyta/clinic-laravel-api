@@ -15,6 +15,7 @@ final class CategoryProcedureResource extends Resource
      *
      * @return mixed[]
      * @throws InvalidResourceTypeException
+     *
      */
     protected function getResponse(): array
     {
@@ -29,7 +30,7 @@ final class CategoryProcedureResource extends Resource
             'id' => $this->resource->getId(),
             'name' => $this->resource->getName(),
             'description' => $this->resource->getDescription(),
-            'type' => $this->resource->getType(),
+            'type' => \ucfirst($this->resource->getType()),
         ];
     }
 }

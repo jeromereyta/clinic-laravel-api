@@ -15,6 +15,11 @@ final class CategoryProcedureTypeEnum extends Enum
 
     /**
      * @var string
-     */
+     */ 
     public const CONSULTATION = 'consultation';
+
+    /**
+     * @var string
+     */
+    public const OTHERS = 'others';
 }

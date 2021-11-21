@@ -10,4 +10,7 @@
 Prepare your machine.
 
 - This project uses docker. [Install Docker](https://docs.docker.com/install/)
-- 
+- This project uses Sail and Doctrine
+
+- composer install 
+- sudo umount /mnt/c sudo mount -t drvfs C: /mnt/c -o metadata

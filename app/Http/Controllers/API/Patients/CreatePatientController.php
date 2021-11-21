@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\Patients;
 
+use App\Database\Entities\User;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Patients\CreatePatientRequest;
+use App\Http\Resources\Patients\PatientResource;
 use App\Repositories\Interfaces\PatientRepositoryInterface;
 use App\Repositories\Interfaces\PatientVisitRepositoryInterface;
 use App\Repositories\Interfaces\UserGuestRepositoryInterface;
 use App\Services\PatientService\Interfaces\GeneratePatientCodeServiceInterface;
 use App\Services\PatientService\Resources\CreatePatientResource;
 use App\Services\PatientService\Resources\CreatePatientVisitResource;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class CreatePatientController extends AbstractAPIController
@@ -40,7 +40,7 @@ final class CreatePatientController extends AbstractAPIController
 
     public function __invoke(CreatePatientRequest $request): JsonResource
     {
-        /** @var \App\Database\Entities\User $user */
+        /** @var User $user */
         $user = $this->getUser();
 
         if ($user === null) {
@@ -70,7 +70,8 @@ final class CreatePatientController extends AbstractAPIController
             'name' => $request->getName(),
             'patientCode' => $patientCode,
             'phoneNumber' => $request->getPhoneNumber(),
-            'profilePicture' => $request->getProfilePicture(),
+            'mobileNumber' => $request->getMobileNumber(),
+            'profilePicture' => '',
             'province' => $request->getProvince(),
             'streetAddress' => $request->getStreetAddress(),
             'updatedBy' => $userGuest,
@@ -86,8 +87,6 @@ final class CreatePatientController extends AbstractAPIController
             'remarks' => $request->getRemarks(),
         ]));
 
-        return new JsonResource([
-            'Successfully created patient with patient visits',
-        ]);
+        return new PatientResource($patient);
     }
 }

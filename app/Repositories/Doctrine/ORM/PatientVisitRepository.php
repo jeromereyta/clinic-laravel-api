@@ -8,12 +8,50 @@ use App\Database\Entities\Patient;
 use App\Database\Entities\PatientVisit;
 use App\Repositories\Interfaces\PatientVisitRepositoryInterface;
 use App\Services\PatientService\Resources\CreatePatientVisitResource;
+use Carbon\Carbon;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 
 final class PatientVisitRepository extends AbstractRepository implements PatientVisitRepositoryInterface
 {
     /**
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\ORMException
+     * @return mixed[]
+     */
+    public function all(): array
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        return $queryBuilder->select('pq')
+            ->from($this->getEntityClass(), 'pq')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public function allWithPatientVisits(): array
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        $dateToday = (Carbon::now())->toDateString();
+
+        return $queryBuilder->select('pv')
+            ->addSelect('p')
+            ->from($this->getEntityClass(), 'pv')
+            ->innerJoin('pv.patient', 'p', 'pv.patient_id = p.id')
+            ->where('pv.createdAt > :dateToday')
+            ->setParameter('dateToday', $dateToday)
+            ->orderBy('pv.createdAt', 'asc')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
      */
     public function create(CreatePatientVisitResource $resource): PatientVisit
     {
@@ -47,6 +85,24 @@ final class PatientVisitRepository extends AbstractRepository implements Patient
             ])
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function findByPatientVisit(int $patient_visit_id): ?PatientVisit
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        return $queryBuilder->select('pv')
+            ->from($this->getEntityClass(), 'pv')
+            ->where('pv.id = :patient_visit_id')
+            ->setParameters([
+                'patient_visit_id' => $patient_visit_id,
+            ])
+            ->getQuery()
+            ->getSingleResult();
     }
 
     protected function getEntityClass(): string

@@ -10,7 +10,11 @@ use App\Services\PatientService\Resources\CreatePatientVisitResource;
 
 interface PatientVisitRepositoryInterface
 {
+    public function allWithPatientVisits(): array;
+
     public function create(CreatePatientVisitResource $resource): PatientVisit;
 
     public function findByPatient(Patient $patient): array;
+
+    public function findByPatientVisit(int $patient_visit_id): ?PatientVisit;
 }

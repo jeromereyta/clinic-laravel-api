@@ -7,11 +7,14 @@ namespace App\Database\Entities;
 use App\Database\Entities\AbstractEntity;
 use App\Database\Schemas\ProcedureSchema;
 use DateTimeInterface;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @method \App\Database\Entities\UserGuest getCreatedBy()
  * @method null|\App\Database\Entities\UserGuest getUpdatedBy()
+ * @method null|\App\Database\Entities\PatientProcedure getPatientProcedure()
+ *
  * @ORM\Entity()
  * @ORM\Table(
  *     name="procedures"
@@ -31,6 +34,16 @@ class Procedure extends AbstractEntity
      * @ORM\JoinColumn(name="category_procedure_id", referencedColumnName="id")
      */
     protected CategoryProcedure $categoryProcedure;
+
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="App\Database\Entities\PatientProcedure",
+     *     mappedBy="procedure",
+     *     cascade={"persist"}
+     * )
+     */
+    protected Collection $patientProcedures;
 
     public DateTimeInterface $createdAt;
 

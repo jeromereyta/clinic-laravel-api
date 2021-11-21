@@ -16,6 +16,9 @@ final class GeneratePatientCodeService implements GeneratePatientCodeServiceInte
 
     public function generate(string $latestId): string
     {
-        return \str_pad($latestId,8,"0",STR_PAD_LEFT);
+        $id = (int) $latestId;
+        $id++;
+
+        return \str_pad((string) $id,8,"0",STR_PAD_LEFT);
     }
 }

@@ -9,10 +9,11 @@ use Carbon\Carbon;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
- * @method \App\Database\Entities\UserGuest getCreatedBy()
- * @method null|\App\Database\Entities\UserGuest getUpdatedBy()
+ * @method UserGuest getCreatedBy()
+ * @method null|UserGuest getUpdatedBy()
  *
  * @ORM\Entity()
  * @ORM\Table(
@@ -53,7 +54,7 @@ class Patient extends AbstractEntity
      *     cascade={"persist"}
      * )
      *
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var PersistentCollection
      */
     protected $patientVisits;
 
@@ -66,7 +67,7 @@ class Patient extends AbstractEntity
      *
      * @ORM\JoinColumn(name="updated_by_id", referencedColumnName="user_guest_id")
      *
-     * @var null|\App\Database\Entities\UserGuest
+     * @var null|UserGuest
      */
     protected ?UserGuest $updatedBy;
 
@@ -101,7 +102,7 @@ class Patient extends AbstractEntity
         return $this->createdAt;
     }
 
-    public function getCreatedById(): string
+    public function getCreatedById(): int
     {
         return $this->createdById;
     }
@@ -129,7 +130,7 @@ class Patient extends AbstractEntity
     /**
      * @return mixed[]
      */
-    public function getPatientVisits(): ArrayCollection
+    public function getPatientVisits(): PersistentCollection
     {
         return $this->patientVisits;
     }
@@ -144,7 +145,7 @@ class Patient extends AbstractEntity
         return $this->updatedAt;
     }
 
-    public function getUpdatedById(): ?string
+    public function getUpdatedById(): ?int
     {
         return $this->updatedById;
     }
@@ -154,19 +155,36 @@ class Patient extends AbstractEntity
         $this->active = $active;
     }
 
-    public function setAge(string $age): void
+    public function setAge(string $age): self
     {
         $this->age = $age;
+
+        return $this;
     }
 
-    public function setBirthDate(DateTimeInterface $birthDate): void
+    public function getMobileNumber(): string
+    {
+        return $this->mobileNumber;
+    }
+
+    public function setMobileNumber(string $mobileNumber): self
+    {
+        $this->mobileNumber = $mobileNumber;
+        return $this;
+    }
+
+    public function setBirthDate(DateTimeInterface $birthDate): self
     {
         $this->birthDate = $birthDate;
+
+        return $this;
     }
 
-    public function setCivilStatus(string $civilStatus): void
+    public function setCivilStatus(string $civilStatus): self
     {
         $this->civilStatus = $civilStatus;
+
+        return $this;
     }
 
     public function setCreatedAt(DateTimeInterface $createdAt): self
@@ -179,7 +197,7 @@ class Patient extends AbstractEntity
     public function setCreatedBy(UserGuest $user): self
     {
         $this->createdBy = $user;
-        $this->createdById = (string)$user->getId();
+        $this->createdById = $user->getId();
 
         return $this;
     }
@@ -322,7 +340,7 @@ class Patient extends AbstractEntity
         }
 
         $this->updatedBy = $user;
-        $this->updatedById = (string)$user->getId();
+        $this->updatedById = $user->getId();
 
         return $this;
     }

@@ -19,4 +19,9 @@ interface PatientRepositoryInterface
     public function findByPatientCode(string $patientCode): ?Patient;
 
     public function findLatestId(): ?string;
+
+    public function updatePatientProfile(Patient $patient, string $profilePicture): Patient;
+
+    public function updatePatient(Patient $patient, CreatePatientResource $resource): Patient;
+
 }

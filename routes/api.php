@@ -2,12 +2,19 @@
 
 use App\Http\Controllers\API\Authentication\AdminLoginController;
 use App\Http\Controllers\API\CategoryProcedures\CreateCategoryProcedureController;
+use App\Http\Controllers\API\CategoryProcedures\ListCategoryProcedureController;
 use App\Http\Controllers\API\Patients\CreatePatientController;
+use App\Http\Controllers\API\Patients\CreatePatientProcedureController;
 use App\Http\Controllers\API\Patients\CreatePatientVisitsController;
 use App\Http\Controllers\API\Patients\ListPatientController;
+use App\Http\Controllers\API\Patients\ListPatientVisitController;
 use App\Http\Controllers\API\Patients\ShowPatientController;
 use App\Http\Controllers\API\Patients\ShowPatientVisitsController;
+use App\Http\Controllers\API\Patients\UpdatePatientController;
+use App\Http\Controllers\API\Patients\UploadPatientProfileController;
 use App\Http\Controllers\API\Procedures\CreateProcedureController;
+use App\Http\Controllers\API\Procedures\ListProcedureController;
+use App\Http\Controllers\API\Queue\ListProcedureQueueController;
 use App\Http\Controllers\API\RegisterUser\RegisterAdminUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -56,12 +63,27 @@ Route::group([
         'uses' => ShowPatientController::class,
     ]);
 
+    Route::put('/patients/{patientCode}', [
+        'as' => 'patient-update',
+        'uses' => UpdatePatientController::class,
+    ]);
+
     Route::post('/patients', [
         'as' => 'patient-create',
         'uses' => CreatePatientController::class,
     ]);
 
+    Route::post('/patients/upload-profile', [
+        'as' => 'patient-profile-upload',
+        'uses' => UploadPatientProfileController::class,
+    ]);
+
+
     // Patient Visits
+    Route::get('/patient-visits', [
+        'as' => 'patient-list',
+        'uses' => ListPatientVisitController::class,
+    ]);
 
     Route::get('/patient-visits/{patientCode}', [
         'as' => 'patient-view',
@@ -78,11 +100,33 @@ Route::group([
         'as' => 'category-procedures-create',
         'uses' => CreateCategoryProcedureController::class,
     ]);
+    Route::get('/category-procedures', [
+        'as' => 'category-procedures-list',
+        'uses' => ListCategoryProcedureController::class,
+    ]);
+
 
     // Procedures
     Route::post('/procedures', [
         'as' => 'procedures-create',
         'uses' => CreateProcedureController::class,
     ]);
+    Route::get('/procedures', [
+        'as' => 'procedures-list',
+        'uses' => ListProcedureController::class,
+    ]);
+    Route::get('/procedure-queues', [
+        'as' => 'procedures-queue-list',
+        'uses' => ListProcedureQueueController::class,
+    ]);
+
+    // Patient Procedure
+    Route::post('/patient-procedures', [
+        'as' => 'patient-procedures-create',
+        'uses' => CreatePatientProcedureController::class,
+    ]);
+
+
+
 
 });

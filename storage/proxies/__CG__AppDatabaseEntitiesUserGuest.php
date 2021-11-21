@@ -111,10 +111,10 @@ class UserGuest extends \App\Database\Entities\UserGuest implements \Doctrine\OR
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'createdAt', 'createdPatients', 'patientVisits', 'updatedPatients', 'user', 'updatedAt', 'active', 'name', 'type', 'userGuestId', 'userId'];
+            return ['__isInitialized__', 'createdAt', 'createdPatients', 'createdPatientProcedures', 'patientVisits', 'updatedPatients', 'user', 'updatedAt', 'active', 'name', 'type', 'userGuestId', 'userId'];
         }
 
-        return ['__isInitialized__', 'createdPatients', 'patientVisits', 'updatedPatients', 'user', 'updatedAt', 'active', 'name', 'type', 'userGuestId', 'userId'];
+        return ['__isInitialized__', 'createdPatients', 'createdPatientProcedures', 'patientVisits', 'updatedPatients', 'user', 'updatedAt', 'active', 'name', 'type', 'userGuestId', 'userId'];
     }
 
     /**

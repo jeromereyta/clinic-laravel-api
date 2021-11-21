@@ -41,14 +41,21 @@ class UserGuest extends AbstractEntity
 
     /**
      * @ORM\OneToMany(
+     *     targetEntity="App\Database\Entities\PatientProcedure",
+     *     mappedBy="createdBy",
+     *     cascade={"persist"}
+     * )
+     */
+    protected Collection $createdPatientProcedures;
+
+    /**
+     * @ORM\OneToMany(
      *     targetEntity="App\Database\Entities\PatientVisit",
      *     mappedBy="createdBy",
      *     cascade={"persist"}
      * )
-     *
-     * @var \Doctrine\Common\Collections\ArrayCollection
      */
-    protected $patientVisits;
+    protected Collection $patientVisits;
 
     /**
      * @ORM\OneToMany(
@@ -57,7 +64,7 @@ class UserGuest extends AbstractEntity
      *     cascade={"persist"}
      * )
      *
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var ArrayCollection
      */
     protected Collection $updatedPatients;
 
@@ -68,7 +75,7 @@ class UserGuest extends AbstractEntity
      *     cascade={"persist"}
      * )
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * @var \App\Database\Entities\User
+     * @var User
      */
     protected $user;
 

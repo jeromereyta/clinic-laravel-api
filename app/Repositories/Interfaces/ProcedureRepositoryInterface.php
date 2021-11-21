@@ -16,4 +16,11 @@ interface ProcedureRepositoryInterface
     public function all(): array;
 
     public function create(CreateProcedureResource $resource): Procedure;
+
+    /**
+     * @return mixed[]
+     */
+    public function findByProcedureIds(array $procedure_ids): array;
+
+    public function findWithQueues(): array;
 }

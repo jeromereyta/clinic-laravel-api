@@ -6,6 +6,8 @@ namespace App\Providers;
 
 use App\Services\PatientService\GeneratePatientCodeService;
 use App\Services\PatientService\Interfaces\GeneratePatientCodeServiceInterface;
+use App\Services\PatientService\Interfaces\UploadPatientProfilePictureInterface;
+use App\Services\PatientService\UploadPatientProfilePicture;
 use Illuminate\Support\ServiceProvider;
 
 final class PatientServiceProvider extends ServiceProvider
@@ -17,6 +19,7 @@ final class PatientServiceProvider extends ServiceProvider
     {
         $factories = [
             GeneratePatientCodeServiceInterface::class => GeneratePatientCodeService::class,
+            UploadPatientProfilePictureInterface::class => UploadPatientProfilePicture::class,
         ];
 
         foreach ($factories as $abstract => $concrete) {

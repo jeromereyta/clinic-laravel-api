@@ -77,9 +77,9 @@ final class CreatePatientRequest extends BaseRequest
         return $this->getString('phone_number');
     }
 
-    public function getProfilePicture(): ?string
+    public function getMobileNumber(): string
     {
-        return $this->getString('profile_picture');
+        return $this->getString('mobile_number');
     }
 
     public function getProvince(): string
@@ -110,12 +110,12 @@ final class CreatePatientRequest extends BaseRequest
             'civil_status' => 'required|string',
             'email' => 'required|max:255',
             'gender' => 'required|string',
-            'name' => 'required|string',
+            'name' => 'required|string|unique:App\Database\Entities\Patient,name',
             'patient_bp' => 'required|string',
             'patient_height' => 'required|string',
             'patient_weight' => 'required|string',
             'phone_number' => 'required|string',
-            'profile_picture' => 'string',
+            'mobile_number' => 'required|string',
             'province' => 'required|string',
             'street_address' => 'required|string',
             'remarks' => 'string',

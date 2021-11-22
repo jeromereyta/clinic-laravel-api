@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Migrations;
 
 use Doctrine\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema as Schema;
 
-class Version20211028025351 extends AbstractMigration
+final class Version20211028025351 extends AbstractMigration
 {
     /**
      * @param Schema $schema

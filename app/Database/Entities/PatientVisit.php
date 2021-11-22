@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @method \App\Database\Entities\Patient getPatient()
  * @method \App\Database\Entities\PatientProcedure getPatientProcedures()
+ * @method \App\Database\Entities\FileUpload getFileUploads()
  *
  * @ORM\Entity()
  * @ORM\Table(
@@ -55,6 +56,15 @@ class PatientVisit extends AbstractEntity
      * )
      */
     protected Collection $patientProcedures;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="App\Database\Entities\FileUpload",
+     *     mappedBy="patientVisit",
+     *     cascade={"persist"}
+     * )
+     */
+    protected Collection $fileUploads;
 
     /**
      * @ORM\ManyToOne(

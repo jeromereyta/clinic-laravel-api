@@ -95,7 +95,7 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
                 ->select($expr->max('p.id'))
                 ->from($this->getEntityClass(), 'p')
                 ->getQuery()
-                ->getSingleScalarResult() ?? "1";
+                ->getSingleScalarResult() ?? "0";
         } catch (NoResultException | NonUniqueResultException $e) {
             return null;
         }

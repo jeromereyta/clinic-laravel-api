@@ -78,7 +78,9 @@ final class PatientVisitRepository extends AbstractRepository implements Patient
         $queryBuilder = $this->manager->createQueryBuilder();
 
         return $queryBuilder->select('pv')
+            ->addSelect('fu')
             ->from($this->getEntityClass(), 'pv')
+            ->leftJoin('pv.fileUploads', 'fu', 'pv.id = fu.patient_visit_id')
             ->where('pv.patientId = :patientId')
             ->setParameters([
                 'patientId' => $patient->getId(),
@@ -96,7 +98,9 @@ final class PatientVisitRepository extends AbstractRepository implements Patient
         $queryBuilder = $this->manager->createQueryBuilder();
 
         return $queryBuilder->select('pv')
+            ->addSelect('fu')
             ->from($this->getEntityClass(), 'pv')
+            ->leftJoin('pv.fileUploads', 'fu', 'pv.id = fu.patient_visit_id')
             ->where('pv.id = :patient_visit_id')
             ->setParameters([
                 'patient_visit_id' => $patient_visit_id,

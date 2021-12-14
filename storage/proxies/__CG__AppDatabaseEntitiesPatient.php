@@ -112,10 +112,10 @@ class Patient extends \App\Database\Entities\Patient implements \Doctrine\ORM\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'createdAt', 'updatedAt', 'createdBy', 'patientVisits', 'updatedBy', 'active', 'age', 'barangay', 'birthDate', 'city', 'civilStatus', 'country', 'createdById', 'email', 'gender', 'id', 'name', 'patientCode', 'phoneNumber', 'profilePicture', 'province', 'streetAddress', 'updatedById'];
+            return ['__isInitialized__', 'createdAt', 'updatedAt', 'createdBy', 'patientVisits', 'updatedBy', 'active', 'age', 'barangay', 'birthDate', 'city', 'civilStatus', 'country', 'createdById', 'email', 'gender', 'id', 'name', 'patientCode', 'phoneNumber', 'mobileNumber', 'profilePicture', 'province', 'streetAddress', 'updatedById'];
         }
 
-        return ['__isInitialized__', 'createdBy', 'patientVisits', 'updatedBy', 'active', 'age', 'barangay', 'birthDate', 'city', 'civilStatus', 'country', 'createdById', 'email', 'gender', 'id', 'name', 'patientCode', 'phoneNumber', 'profilePicture', 'province', 'streetAddress', 'updatedById'];
+        return ['__isInitialized__', 'createdBy', 'patientVisits', 'updatedBy', 'active', 'age', 'barangay', 'birthDate', 'city', 'civilStatus', 'country', 'createdById', 'email', 'gender', 'id', 'name', 'patientCode', 'phoneNumber', 'mobileNumber', 'profilePicture', 'province', 'streetAddress', 'updatedById'];
     }
 
     /**
@@ -391,34 +391,56 @@ class Patient extends \App\Database\Entities\Patient implements \Doctrine\ORM\Pr
     /**
      * {@inheritDoc}
      */
-    public function setAge(string $age): void
+    public function setAge(string $age): \App\Database\Entities\Patient
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAge', [$age]);
 
-        parent::setAge($age);
+        return parent::setAge($age);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setBirthDate(\DateTimeInterface $birthDate): void
+    public function getMobileNumber(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMobileNumber', []);
+
+        return parent::getMobileNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMobileNumber(string $mobileNumber): \App\Database\Entities\Patient
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMobileNumber', [$mobileNumber]);
+
+        return parent::setMobileNumber($mobileNumber);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBirthDate(\DateTimeInterface $birthDate): \App\Database\Entities\Patient
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBirthDate', [$birthDate]);
 
-        parent::setBirthDate($birthDate);
+        return parent::setBirthDate($birthDate);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setCivilStatus(string $civilStatus): void
+    public function setCivilStatus(string $civilStatus): \App\Database\Entities\Patient
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCivilStatus', [$civilStatus]);
 
-        parent::setCivilStatus($civilStatus);
+        return parent::setCivilStatus($civilStatus);
     }
 
     /**

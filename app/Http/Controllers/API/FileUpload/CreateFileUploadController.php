@@ -11,10 +11,12 @@ use App\Http\Resources\FileUpload\FileTypeResource;
 use App\Repositories\Interfaces\FileTypeRepositoryInterface;
 use App\Repositories\Interfaces\FileUploadRepositoryInterface;
 use App\Repositories\Interfaces\PatientVisitRepositoryInterface;
+use App\Services\FileUpload\Interfaces\UploadFileServiceInterface;
 use App\Services\FileUpload\Resources\CreateFileTypeResource;
 use App\Services\FileUpload\Resources\CreateFileUploadResource;
 use Doctrine\ORM\ORMException;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 use Throwable;
 
 final class CreateFileUploadController extends AbstractAPIController
@@ -25,14 +27,18 @@ final class CreateFileUploadController extends AbstractAPIController
 
     private PatientVisitRepositoryInterface  $patientVisitRepository;
 
+    private UploadFileServiceInterface $uploadFileService;
+
     public function __construct(
         FileTypeRepositoryInterface $fileTypeRepository,
         FileUploadRepositoryInterface $fileUploadRepository,
+        UploadFileServiceInterface $uploadFileService,
         PatientVisitRepositoryInterface  $patientVisitRepository
     ) {
         $this->fileTypeRepository = $fileTypeRepository;
         $this->fileUploadRepository = $fileUploadRepository;
         $this->patientVisitRepository = $patientVisitRepository;
+        $this->uploadFileService = $uploadFileService;
     }
 
     public function __invoke(CreateFileUploadRequest $request): JsonResource
@@ -54,18 +60,28 @@ final class CreateFileUploadController extends AbstractAPIController
         }
 
         try {
-            $fileUpload = $this->fileUploadRepository->create(
+            $rawFile = $request->file('file');
+
+            $fileName = \sprintf(
+                '%s-%s',
+                $patientVisit->getPatient()->getPatientCode(),
+                $rawFile->getClientOriginalName()
+            );
+
+            $file = $this->uploadFileService->upload($patientVisit, $rawFile, $fileName);
+
+            $this->fileUploadRepository->create(
                 new CreateFileUploadResource([
-                    'name' => $request->getName(),
+                    'name' => $rawFile->getClientOriginalName(),
                     'description' => $request->getDescription(),
-                    'path' => $request->getPath(),
-                    'format' => $request->getFormatFileUpload(),
+                    'path' => $file->getPath(),
+                    'format' => $rawFile->getClientMimeType() ?? '',
                     'fileType' => $fileType,
                     'patientVisit' => $patientVisit,
                 ])
             );
 
-            return new FileTypeResource($fileType);
+            return $this->respondNoContent();
         } catch (ORMException $ormException) {
             return $this->respondUnprocessable([
                 'message' => $ormException->getMessage(),

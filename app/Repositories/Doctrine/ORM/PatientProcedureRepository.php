@@ -28,6 +28,7 @@ final class PatientProcedureRepository extends AbstractRepository implements Pat
             $patientProcedure = new PatientProcedure();
 
             $patientProcedure->fill([
+                'description' => $resource->getDescription(),
                 'patientVisit' => $resource->getPatientVisit(),
                 'procedure' => $procedure,
                 'createdBy' => $resource->getCreatedBy(),

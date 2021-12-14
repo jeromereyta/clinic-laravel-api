@@ -11,19 +11,14 @@ final class CreateFileUploadRequest extends BaseRequest
         return true;
     }
 
-    public function getFileTypeId():int
+    public function getFileTypeId(): int
     {
         return $this->getInt('file_type_id');
     }
 
-    public function getPatientVisitId():int
+    public function getPatientVisitId(): int
     {
         return $this->getInt('patient_visit_id');
-    }
-
-    public function getName(): string
-    {
-        return $this->getString('name');
     }
 
     public function getDescription(): string
@@ -36,11 +31,6 @@ final class CreateFileUploadRequest extends BaseRequest
         return $this->getString('path');
     }
 
-    public function getFormatFileUpload(): string
-    {
-        return $this->getString('format');
-    }
-
     /**
      * @return mixed[]
      */
@@ -48,12 +38,9 @@ final class CreateFileUploadRequest extends BaseRequest
     {
         return [
             'file' => 'required',
-            'name' => 'required|string|unique:App\Database\Entities\FileType,name',
             'description' => 'required|string',
             'file_type_id' => 'required|int',
             'patient_visit_id' => 'required|int',
-            'format' => 'required|string',
-            'path' => 'required|string',
         ];
     }
 }

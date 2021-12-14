@@ -8,6 +8,7 @@ use App\Database\Entities\User;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Patients\CreatePatientRequest;
 use App\Http\Resources\Patients\PatientResource;
+use App\Http\Resources\Patients\PatientWithPatientVisitResource;
 use App\Repositories\Interfaces\PatientRepositoryInterface;
 use App\Repositories\Interfaces\PatientVisitRepositoryInterface;
 use App\Repositories\Interfaces\UserGuestRepositoryInterface;
@@ -87,6 +88,6 @@ final class CreatePatientController extends AbstractAPIController
             'remarks' => $request->getRemarks(),
         ]));
 
-        return new PatientResource($patient);
+        return new PatientWithPatientVisitResource($patient, $patientVisit);
     }
 }

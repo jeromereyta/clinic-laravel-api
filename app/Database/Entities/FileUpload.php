@@ -49,22 +49,19 @@ class FileUpload extends AbstractEntity
     protected PatientVisit $patientVisit;
 
     /**
-     * @var DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     public DateTimeInterface $createdAt;
 
     /**
-     * @var DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     public DateTimeInterface $updatedAt;
 
-    /**
-     * @var DateTimeInterface
-     * @ORM\Column(type="datetime")
+    /*
+     * @ORM\Column(type="datetime", nullable="true")
      */
-    public DateTimeInterface $deletedAt;
+    public ?DateTimeInterface $deletedAt = null;
 
     public function getCreatedAt(): DateTimeInterface
     {
@@ -82,7 +79,7 @@ class FileUpload extends AbstractEntity
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(DateTimeInterface $deletedAt): self
+    public function setDeletedAt(?DateTimeInterface $deletedAt = null): self
     {
         $this->deletedAt = $deletedAt;
 

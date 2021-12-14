@@ -19,6 +19,11 @@ trait PatientProcedureSchema
     protected int $id;
 
     /**
+     * @ORM\Column(name="description", type="text", nullable="true")
+     */
+    protected ?string $description = null;
+
+    /**
      * @ORM\Column(name="patient_visit_id", type="integer")
      */
     protected int $patientVisitId;

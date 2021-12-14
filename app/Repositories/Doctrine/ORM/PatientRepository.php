@@ -67,8 +67,8 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
     }
 
     /**
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \Doctrine\ORM\NoResultException
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function findByPatientCode(string $patientCode): ?Patient
     {

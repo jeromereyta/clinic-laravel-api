@@ -55,7 +55,7 @@ class PatientVisit extends AbstractEntity
      *     cascade={"persist"}
      * )
      */
-    protected Collection $patientProcedures;
+    protected ?Collection $patientProcedures = null;
 
     /**
      * @ORM\OneToMany(
@@ -64,7 +64,7 @@ class PatientVisit extends AbstractEntity
      *     cascade={"persist"}
      * )
      */
-    protected Collection $fileUploads;
+    protected ?Collection $fileUploads = null;
 
     /**
      * @ORM\ManyToOne(

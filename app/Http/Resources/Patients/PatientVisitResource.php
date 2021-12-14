@@ -6,6 +6,7 @@ namespace App\Http\Resources\Patients;
 
 use App\Database\Entities\PatientVisit;
 use App\Exceptions\InvalidResourceTypeException;
+use App\Http\Resources\FileUpload\FileUploadsResource;
 use App\Http\Resources\Resource;
 use Carbon\Carbon;
 
@@ -31,6 +32,18 @@ final class PatientVisitResource extends Resource
         $localDate = new Carbon($createdAt);
         $patient = $this->resource->getPatient();
 
+        $files = [];
+
+        if ($this->resource->getFileUploads() !== null) {
+            $files = new FileUploadsResource($this->resource->getFileUploads()->toArray());
+        }
+
+        $procedures = [];
+
+        if ($this->resource->getPatientProcedures() !== null) {
+            $procedures = $this->resource->getPatientProcedures()->toArray();
+        }
+
         return [
             'id' => $this->resource->getId(),
             'attending_doctor' => $this->resource->getAttendingDoctor(),
@@ -39,7 +52,9 @@ final class PatientVisitResource extends Resource
             'patient_bp' => $this->resource->getPatientBP(),
             'patient_height' => $this->resource->getPatientHeight(),
             'patient_weight' => $this->resource->getPatientWeight(),
+            'procedures' => new PatientProceduresResource($procedures),
             'remarks' => $this->resource->getRemarks(),
+            'files' => $files,
             'created_by' => $this->resource->getCreatedById(),
             'created_at' => $localDate->setTimezone('Asia/Taipei')->toDayDateTimeString(),
         ];

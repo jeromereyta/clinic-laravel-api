@@ -46,5 +46,4 @@ trait ProcedureSchema
      * @ORM\Column(name="price", type="string")
      */
     protected string $price;
-
 }

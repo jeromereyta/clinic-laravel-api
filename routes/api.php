@@ -3,12 +3,16 @@
 use App\Http\Controllers\API\Authentication\AdminLoginController;
 use App\Http\Controllers\API\CategoryProcedures\CreateCategoryProcedureController;
 use App\Http\Controllers\API\CategoryProcedures\ListCategoryProcedureController;
+use App\Http\Controllers\API\FileUpload\CreateFileTypeController;
+use App\Http\Controllers\API\FileUpload\CreateFileUploadController;
+use App\Http\Controllers\API\FileUpload\FileTypeListController;
 use App\Http\Controllers\API\Patients\CreatePatientController;
 use App\Http\Controllers\API\Patients\CreatePatientProcedureController;
 use App\Http\Controllers\API\Patients\CreatePatientVisitsController;
 use App\Http\Controllers\API\Patients\ListPatientController;
 use App\Http\Controllers\API\Patients\ListPatientVisitController;
 use App\Http\Controllers\API\Patients\ShowPatientController;
+use App\Http\Controllers\API\Patients\ShowPatientVisitController;
 use App\Http\Controllers\API\Patients\ShowPatientVisitsController;
 use App\Http\Controllers\API\Patients\UpdatePatientController;
 use App\Http\Controllers\API\Patients\UploadPatientProfileController;
@@ -52,7 +56,9 @@ Route::group([
 
 ], function ($router) {
 
-    // Patients
+    /**
+     * Patients
+     */
     Route::get('/patients', [
         'as' => 'patient-list',
         'uses' => ListPatientController::class,
@@ -79,14 +85,16 @@ Route::group([
     ]);
 
 
-    // Patient Visits
+    /**
+     * Patient Visits
+     */
     Route::get('/patient-visits', [
-        'as' => 'patient-list',
+        'as' => 'patient-visit-list',
         'uses' => ListPatientVisitController::class,
     ]);
 
     Route::get('/patient-visits/{patientCode}', [
-        'as' => 'patient-view',
+        'as' => 'patient-visits-view',
         'uses' => ShowPatientVisitsController::class,
     ]);
 
@@ -95,7 +103,34 @@ Route::group([
         'uses' => CreatePatientVisitsController::class,
     ]);
 
-    // Category Procedures
+    Route::get('/patient-visit/{patientVisitId}', [
+        'as' => 'patient-visit-view',
+        'uses' => ShowPatientVisitController::class,
+    ]);
+
+    Route::post('/patient-visits/upload-file', [
+        'as' => 'patient-visit-upload-file',
+        'uses' => CreateFileUploadController::class,
+    ]);
+
+
+    /**
+     * File Types and File Uploads
+     */
+    Route::post('/file-types', [
+        'as' => 'file-type-create',
+        'uses' => CreateFileTypeController::class,
+    ]);
+
+    Route::get('/file-types', [
+        'as' => 'file-type-list',
+        'uses' => FileTypeListController::class,
+    ]);
+
+
+    /**
+     * Category Procedures
+     */
     Route::post('/category-procedures', [
         'as' => 'category-procedures-create',
         'uses' => CreateCategoryProcedureController::class,
@@ -106,7 +141,9 @@ Route::group([
     ]);
 
 
-    // Procedures
+    /**
+     * Procedures
+     */
     Route::post('/procedures', [
         'as' => 'procedures-create',
         'uses' => CreateProcedureController::class,
@@ -120,13 +157,12 @@ Route::group([
         'uses' => ListProcedureQueueController::class,
     ]);
 
-    // Patient Procedure
+
+    /**
+     * Patient Procedures
+     */
     Route::post('/patient-procedures', [
         'as' => 'patient-procedures-create',
         'uses' => CreatePatientProcedureController::class,
     ]);
-
-
-
-
 });

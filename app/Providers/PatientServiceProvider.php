@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Services\FileUpload\Interfaces\UploadFileServiceInterface;
+use App\Services\FileUpload\UploadFileService;
 use App\Services\PatientService\GeneratePatientCodeService;
 use App\Services\PatientService\Interfaces\GeneratePatientCodeServiceInterface;
 use App\Services\PatientService\Interfaces\UploadPatientProfilePictureInterface;
@@ -20,6 +22,7 @@ final class PatientServiceProvider extends ServiceProvider
         $factories = [
             GeneratePatientCodeServiceInterface::class => GeneratePatientCodeService::class,
             UploadPatientProfilePictureInterface::class => UploadPatientProfilePicture::class,
+            UploadFileServiceInterface::class => UploadFileService::class,
         ];
 
         foreach ($factories as $abstract => $concrete) {

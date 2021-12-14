@@ -8,6 +8,8 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Resources\Patients\PatientResource;
 use App\Repositories\Interfaces\PatientRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 final class ShowPatientController extends AbstractAPIController
 {
@@ -20,14 +22,17 @@ final class ShowPatientController extends AbstractAPIController
 
     public function __invoke(string $patientCode): JsonResource
     {
-        $patient = $this->patientRepository->findByPatientCode($patientCode);
+        try {
+            $patient = $this->patientRepository->findByPatientCode($patientCode);
 
-        if ($patient === null) {
-            return $this->respondNotFound([
-                'message' => 'Patient not found',
-            ]);
+            return new PatientResource($patient);
+        } catch (Throwable $exception) {
+            return $this->respondError(
+                'Patient not found',
+                Response::HTTP_NOT_FOUND
+            );
         }
 
-        return new PatientResource($patient);
+
     }
 }

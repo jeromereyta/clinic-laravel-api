@@ -14,3 +14,4 @@ Prepare your machine.
 
 - composer install 
 - sudo umount /mnt/c sudo mount -t drvfs C: /mnt/c -o metadata
+- chmod 777 -R storage

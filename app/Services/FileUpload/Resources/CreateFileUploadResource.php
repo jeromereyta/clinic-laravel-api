@@ -18,9 +18,9 @@ final class CreateFileUploadResource extends DataTransferObject
 
     public string $description;
 
-    private PatientVisit $patientVisit;
+    public PatientVisit $patientVisit;
 
-    private FileType $fileType;
+    public FileType $fileType;
 
     public function getName(): string
     {

@@ -100,6 +100,18 @@ class PatientProcedure extends AbstractEntity
         return $this;
     }
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
     public function getId(): int
     {
         return $this->id;
@@ -186,13 +198,6 @@ class PatientProcedure extends AbstractEntity
     protected function doGetRules(): array
     {
         return [
-            'attendingDoctor' => 'string',
-            'createdBy' => \sprintf('required|%s', $this->instanceOfRuleAsString(UserGuest::class)),
-            'patient' => \sprintf('required|%s', $this->instanceOfRuleAsString(Patient::class)),
-            'patientBp' => 'required|string',
-            'patientHeight' => 'required|string',
-            'patientWeight' => 'required|string',
-            'remarks' => 'string',
         ];
     }
 

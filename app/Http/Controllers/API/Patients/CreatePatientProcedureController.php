@@ -43,7 +43,7 @@ final class CreatePatientProcedureController extends AbstractAPIController
         $this->userGuestRepository = $userGuestRepository;
     }
 
-    public function __invoke(CreatePatientProcedureRequest $request)
+    public function __invoke(CreatePatientProcedureRequest $request): JsonResource
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -87,25 +87,27 @@ final class CreatePatientProcedureController extends AbstractAPIController
 
         $patientProcedures = $this->patientProcedureRepository->createPatientProcedures(new CreatePatientProcedureResource([
             'createdBy' => $userGuest,
+            'description' => $request->getDescription(),
             'procedures' => $procedures,
             'patientVisit' => $patientVisit,
         ]));
 
-        $latestQueue = $this->procedureQueueRepository->findLatestQueueNumber() ?? 1;
-
-        $queueNumber = $latestQueue++;
-
-        foreach ($patientProcedures as $patientProcedure) {
-
-            $this->procedureQueueRepository->create(new CreateProcedureQueueResource([
-                'patientProcedure' => $patientProcedure,
-                'createdBy' => $userGuest,
-                'status' => new ProcedureQueueTypeEnum(ProcedureQueueTypeEnum::IN_QUEUE),
-                'queueNumber' => $queueNumber,
-            ]));
-
-            $queueNumber = $latestQueue++;
-        }
+//        @Todo separate API endpoint for queueing procedure
+//        $latestQueue = $this->procedureQueueRepository->findLatestQueueNumber() ?? 1;
+//
+//        $queueNumber = $latestQueue++;
+//
+//        foreach ($patientProcedures as $patientProcedure) {
+//
+//            $this->procedureQueueRepository->create(new CreateProcedureQueueResource([
+//                'patientProcedure' => $patientProcedure,
+//                'createdBy' => $userGuest,
+//                'status' => new ProcedureQueueTypeEnum(ProcedureQueueTypeEnum::IN_QUEUE),
+//                'queueNumber' => $queueNumber,
+//            ]));
+//
+//            $queueNumber = $latestQueue++;
+//        }
 
         return $this->respondNoContent();
     }

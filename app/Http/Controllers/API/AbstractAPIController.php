@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API;
 
 use App\Database\Entities\User;
+use App\Http\Resources\ErrorResource;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -61,6 +62,7 @@ abstract class AbstractAPIController
     {
         return new JsonResponse($data, Response::HTTP_CREATED, $headers);
     }
+
     /**
      * Return HTTP bad request (400) response
      *
@@ -94,9 +96,9 @@ abstract class AbstractAPIController
      *
      * @param mixed[] $headers
      */
-    protected function respondNoContent(array $headers = []): JsonResponse
+    protected function respondNoContent(array $headers = []): JsonResource
     {
-        return new JsonResponse(null, Response::HTTP_NO_CONTENT, $headers);
+        return new JsonResource([], Response::HTTP_NO_CONTENT, $headers);
     }
 
     /**
@@ -130,5 +132,10 @@ abstract class AbstractAPIController
     protected function respondUnprocessable(array $data = [], array $headers = []): JsonResource
     {
         return new JsonResource($data, Response::HTTP_UNPROCESSABLE_ENTITY, $headers);
+    }
+
+    protected function respondError(string $message, ?int  $status = null): ErrorResource
+    {
+        return new ErrorResource($message, $status);
     }
 }

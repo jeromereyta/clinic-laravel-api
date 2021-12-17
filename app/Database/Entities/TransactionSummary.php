@@ -40,9 +40,10 @@ final class TransactionSummary extends AbstractEntity
     /**
      * @ORM\OneToOne (
      *     targetEntity="App\Database\Entities\PatientVisit",
-     *     mappedBy="patientVisit",
+     *     inversedBy="transactionSummary",
      *     cascade={"persist"}
      * )
+     * @ORM\JoinColumn(name="patient_visit_id", referencedColumnName="id")
      */
     protected PatientVisit $patientVisit;
 
@@ -144,6 +145,7 @@ final class TransactionSummary extends AbstractEntity
     {
         $this->paymentMethod = $paymentMethod;
 
+        return $this;
     }
 
     public function setRemarks(?string $remarks): self

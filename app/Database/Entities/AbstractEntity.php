@@ -19,8 +19,6 @@ abstract class AbstractEntity extends BaseEntity implements
 {
     public DateTimeInterface $createdAt;
 
-    public DateTimeInterface $updatedAt;
-
     /**
      * AbstractEntity constructor.
      *
@@ -31,7 +29,6 @@ abstract class AbstractEntity extends BaseEntity implements
     public function __construct(?array $data = null)
     {
         $this->createdAt = new DateTime();
-        $this->updatedAt = new DateTime();
 
         parent::__construct($data);
     }

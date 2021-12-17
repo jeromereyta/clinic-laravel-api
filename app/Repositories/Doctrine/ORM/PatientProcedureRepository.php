@@ -6,8 +6,10 @@ namespace App\Repositories\Doctrine\ORM;
 
 use App\Database\Entities\Patient;
 use App\Database\Entities\PatientProcedure;
+use App\Database\Entities\PatientVisit;
 use App\Repositories\Interfaces\PatientProcedureRepositoryInterface;
 use App\Services\PatientService\Resources\CreatePatientProcedureResource;
+use Carbon\Carbon;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 
@@ -32,6 +34,7 @@ final class PatientProcedureRepository extends AbstractRepository implements Pat
                 'patientVisit' => $resource->getPatientVisit(),
                 'procedure' => $procedure,
                 'createdBy' => $resource->getCreatedBy(),
+                'updatedAt' => new Carbon(),
             ]);
 
             $this->entityManager->persist($patientProcedure);
@@ -45,11 +48,25 @@ final class PatientProcedureRepository extends AbstractRepository implements Pat
 
     public function findByPatient(Patient $patient): array
     {
-
+        // TODO: Implement findByPatientVisit() method.
     }
 
     protected function getEntityClass(): string
     {
         return PatientProcedure::class;
+    }
+
+    public function findByPatientVisit(PatientVisit $patientVisit): array
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        return $queryBuilder->select('pp')
+            ->from($this->getEntityClass(), 'pp')
+            ->where('pp.patientVisitId = :patientVisitId')
+            ->setParameters([
+                'patientVisitId' => $patientVisit->getId(),
+            ])
+            ->getQuery()
+            ->getResult();
     }
 }

@@ -9,6 +9,7 @@ use App\Database\Entities\FileUpload;
 use App\Repositories\Interfaces\FileUploadRepositoryInterface;
 use App\Services\FileUpload\Resources\CreateFileTypeResource;
 use App\Services\FileUpload\Resources\CreateFileUploadResource;
+use Carbon\Carbon;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
@@ -49,6 +50,7 @@ final class FileUploadRepository extends AbstractRepository implements FileUploa
             'format' => $resource->getFormat(),
             'fileType' => $resource->getFileType(),
             'patientVisit' => $resource->getPatientVisit(),
+            'updatedAt' => new Carbon(),
         ]);
 
         $this->entityManager->persist($fileUpload);

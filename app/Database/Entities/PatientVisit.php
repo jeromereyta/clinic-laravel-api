@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @method \App\Database\Entities\Patient getPatient()
  * @method \App\Database\Entities\PatientProcedure getPatientProcedures()
  * @method \App\Database\Entities\FileUpload getFileUploads()
+ * @method \App\Database\Entities\TransactionSummary getTransactionSummary()
  *
  * @ORM\Entity()
  * @ORM\Table(
@@ -76,6 +77,15 @@ class PatientVisit extends AbstractEntity
      * @ORM\JoinColumn(name="patient_id", referencedColumnName="id")
      */
     protected Patient $patient;
+
+    /**
+     * @ORM\OneToOne (
+     *     targetEntity="App\Database\Entities\TransactionSummary",
+     *     mappedBy="patientVisit",
+     *     cascade={"persist"}
+     * )
+     */
+    public ?TransactionSummary $transactionSummary = null;
 
     public function getAttendingDoctor(): ?string
     {

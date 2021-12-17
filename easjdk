@@ -1,0 +1,610 @@
+warning: CRLF will be replaced by LF in .bash_profile.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in .editorconfig.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in .env.example.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in .gitattributes.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in .gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in .styleci.yml.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Console/Kernel.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Entities/CategoryProcedure.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Entities/FileType.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Entities/ProcedureQueue.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Interfaces/UserTypes.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Schemas/CategoryProcedureSchema.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Schemas/FileTypeSchema.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Schemas/FileUploadSchema.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Schemas/PatientSchema.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Schemas/PatientVisitSchema.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Schemas/ProcedureQueueSchema.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Schemas/UserGuestSchema.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Database/Schemas/UserSchema.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Enum/CategoryProcedureTypeEnum.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Enum/ProcedureQueueTypeEnum.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Enum/UserTypeEnum.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Exceptions/EntityNotFoundException.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Exceptions/EntityValidationFailedException.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Exceptions/Handler.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Exceptions/InvalidResourceTypeException.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Exceptions/Traits/ValidationExceptionTrait.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Exceptions/ValidationException.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/Authentication/AdminLoginController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/CategoryProcedures/CreateCategoryProcedureController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/CategoryProcedures/ListCategoryProcedureController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/Patients/ListPatientController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/Patients/ListPatientVisitController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/Patients/UpdatePatientController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/Patients/UploadPatientProfileController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/Procedures/CreateProcedureController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/Procedures/ListProcedureController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/Queue/ListProcedureQueueController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/API/RegisterUser/RegisterAdminUserController.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Controllers/Controller.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Kernel.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Middleware/Authenticate.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Middleware/EncryptCookies.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Middleware/PreventRequestsDuringMaintenance.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Middleware/RedirectIfAuthenticated.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Middleware/TrimStrings.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Middleware/TrustHosts.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Middleware/TrustProxies.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Middleware/VerifyCsrfToken.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Requests/API/Authentication/AdminLoginRequest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Requests/API/CategoryProcedures/CreateCategoryProcedureRequest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Requests/API/FileUpload/CreateFileTypeRequest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Requests/API/Patients/CreatePatientRequest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Requests/API/Patients/CreatePatientVisitRequest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Requests/API/Patients/UpdatePatientRequest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Requests/API/Patients/UploadPatientProfileRequest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Requests/API/Procedures/CreateProcedureRequest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Requests/BaseRequest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Requests/Interfaces/RequestInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Resources/CategoryProcedures/CategoryProcedureResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Resources/CategoryProcedures/CategoryProceduresResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Resources/FileUpload/FileTypeResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Resources/Patients/AllPatientVisitsResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Resources/Patients/PatientVisitsResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Resources/Patients/PatientWithVisitsDetailResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Resources/Patients/PatientsResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Resources/Procedures/ProceduresResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Resources/Queue/ProcedureQueuesResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Resources/Resource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Http/Transformers/UserTransformer.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Interfaces/Exceptions/ValidationExceptionInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Models/User.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Providers/AppServiceProvider.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Providers/AuthServiceProvider.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Providers/BroadcastServiceProvider.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Providers/EventServiceProvider.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Providers/FactoryServiceProvider.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Providers/RouteServiceProvider.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Doctrine/ORM/AbstractPaginatedDoctrineOrmRepository.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Doctrine/ORM/AbstractRepository.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Doctrine/ORM/CategoryProcedureRepository.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Doctrine/ORM/FileTypeRepository.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Doctrine/ORM/FileUploadRepository.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Doctrine/ORM/ProcedureQueueRepository.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Doctrine/ORM/ProcedureRepository.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Doctrine/ORM/UserGuestRepository.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Doctrine/ORM/UserRepository.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Interfaces/AppRepositoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Interfaces/CategoryProcedureRepositoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Interfaces/FileTypeRepositoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Interfaces/FileUploadRepositoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Interfaces/PatientRepositoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Interfaces/PatientVisitRepositoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Interfaces/ProcedureQueueRepositoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Interfaces/ProcedureRepositoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Interfaces/UserGuestRepositoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Repositories/Interfaces/UserRepositoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/CategoryProcedure/Resources/CreateCategoryProcedureResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/FileUpload/Resources/CreateFileTypeResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/PatientService/CreatePatientService.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/PatientService/CreatePatientVisitService.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/PatientService/GeneratePatientCodeService.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/PatientService/Interfaces/CreatePatientServiceInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/PatientService/Interfaces/CreatePatientVisitServiceInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/PatientService/Interfaces/GeneratePatientCodeServiceInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/PatientService/Interfaces/UploadPatientProfilePictureInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/PatientService/Resources/CreatePatientResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/PatientService/Resources/CreatePatientVisitResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/Procedure/Resources/CreateProcedureResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/ProcedureQueue/Resources/CreateProcedureQueueResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/UserService/Interfaces/UserFactoryInterface.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/UserService/Resources/CreateAdminUserResource.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in app/Services/UserService/UserFactory.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in artisan.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in bootstrap/app.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in bootstrap/cache/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in composer.json.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/app.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/auth.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/broadcasting.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/cache.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/cors.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/database.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/doctrine.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/filesystems.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/hashing.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/logging.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/mail.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/migrations.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/queue.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/services.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/session.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in config/view.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/factories/ModelFactory.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/factories/UserFactory.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/2014_10_12_000000_create_users_table.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/2014_10_12_100000_create_password_resets_table.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/2019_08_19_000000_create_failed_jobs_table.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/Version20211011092600.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/Version20211011094737.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/Version20211015033500.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/Version20211019122433.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/Version20211026092155.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/Version20211026100007.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/Version20211028025351.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/Version20211105093633.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/Version20211117102421.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/migrations/Version20211121082235.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/seeders/DatabaseSeeder.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in database/seeders/UserGuestSeeder.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in package.json.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in phpunit.xml.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in public/.htaccess.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in public/index.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in public/robots.txt.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in public/web.config.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in resources/js/app.js.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in resources/js/bootstrap.js.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in resources/lang/en/auth.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in resources/lang/en/pagination.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in resources/lang/en/passwords.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in resources/lang/en/validation.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in resources/views/welcome.blade.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in routes/channels.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in routes/console.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in routes/web.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in server.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/app/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/app/public/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/framework/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/framework/cache/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/framework/cache/data/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/framework/sessions/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/framework/testing/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/framework/views/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/logs/.gitignore.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/proxies/__CG__AppDatabaseEntitiesUser.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in storage/proxies/__CG__AppDatabaseEntitiesUserGuest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in tests/CreatesApplication.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in tests/Feature/ExampleTest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in tests/TestCase.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in tests/Unit/ExampleTest.php.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in webpack.mix.js.
+The file will have its original line endings in your working directory
+[1mdiff --git a/app/Database/Entities/PatientVisit.php b/app/Database/Entities/PatientVisit.php[m
+[1mindex 81c6fe0..6b05716 100644[m
+[1m--- a/app/Database/Entities/PatientVisit.php[m
+[1m+++ b/app/Database/Entities/PatientVisit.php[m
+[36m@@ -14,6 +14,7 @@[m [muse Doctrine\ORM\Mapping as ORM;[m
+  * @method \App\Database\Entities\Patient getPatient()[m
+  * @method \App\Database\Entities\PatientProcedure getPatientProcedures()[m
+  * @method \App\Database\Entities\FileUpload getFileUploads()[m
+[32m+[m[32m * @method \App\Database\Entities\TransactionSummary getTransactionSummary()[m
+  *[m
+  * @ORM\Entity()[m
+  * @ORM\Table([m
+[36m@@ -77,6 +78,15 @@[m [mclass PatientVisit extends AbstractEntity[m
+      */[m
+     protected Patient $patient;[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * @ORM\OneToOne ([m
+[32m+[m[32m     *     targetEntity="App\Database\Entities\TransactionSummary",[m
+[32m+[m[32m     *     mappedBy="patientVisit",[m
+[32m+[m[32m     *     cascade={"persist"}[m
+[32m+[m[32m     * )[m
+[32m+[m[32m     */[m
+[32m+[m[32m    public ?TransactionSummary $transactionSummary = null;[m
+[32m+[m
+     public function getAttendingDoctor(): ?string[m
+     {[m
+         return $this->attendingDoctor;[m
+[1mdiff --git a/app/Database/Entities/TransactionSummary.php b/app/Database/Entities/TransactionSummary.php[m
+[1mindex 37dedaa..d9c4dab 100644[m
+[1m--- a/app/Database/Entities/TransactionSummary.php[m
+[1m+++ b/app/Database/Entities/TransactionSummary.php[m
+[36m@@ -40,9 +40,10 @@[m [mfinal class TransactionSummary extends AbstractEntity[m
+     /**[m
+      * @ORM\OneToOne ([m
+      *     targetEntity="App\Database\Entities\PatientVisit",[m
+[31m-     *     mappedBy="patientVisit",[m
+[32m+[m[32m     *     inversedBy="transactionSummary",[m
+      *     cascade={"persist"}[m
+      * )[m
+[32m+[m[32m     * @ORM\JoinColumn(name="patient_visit_id", referencedColumnName="id")[m
+      */[m
+     protected PatientVisit $patientVisit;[m
+ [m
+[36m@@ -144,6 +145,7 @@[m [mfinal class TransactionSummary extends AbstractEntity[m
+     {[m
+         $this->paymentMethod = $paymentMethod;[m
+ [m
+[32m+[m[32m        return $this;[m
+     }[m
+ [m
+     public function setRemarks(?string $remarks): self[m
+[1mdiff --git a/app/Http/Controllers/API/Patients/ShowPatientVisitController.php b/app/Http/Controllers/API/Patients/ShowPatientVisitController.php[m
+[1mindex a356a9b..1fdfffb 100644[m
+[1m--- a/app/Http/Controllers/API/Patients/ShowPatientVisitController.php[m
+[1m+++ b/app/Http/Controllers/API/Patients/ShowPatientVisitController.php[m
+[36m@@ -10,7 +10,9 @@[m [muse App\Http\Resources\Patients\PatientVisitResource;[m
+ use App\Http\Resources\Patients\PatientVisitsResource;[m
+ use App\Repositories\Interfaces\PatientRepositoryInterface;[m
+ use App\Repositories\Interfaces\PatientVisitRepositoryInterface;[m
+[32m+[m[32muse Exception;[m
+ use Illuminate\Http\Resources\Json\JsonResource;[m
+[32m+[m[32muse Throwable;[m
+ [m
+ final class ShowPatientVisitController extends AbstractAPIController[m
+ {[m
+[36m@@ -22,7 +24,11 @@[m [mfinal class ShowPatientVisitController extends AbstractAPIController[m
+ [m
+     public function __invoke(int $patientVisitId): JsonResource[m
+     {[m
+[31m-        $patientVisit = $this->patientVisitRepository->findByPatientVisit($patientVisitId);[m
+[32m+[m[32m        try {[m
+[32m+[m[32m            $patientVisit = $this->patientVisitRepository->findByPatientVisit($patientVisitId);[m
+[32m+[m[32m        } catch (Throwable $exception) {[m
+[32m+[m[32m            dd($exception);[m
+[32m+[m[32m        }[m
+ [m
+         if ($patientVisit === null) {[m
+             return $this->respondNotFound([[m
+[1mdiff --git a/app/Http/Resources/Patients/PatientVisitResource.php b/app/Http/Resources/Patients/PatientVisitResource.php[m
+[1mindex 9fd0183..602c4c0 100644[m
+[1m--- a/app/Http/Resources/Patients/PatientVisitResource.php[m
+[1m+++ b/app/Http/Resources/Patients/PatientVisitResource.php[m
+[36m@@ -54,6 +54,7 @@[m [mfinal class PatientVisitResource extends Resource[m
+             'patient_weight' => $this->resource->getPatientWeight(),[m
+             'procedures' => new PatientProceduresResource($procedures),[m
+             'remarks' => $this->resource->getRemarks(),[m
+[32m+[m[32m            'total_summary' => $this->resource->getTransactionSummary(),[m
+             'files' => $files,[m
+             'created_by' => $this->resource->getCreatedById(),[m
+             'created_at' => $localDate->setTimezone('Asia/Taipei')->toDayDateTimeString(),[m
+[1mdiff --git a/app/Providers/RepositoryProvider.php b/app/Providers/RepositoryProvider.php[m
+[1mindex 0e94737..474fa91 100644[m
+[1m--- a/app/Providers/RepositoryProvider.php[m
+[1m+++ b/app/Providers/RepositoryProvider.php[m
+[36m@@ -4,6 +4,7 @@[m [mdeclare(strict_types=1);[m
+ [m
+ namespace App\Providers;[m
+ [m
+[32m+[m[32muse App\Database\Entities\TransactionSummary;[m
+ use App\Repositories\Doctrine\ORM\CategoryProcedureRepository;[m
+ use App\Repositories\Doctrine\ORM\FileTypeRepository;[m
+ use App\Repositories\Doctrine\ORM\FileUploadRepository;[m
+[36m@@ -12,6 +13,7 @@[m [muse App\Repositories\Doctrine\ORM\PatientRepository;[m
+ use App\Repositories\Doctrine\ORM\PatientVisitRepository;[m
+ use App\Repositories\Doctrine\ORM\ProcedureQueueRepository;[m
+ use App\Repositories\Doctrine\ORM\ProcedureRepository;[m
+[32m+[m[32muse App\Repositories\Doctrine\ORM\TransactionSummaryRepository;[m
+ use App\Repositories\Doctrine\ORM\UserGuestRepository;[m
+ use App\Repositories\Doctrine\ORM\UserRepository;[m
+ use App\Repositories\Interfaces\CategoryProcedureRepositoryInterface;[m
+[36m@@ -22,6 +24,7 @@[m [muse App\Repositories\Interfaces\PatientRepositoryInterface;[m
+ use App\Repositories\Interfaces\PatientVisitRepositoryInterface;[m
+ use App\Repositories\Interfaces\ProcedureQueueRepositoryInterface;[m
+ use App\Repositories\Interfaces\ProcedureRepositoryInterface;[m
+[32m+[m[32muse App\Repositories\Interfaces\TransactionSummaryRepositoryInterface;[m
+ use App\Repositories\Interfaces\UserGuestRepositoryInterface;[m
+ use App\Repositories\Interfaces\UserRepositoryInterface;[m
+ use Illuminate\Support\ServiceProvider;[m
+[36m@@ -42,6 +45,7 @@[m [mfinal class RepositoryProvider extends ServiceProvider[m
+             PatientVisitRepositoryInterface::class => PatientVisitRepository::class,[m
+             ProcedureRepositoryInterface::class => ProcedureRepository::class,[m
+             ProcedureQueueRepositoryInterface::class => ProcedureQueueRepository::class,[m
+[32m+[m[32m            TransactionSummaryRepositoryInterface::class => TransactionSummaryRepository::class,[m
+             UserGuestRepositoryInterface::class => UserGuestRepository::class,[m
+             UserRepositoryInterface::class => UserRepository::class,[m
+         ];[m
+[1mdiff --git a/app/Repositories/Doctrine/ORM/PatientProcedureRepository.php b/app/Repositories/Doctrine/ORM/PatientProcedureRepository.php[m
+[1mindex 8909571..8f1b6c3 100644[m
+[1m--- a/app/Repositories/Doctrine/ORM/PatientProcedureRepository.php[m
+[1m+++ b/app/Repositories/Doctrine/ORM/PatientProcedureRepository.php[m
+[36m@@ -6,6 +6,7 @@[m [mnamespace App\Repositories\Doctrine\ORM;[m
+ [m
+ use App\Database\Entities\Patient;[m
+ use App\Database\Entities\PatientProcedure;[m
+[32m+[m[32muse App\Database\Entities\PatientVisit;[m
+ use App\Repositories\Interfaces\PatientProcedureRepositoryInterface;[m
+ use App\Services\PatientService\Resources\CreatePatientProcedureResource;[m
+ use Doctrine\ORM\OptimisticLockException;[m
+[36m@@ -45,11 +46,25 @@[m [mfinal class PatientProcedureRepository extends AbstractRepository implements Pat[m
+ [m
+     public function findByPatient(Patient $patient): array[m
+     {[m
+[31m-[m
+[32m+[m[32m        // TODO: Implement findByPatientVisit() method.[m
+     }[m
+ [m
+     protected function getEntityClass(): string[m
+     {[m
+         return PatientProcedure::class;[m
+     }[m
+[32m+[m
+[32m+[m[32m    public function findByPatientVisit(PatientVisit $patientVisit): array[m
+[32m+[m[32m    {[m
+[32m+[m[32m        $queryBuilder = $this->manager->createQueryBuilder();[m
+[32m+[m
+[32m+[m[32m        return $queryBuilder->select('pp')[m
+[32m+[m[32m            ->from($this->getEntityClass(), 'pp')[m
+[32m+[m[32m            ->where('pp.patientVisitId = :patientVisitId')[m
+[32m+[m[32m            ->setParameters([[m
+[32m+[m[32m                'patientVisitId' => $patientVisit->getId(),[m
+[32m+[m[32m            ])[m
+[32m+[m[32m            ->getQuery()[m
+[32m+[m[32m            ->getResult();[m
+[32m+[m[32m    }[m
+ }[m
+[1mdiff --git a/app/Repositories/Interfaces/PatientProcedureRepositoryInterface.php b/app/Repositories/Interfaces/PatientProcedureRepositoryInterface.php[m
+[1mindex 7324d2d..ca8dc34 100644[m
+[1m--- a/app/Repositories/Interfaces/PatientProcedureRepositoryInterface.php[m
+[1m+++ b/app/Repositories/Interfaces/PatientProcedureRepositoryInterface.php[m
+[36m@@ -6,6 +6,7 @@[m [mnamespace App\Repositories\Interfaces;[m
+ [m
+ use App\Database\Entities\Patient;[m
+ use App\Database\Entities\PatientProcedure;[m
+[32m+[m[32muse App\Database\Entities\PatientVisit;[m
+ use App\Services\PatientService\Resources\CreatePatientProcedureResource;[m
+ [m
+ interface PatientProcedureRepositoryInterface[m
+[36m@@ -16,4 +17,6 @@[m [minterface PatientProcedureRepositoryInterface[m
+     public function createPatientProcedures(CreatePatientProcedureResource $resource): array;[m
+ [m
+     public function findByPatient(Patient $patient): array;[m
+[32m+[m
+[32m+[m[32m    public function findByPatientVisit(PatientVisit $patientVisit);[m
+ }[m
+[1mdiff --git a/routes/api.php b/routes/api.php[m
+[1mindex f6dd3ac..31c404f 100644[m
+[1m--- a/routes/api.php[m
+[1m+++ b/routes/api.php[m
+[36m@@ -9,6 +9,7 @@[m [muse App\Http\Controllers\API\FileUpload\FileTypeListController;[m
+ use App\Http\Controllers\API\Patients\CreatePatientController;[m
+ use App\Http\Controllers\API\Patients\CreatePatientProcedureController;[m
+ use App\Http\Controllers\API\Patients\CreatePatientVisitsController;[m
+[32m+[m[32muse App\Http\Controllers\API\Patients\CreateTransactionSummaryController;[m
+ use App\Http\Controllers\API\Patients\ListPatientController;[m
+ use App\Http\Controllers\API\Patients\ListPatientVisitController;[m
+ use App\Http\Controllers\API\Patients\ShowPatientController;[m
+[36m@@ -20,7 +21,6 @@[m [muse App\Http\Controllers\API\Procedures\CreateProcedureController;[m
+ use App\Http\Controllers\API\Procedures\ListProcedureController;[m
+ use App\Http\Controllers\API\Queue\ListProcedureQueueController;[m
+ use App\Http\Controllers\API\RegisterUser\RegisterAdminUserController;[m
+[31m-use Illuminate\Http\Request;[m
+ use Illuminate\Support\Facades\Route;[m
+ [m
+ /*[m
+[36m@@ -113,7 +113,6 @@[m [mRoute::group([[m
+         'uses' => CreateFileUploadController::class,[m
+     ]);[m
+ [m
+[31m-[m
+     /**[m
+      * File Types and File Uploads[m
+      */[m
+[36m@@ -122,6 +121,8 @@[m [mRoute::group([[m
+         'uses' => CreateFileTypeController::class,[m
+     ]);[m
+ [m
+[32m+[m
+[32m+[m
+     Route::get('/file-types', [[m
+         'as' => 'file-type-list',[m
+         'uses' => FileTypeListController::class,[m
+[36m@@ -144,7 +145,7 @@[m [mRoute::group([[m
+     /**[m
+      * Procedures[m
+      */[m
+[31m-    Route::post('/procedures', [[m
+[32m+[m[32m    Route::post('/procedures-test', [[m
+         'as' => 'procedures-create',[m
+         'uses' => CreateProcedureController::class,[m
+     ]);[m
+[36m@@ -157,6 +158,10 @@[m [mRoute::group([[m
+         'uses' => ListProcedureQueueController::class,[m
+     ]);[m
+ [m
+[32m+[m[32m    Route::post('/transaction', [[m
+[32m+[m[32m        'as' => 'transactions-create',[m
+[32m+[m[32m        'uses' => CreateTransactionSummaryController::class,[m
+[32m+[m[32m    ]);[m
+ [m
+     /**[m
+      * Patient Procedures[m

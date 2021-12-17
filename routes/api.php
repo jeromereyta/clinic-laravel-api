@@ -9,6 +9,7 @@ use App\Http\Controllers\API\FileUpload\FileTypeListController;
 use App\Http\Controllers\API\Patients\CreatePatientController;
 use App\Http\Controllers\API\Patients\CreatePatientProcedureController;
 use App\Http\Controllers\API\Patients\CreatePatientVisitsController;
+use App\Http\Controllers\API\Patients\CreateTransactionSummaryController;
 use App\Http\Controllers\API\Patients\ListPatientController;
 use App\Http\Controllers\API\Patients\ListPatientVisitController;
 use App\Http\Controllers\API\Patients\ShowPatientController;
@@ -19,8 +20,8 @@ use App\Http\Controllers\API\Patients\UploadPatientProfileController;
 use App\Http\Controllers\API\Procedures\CreateProcedureController;
 use App\Http\Controllers\API\Procedures\ListProcedureController;
 use App\Http\Controllers\API\Queue\ListProcedureQueueController;
+use App\Http\Controllers\API\Queue\UpdateProcedureQueueController;
 use App\Http\Controllers\API\RegisterUser\RegisterAdminUserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -113,7 +114,6 @@ Route::group([
         'uses' => CreateFileUploadController::class,
     ]);
 
-
     /**
      * File Types and File Uploads
      */
@@ -121,6 +121,8 @@ Route::group([
         'as' => 'file-type-create',
         'uses' => CreateFileTypeController::class,
     ]);
+
+
 
     Route::get('/file-types', [
         'as' => 'file-type-list',
@@ -157,6 +159,16 @@ Route::group([
         'uses' => ListProcedureQueueController::class,
     ]);
 
+    Route::put('/procedures-queues', [
+        'as' => 'procedures-queue-update',
+        'uses' => UpdateProcedureQueueController::class,
+    ]);
+
+
+    Route::post('/transaction', [
+        'as' => 'transactions-create',
+        'uses' => CreateTransactionSummaryController::class,
+    ]);
 
     /**
      * Patient Procedures
@@ -165,4 +177,5 @@ Route::group([
         'as' => 'patient-procedures-create',
         'uses' => CreatePatientProcedureController::class,
     ]);
+
 });

@@ -65,6 +65,7 @@ final class PatientVisitRepository extends AbstractRepository implements Patient
             'patientHeight' => $resource->getPatientHeight(),
             'patientWeight' => $resource->getPatientWeight(),
             'remarks' => $resource->getRemarks(),
+            'updatedAt' => new Carbon(),
         ]);
 
         $this->entityManager->persist($patientVisit);

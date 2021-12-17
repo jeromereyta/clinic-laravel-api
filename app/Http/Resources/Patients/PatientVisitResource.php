@@ -44,6 +44,12 @@ final class PatientVisitResource extends Resource
             $procedures = $this->resource->getPatientProcedures()->toArray();
         }
 
+        $date = new Carbon($localDate->toDateString());
+
+        $todayDate = new Carbon((new Carbon())->toDateString());
+
+        $isPast = $date->gt($todayDate);
+
         return [
             'id' => $this->resource->getId(),
             'attending_doctor' => $this->resource->getAttendingDoctor(),
@@ -54,8 +60,10 @@ final class PatientVisitResource extends Resource
             'patient_weight' => $this->resource->getPatientWeight(),
             'procedures' => new PatientProceduresResource($procedures),
             'remarks' => $this->resource->getRemarks(),
+            'total_summary' => $this->resource->getTransactionSummary(),
             'files' => $files,
             'created_by' => $this->resource->getCreatedById(),
+            'is_past' => $isPast,
             'created_at' => $localDate->setTimezone('Asia/Taipei')->toDayDateTimeString(),
         ];
     }

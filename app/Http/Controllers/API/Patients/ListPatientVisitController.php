@@ -31,10 +31,6 @@ final class ListPatientVisitController extends AbstractAPIController
     {
         $patients = $this->patientVisitRepository->allWithPatientVisits();
 
-        if (\count($patients) === 0) {
-            $this->procedureQueueRepository->deleteAll();
-        }
-
         return new AllPatientVisitsResource($patients);
     }
 }

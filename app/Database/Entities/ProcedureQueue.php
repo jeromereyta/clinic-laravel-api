@@ -67,9 +67,9 @@ class ProcedureQueue extends AbstractEntity
         return $this->createdById;
     }
 
-    public function getUpdatedAt(): DateTimeInterface
+    public function getDate(): string
     {
-        return $this->updatedAt;
+        return $this->date;
     }
 
     public function getId(): int
@@ -103,9 +103,10 @@ class ProcedureQueue extends AbstractEntity
         return $this;
     }
 
-    public function setUpdatedAt(DateTimeInterface $updatedAt): self
+    public function setDate(string $date): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->date = $date;
+
         return $this;
     }
 
@@ -172,6 +173,7 @@ class ProcedureQueue extends AbstractEntity
     protected function doGetRules(): array
     {
         return [
+            'date' => 'required|string',
             'patientProcedure' => \sprintf('required|%s', $this->instanceOfRuleAsString(PatientProcedure::class)),
             'createdBy' => \sprintf('required|%s', $this->instanceOfRuleAsString(UserGuest::class)),
             'updatedBy' => \sprintf('%s', $this->instanceOfRuleAsString(UserGuest::class)),

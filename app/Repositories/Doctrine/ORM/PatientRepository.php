@@ -58,6 +58,7 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
             'province' => $resource->getProvince(),
             'streetAddress' => $resource->getStreetAddress(),
             'updatedBy' => $resource->getCreatedBy(),
+            'updatedAt' => new Carbon(),
         ]);
 
         $this->entityManager->persist($patient);
@@ -132,7 +133,8 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
             ->setPhoneNumber($resource->getPhoneNumber())
             ->setMobileNumber($resource->getMobileNumber())
             ->setProvince($resource->getProvince())
-            ->setStreetAddress($resource->getStreetAddress());
+            ->setStreetAddress($resource->getStreetAddress())
+            ->setUpdatedAt(new Carbon());
 
         if ($patient->getName() !== $resource->getName()) {
             $patient->setName($resource->getName());

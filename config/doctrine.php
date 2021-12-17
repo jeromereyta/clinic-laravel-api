@@ -38,7 +38,7 @@ return [
             'repository'    => Doctrine\ORM\EntityRepository::class,
             'proxies'       => [
                 'namespace'     => false,
-                'path'          => storage_path('proxies'),
+                'path'          => storage_path('app/proxies'),
                 'auto_generate' => env('DOCTRINE_PROXY_AUTOGENERATE', true)
             ],
             /*

@@ -10,7 +10,9 @@ use App\Http\Resources\Patients\PatientVisitResource;
 use App\Http\Resources\Patients\PatientVisitsResource;
 use App\Repositories\Interfaces\PatientRepositoryInterface;
 use App\Repositories\Interfaces\PatientVisitRepositoryInterface;
+use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Throwable;
 
 final class ShowPatientVisitController extends AbstractAPIController
 {
@@ -22,7 +24,11 @@ final class ShowPatientVisitController extends AbstractAPIController
 
     public function __invoke(int $patientVisitId): JsonResource
     {
-        $patientVisit = $this->patientVisitRepository->findByPatientVisit($patientVisitId);
+        try {
+            $patientVisit = $this->patientVisitRepository->findByPatientVisit($patientVisitId);
+        } catch (Throwable $exception) {
+            dd($exception);
+        }
 
         if ($patientVisit === null) {
             return $this->respondNotFound([

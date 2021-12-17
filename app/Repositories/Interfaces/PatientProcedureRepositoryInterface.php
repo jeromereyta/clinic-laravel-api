@@ -6,6 +6,7 @@ namespace App\Repositories\Interfaces;
 
 use App\Database\Entities\Patient;
 use App\Database\Entities\PatientProcedure;
+use App\Database\Entities\PatientVisit;
 use App\Services\PatientService\Resources\CreatePatientProcedureResource;
 
 interface PatientProcedureRepositoryInterface
@@ -16,4 +17,6 @@ interface PatientProcedureRepositoryInterface
     public function createPatientProcedures(CreatePatientProcedureResource $resource): array;
 
     public function findByPatient(Patient $patient): array;
+
+    public function findByPatientVisit(PatientVisit $patientVisit);
 }

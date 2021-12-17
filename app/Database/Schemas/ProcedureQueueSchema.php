@@ -17,6 +17,11 @@ trait ProcedureQueueSchema
     protected int $createdById;
 
     /**
+     * @ORM\Column(name="date", type="string")
+     */
+    protected string $date;
+
+    /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")

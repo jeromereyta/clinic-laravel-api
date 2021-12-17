@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Queue;
 
-use App\Database\Entities\Patient;
 use App\Database\Entities\PatientProcedure;
-use App\Database\Entities\Procedure;
-use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
-
 final class ProcedureQueuesResource extends Resource
 {
     /**
@@ -38,10 +34,15 @@ final class ProcedureQueuesResource extends Resource
 
             $patient = $patientVisit->getPatient();
 
+            $counter = \count($results[$procedure->getName()] ?? []);
+
+            $counter = $counter === 0 ? 1 : ++$counter;
+
             $results[$procedure->getName()][] = [
+                'id' => $queue->getId(),
                 'patient_name' => $patient->getName(),
                 'patient_code' => $patient->getPatientCode(),
-                'queue_number' => $queue->getQUeueNumber(),
+                'queue_number' =>$counter,
                 'status' => $queue->getStatus(),
             ];
         }

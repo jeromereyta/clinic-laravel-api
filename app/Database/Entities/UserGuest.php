@@ -6,6 +6,7 @@ namespace App\Database\Entities;
 
 use App\Database\Schemas\UserGuestSchema;
 use App\Enum\UserTypeEnum;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -77,12 +78,15 @@ class UserGuest extends AbstractEntity
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * @var User
      */
-    protected $user;
+    protected User $user;
+
+    private $updatedAt;
 
     public function __construct() {
         $this->createdPatients = new ArrayCollection();
         $this->updatedPatients = new ArrayCollection();
         $this->patientVisits = new ArrayCollection();
+        $this->updatedAt = new DateTime();
         parent::__construct();
     }
 
@@ -111,7 +115,7 @@ class UserGuest extends AbstractEntity
         return $this->userId;
     }
 
-    public function getUpdatedAt(): \DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }

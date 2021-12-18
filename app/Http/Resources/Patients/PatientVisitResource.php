@@ -48,7 +48,7 @@ final class PatientVisitResource extends Resource
 
         $todayDate = new Carbon((new Carbon())->toDateString());
 
-        $isPast = $date->gt($todayDate);
+        $isPast = $date->lt($todayDate);
 
         return [
             'id' => $this->resource->getId(),

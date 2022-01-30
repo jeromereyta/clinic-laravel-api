@@ -69,4 +69,45 @@ final class FileTypeRepository extends AbstractRepository implements FileTypeRep
             ->getQuery()
             ->getSingleResult();
     }
+
+    public function findByName(string $name): ?array
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        return $queryBuilder->select('cp')
+                ->from($this->getEntityClass(), 'cp')
+                ->where('cp.name = :name')
+                ->setParameters([
+                    'name' => $name,
+                ])
+                ->getQuery()
+                ->getArrayResult() ?? null;
+    }
+
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    public function deleteFileType(FileType $fileType): void
+    {
+        $this->entityManager->remove($fileType);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    public function updateFileType(FileType $fileType, CreateFileTypeResource $resource): FileType
+    {
+        $fileType->setDescription($resource->getDescription())
+            ->setName($resource->getName())
+            ->setDescription($resource->getDescription())
+            ->setType($resource->getType());
+
+        $this->entityManager->persist($fileType);
+        $this->entityManager->flush();
+
+        return $fileType;
+    }
 }

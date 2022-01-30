@@ -16,5 +16,11 @@ interface FileTypeRepositoryInterface
 
     public function create(CreateFileTypeResource $resource): FileType;
 
+    public function deleteFileType(FileType  $fileType): void;
+
     public function findById(int $id): FileType;
+
+    public function findByName(string $name): ?array;
+
+    public function updateFileType(FileType $fileType, CreateFileTypeResource $resource): FileType;
 }

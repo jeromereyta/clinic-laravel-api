@@ -17,10 +17,17 @@ interface ProcedureRepositoryInterface
 
     public function create(CreateProcedureResource $resource): Procedure;
 
+    public function deleteProcedure(Procedure  $procedure);
+
+    public function findByName(string $name): ?array;
     /**
      * @return mixed[]
      */
     public function findByProcedureIds(array $procedure_ids): array;
 
     public function findWithQueues(): array;
+
+    public function findById(int $id): Procedure;
+
+    public function updateProcedure(Procedure $procedure, CreateProcedureResource $resource): Procedure;
 }

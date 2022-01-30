@@ -59,6 +59,16 @@ final class ProcedureRepository extends AbstractRepository implements ProcedureR
     }
 
     /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    public function deleteProcedure(Procedure $procedure)
+    {
+        $this->entityManager->remove($procedure);
+        $this->entityManager->flush();
+    }
+
+    /**
      * @return mixed[]
      */
     public function findByProcedureIds(array $procedure_ids): array
@@ -87,5 +97,55 @@ final class ProcedureRepository extends AbstractRepository implements ProcedureR
             ->innerJoin('pp.procedureQueue', 'pq')
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function findById(int $id): Procedure
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        return $queryBuilder->select('cp')
+            ->from($this->getEntityClass(), 'cp')
+            ->where('cp.id = :id')
+            ->setParameters([
+                'id' => $id,
+            ])
+            ->getQuery()
+            ->getSingleResult();
+    }
+
+    public function findByName(string $name): ?array
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        return $queryBuilder->select('cp')
+                ->from($this->getEntityClass(), 'cp')
+                ->where('cp.name = :name')
+                ->setParameters([
+                    'name' => $name,
+                ])
+                ->getQuery()
+                ->getArrayResult() ?? null;
+    }
+
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    public function updateProcedure(Procedure $procedure, CreateProcedureResource $resource): Procedure
+    {
+        $procedure->setDescription($resource->getDescription())
+            ->setCategoryProcedure($resource->getCategoryProcedure())
+            ->setName($resource->getName())
+            ->setPrice($resource->getPrice())
+            ->setUpdatedAt(new Carbon());
+
+        $this->entityManager->persist($procedure);
+        $this->entityManager->flush();
+
+        return $procedure;
     }
 }

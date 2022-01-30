@@ -7,6 +7,8 @@ namespace App\Repositories\Doctrine\ORM;
 use App\Database\Entities\CategoryProcedure;
 use App\Repositories\Interfaces\CategoryProcedureRepositoryInterface;
 use App\Services\CategoryProcedure\Resources\CreateCategoryProcedureResource;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use UnexpectedValueException;
@@ -52,8 +54,17 @@ final class CategoryProcedureRepository extends AbstractRepository implements Ca
     }
 
     /**
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \Doctrine\ORM\NoResultException
+     * @throws ORMException
+     */
+    public function deleteCategoryProcedure(CategoryProcedure $categoryProcedure): void
+    {
+        $this->entityManager->remove($categoryProcedure);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function findById(int $id): CategoryProcedure
     {
@@ -67,5 +78,35 @@ final class CategoryProcedureRepository extends AbstractRepository implements Ca
             ])
             ->getQuery()
             ->getSingleResult();
+    }
+
+    public function findByName(string $name): ?array
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        return $queryBuilder->select('cp')
+                ->from($this->getEntityClass(), 'cp')
+                ->where('cp.name = :name')
+                ->setParameters([
+                    'name' => $name,
+                ])
+                ->getQuery()
+                ->getArrayResult() ?? null;
+    }
+
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    public function updateCategoryProcedure(CategoryProcedure $categoryProcedure, CreateCategoryProcedureResource $resource): CategoryProcedure
+    {
+        $categoryProcedure->setName($resource->getName())
+            ->setType($resource->getType())
+            ->setDescription($resource->getDescription());
+
+        $this->entityManager->persist($categoryProcedure);
+        $this->entityManager->flush();
+
+        return $categoryProcedure;
     }
 }

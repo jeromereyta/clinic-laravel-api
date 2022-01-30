@@ -7,6 +7,7 @@ namespace App\Http\Resources\Patients;
 use App\Database\Entities\Patient;
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
+use Carbon\Carbon;
 
 final class PatientResource extends Resource
 {
@@ -28,6 +29,7 @@ final class PatientResource extends Resource
         $birthDate = $this->resource->getBirthDate()->format('Y/m/d');
         $createdAt = $this->resource->getCreatedAtAsString();
         $updatedAt = $this->resource->getUpdatedAtAsString();
+        $localDate = new Carbon($createdAt);
 
         return [
             'id' => $this->resource->getPatientCode(),
@@ -45,7 +47,7 @@ final class PatientResource extends Resource
             'profile_picture' => $this->resource->getProfilePicture(),
             'province' => $this->resource->getProvince(),
             'street_address' => $this->resource->getStreetAddress(),
-            'created_at' => $createdAt,
+            'created_at' => $localDate->setTimezone('Asia/Taipei')->format('g:i a l jS F Y'),
             'updated_at' => $updatedAt
         ];
     }

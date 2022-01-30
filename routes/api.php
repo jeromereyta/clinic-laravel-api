@@ -2,10 +2,17 @@
 
 use App\Http\Controllers\API\Authentication\AdminLoginController;
 use App\Http\Controllers\API\CategoryProcedures\CreateCategoryProcedureController;
+use App\Http\Controllers\API\CategoryProcedures\DeleteCategoryProcedureController;
 use App\Http\Controllers\API\CategoryProcedures\ListCategoryProcedureController;
+use App\Http\Controllers\API\CategoryProcedures\UpdateCategoryProcedureController;
 use App\Http\Controllers\API\FileUpload\CreateFileTypeController;
 use App\Http\Controllers\API\FileUpload\CreateFileUploadController;
+use App\Http\Controllers\API\FileUpload\DeleteFileTypeController;
 use App\Http\Controllers\API\FileUpload\FileTypeListController;
+use App\Http\Controllers\API\FileUpload\UpdateFileTypeController;
+use App\Http\Controllers\API\PackageProcedure\CreatePackageProcedureController;
+use App\Http\Controllers\API\PackageProcedure\EditPackageController;
+use App\Http\Controllers\API\PackageProcedure\EditPackageProcedureController;
 use App\Http\Controllers\API\Patients\CreatePatientController;
 use App\Http\Controllers\API\Patients\CreatePatientProcedureController;
 use App\Http\Controllers\API\Patients\CreatePatientVisitsController;
@@ -18,7 +25,9 @@ use App\Http\Controllers\API\Patients\ShowPatientVisitsController;
 use App\Http\Controllers\API\Patients\UpdatePatientController;
 use App\Http\Controllers\API\Patients\UploadPatientProfileController;
 use App\Http\Controllers\API\Procedures\CreateProcedureController;
+use App\Http\Controllers\API\Procedures\DeleteProcedureController;
 use App\Http\Controllers\API\Procedures\ListProcedureController;
+use App\Http\Controllers\API\Procedures\UpdateProcedureController;
 use App\Http\Controllers\API\Queue\ListProcedureQueueController;
 use App\Http\Controllers\API\Queue\UpdateProcedureQueueController;
 use App\Http\Controllers\API\RegisterUser\RegisterAdminUserController;
@@ -122,7 +131,14 @@ Route::group([
         'uses' => CreateFileTypeController::class,
     ]);
 
-
+    Route::delete('/file-types/{id}', [
+        'as' => 'file-types-delete',
+        'uses' => DeleteFileTypeController::class,
+    ]);
+    Route::put('/file-types/{id}', [
+        'as' => 'file-types-update',
+        'uses' => UpdateFileTypeController::class,
+    ]);
 
     Route::get('/file-types', [
         'as' => 'file-type-list',
@@ -137,6 +153,14 @@ Route::group([
         'as' => 'category-procedures-create',
         'uses' => CreateCategoryProcedureController::class,
     ]);
+    Route::delete('/category-procedures/{categoryProcedureId}', [
+        'as' => 'category-procedures-delete',
+        'uses' => DeleteCategoryProcedureController::class,
+    ]);
+    Route::put('/category-procedures/{categoryProcedureId}', [
+        'as' => 'category-procedures-update',
+        'uses' => UpdateCategoryProcedureController::class,
+    ]);
     Route::get('/category-procedures', [
         'as' => 'category-procedures-list',
         'uses' => ListCategoryProcedureController::class,
@@ -146,9 +170,34 @@ Route::group([
     /**
      * Procedures
      */
+
+    Route::post('/packages', [
+        'as' => 'packages-create',
+        'uses' => CreatePackageProcedureController::class,
+    ]);
+
+    Route::put('/packages/{id}', [
+        'as' => 'packages-edit',
+        'uses' => EditPackageController::class,
+    ]);
+
+    Route::put('/package-procedures/{id}', [
+        'as' => 'packages-procedures-edit',
+        'uses' => EditPackageProcedureController::class,
+    ]);
+
     Route::post('/procedures', [
         'as' => 'procedures-create',
         'uses' => CreateProcedureController::class,
+    ]);
+
+    Route::delete('/procedures/{procedureId}', [
+        'as' => 'procedures-delete',
+        'uses' => DeleteProcedureController::class,
+    ]);
+    Route::put('/procedures/{procedureId}', [
+        'as' => 'procedures-update',
+        'uses' => UpdateProcedureController::class,
     ]);
     Route::get('/procedures', [
         'as' => 'procedures-list',

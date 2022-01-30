@@ -6,27 +6,30 @@ use App\Enum\CategoryProcedureTypeEnum;
 use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 
-
-final class CreateCategoryProcedureRequest extends BaseRequest
+final class UpdateCategoryProcedureRequest extends BaseRequest
 {
     public function authorize(): bool
     {
         return true;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->getString('name');
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->getString('description');
     }
 
-    public function getType(): CategoryProcedureTypeEnum
+    public function getType(): ?CategoryProcedureTypeEnum
     {
         $type = $this->getString('type');
+
+        if ($type === null) {
+            return null;
+        }
 
         return new CategoryProcedureTypeEnum(\strtolower($type));
     }
@@ -37,9 +40,9 @@ final class CreateCategoryProcedureRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:App\Database\Entities\CategoryProcedure,name',
-            'description' => 'required|string',
-            'type' => 'required|string',
+            'name' => 'string',
+            'description' => 'string',
+            'type' => 'string',
         ];
     }
 }

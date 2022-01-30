@@ -35,7 +35,6 @@ class Procedure extends AbstractEntity
      */
     protected CategoryProcedure $categoryProcedure;
 
-
     /**
      * @ORM\OneToMany(
      *     targetEntity="App\Database\Entities\PatientProcedure",
@@ -44,6 +43,16 @@ class Procedure extends AbstractEntity
      * )
      */
     protected Collection $patientProcedures;
+
+    /**
+     * @ORM\OneToOne (
+     *     targetEntity="App\Database\Entities\PackageProcedure",
+     *     inversedBy="procedure",
+     *     cascade={"persist"}
+     * )
+     * @ORM\JoinColumn(name="procedure_id", referencedColumnName="id")
+     */
+    protected ?PackageProcedure $packageProcedure = null;
 
     public DateTimeInterface $createdAt;
 
@@ -79,6 +88,14 @@ class Procedure extends AbstractEntity
     public function setActive(bool $active): self
     {
         $this->active = $active;
+        return $this;
+    }
+
+    public function setCategoryProcedure(CategoryProcedure $categoryProcedure): self
+    {
+        $this->categoryProcedure = $categoryProcedure;
+        $this->categoryProcedureId = $categoryProcedure->getId();
+
         return $this;
     }
 

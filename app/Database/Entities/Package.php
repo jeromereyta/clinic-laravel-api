@@ -8,6 +8,7 @@ use App\Database\Schemas\PackageSchema;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity()
@@ -26,7 +27,7 @@ class Package extends AbstractEntity
      *     cascade={"persist"}
      * )
      */
-    protected Collection $packageProcedures;
+    protected PersistentCollection $packageProcedures;
 
     public function getId(): int
     {
@@ -42,6 +43,11 @@ class Package extends AbstractEntity
     public function getName(): ?string
     {
         return $this->name;
+    }
+
+    public function getPackageProcedures(): PersistentCollection
+    {
+        return $this->packageProcedures;
     }
 
     public function setName(?string $name): self

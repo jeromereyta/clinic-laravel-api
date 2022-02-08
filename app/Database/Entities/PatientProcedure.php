@@ -23,6 +23,17 @@ class PatientProcedure extends AbstractEntity
     use PatientProcedureSchema;
 
     /**
+     * @ORM\ManyToOne(
+     *     targetEntity="App\Database\Entities\PackageProcedure",
+     *     inversedBy="packageProcedure",
+     *     cascade={"persist"}
+     * )
+     *
+     * @ORM\JoinColumn(name="package_procedure_id", referencedColumnName="id")
+     */
+    protected ?PackageProcedure $packageProcedure;
+
+    /**
      * @ORM\OneToOne (
      *     targetEntity="App\Database\Entities\ProcedureQueue",
      *     mappedBy="patientProcedure",
@@ -88,6 +99,11 @@ class PatientProcedure extends AbstractEntity
      * @var null|UserGuest
      */
     protected ?UserGuest $updatedBy;
+
+    public function getPackageProcedure(): ?PackageProcedure
+    {
+        return $this->packageProcedure;
+    }
 
     public function getCreatedById(): int
     {

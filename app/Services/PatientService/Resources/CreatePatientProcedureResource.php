@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace App\Services\PatientService\Resources;
 
 use App\Database\Entities\PatientVisit;
-use App\Database\Entities\Procedure;
 use App\Database\Entities\UserGuest;
+use Doctrine\ORM\PersistentCollection;
 use Spatie\DataTransferObject\DataTransferObject;
 
 final class CreatePatientProcedureResource extends DataTransferObject
 {
     public UserGuest $createdBy;
+
+    public ?PersistentCollection  $packageProcedures = null;
 
     public PatientVisit $patientVisit;
 
@@ -69,6 +71,18 @@ final class CreatePatientProcedureResource extends DataTransferObject
     public function setDescription(?string $description = null): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPackageProcedures(): PersistentCollection
+    {
+        return $this->packageProcedures;
+    }
+
+    public function setPackageProcedure(PersistentCollection  $packageProcedures = null): self
+    {
+        $this->packageProcedures = $packageProcedures;
 
         return $this;
     }

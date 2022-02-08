@@ -74,6 +74,24 @@ final class PatientVisitRepository extends AbstractRepository implements Patient
         return $patientVisit;
     }
 
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function findById(int $id): PatientVisit
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        return $queryBuilder->select('pv')
+            ->from($this->getEntityClass(), 'pv')
+            ->where('pv.id = :id')
+            ->setParameters([
+                'id' => $id,
+            ])
+            ->getQuery()
+            ->getSingleResult();
+    }
+
     public function findByPatient(Patient $patient): array
     {
         $queryBuilder = $this->manager->createQueryBuilder();

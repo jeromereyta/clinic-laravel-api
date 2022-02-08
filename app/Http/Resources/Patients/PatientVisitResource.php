@@ -38,10 +38,37 @@ final class PatientVisitResource extends Resource
             $files = new FileUploadsResource($this->resource->getFileUploads()->toArray());
         }
 
-        $procedures = [];
+        $patientProcedures = [];
 
         if ($this->resource->getPatientProcedures() !== null) {
-            $procedures = $this->resource->getPatientProcedures()->toArray();
+            $patientProcedures = $this->resource->getPatientProcedures();
+        }
+
+        $computedProcedures = [];
+
+        foreach ($patientProcedures as $patientProcedure) {
+
+            $procedure = $patientProcedure->getProcedure();
+
+            $packageProcedure = $patientProcedure->getPackageProcedure() ?? null;
+
+            $price = $procedure->getPrice();
+
+            if ($packageProcedure !== null) {
+                $price = $packageProcedure->getPrice();
+            }
+
+            $computedProcedures[] = [
+                'patient_procedure_id' => $patientProcedure->getId(),
+                'id' => $procedure->getId(),
+                'name' => $procedure->getName(),
+                'patient_procedure_description' => $procedure->getDescription(),
+                'category_procedure_id' => $procedure->getCategoryProcedureId(),
+                'description' => $procedure->getDescription(),
+                'price' => $price,
+                'package_id' => $packageProcedure !== null ? $packageProcedure->getPackage()->getId(): null,
+                'package_name' => $packageProcedure !== null ? $packageProcedure->getPackage()->getName(): '',
+            ];
         }
 
         $date = new Carbon($localDate->toDateString());
@@ -58,7 +85,7 @@ final class PatientVisitResource extends Resource
             'patient_bp' => $this->resource->getPatientBP(),
             'patient_height' => $this->resource->getPatientHeight(),
             'patient_weight' => $this->resource->getPatientWeight(),
-            'procedures' => new PatientProceduresResource($procedures),
+            'procedures' => $computedProcedures,
             'remarks' => $this->resource->getRemarks(),
             'total_summary' => $this->resource->getTransactionSummary(),
             'files' => $files,

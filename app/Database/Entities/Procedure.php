@@ -47,10 +47,9 @@ class Procedure extends AbstractEntity
     /**
      * @ORM\OneToOne (
      *     targetEntity="App\Database\Entities\PackageProcedure",
-     *     inversedBy="procedure",
+     *     mappedBy="procedure",
      *     cascade={"persist"}
      * )
-     * @ORM\JoinColumn(name="procedure_id", referencedColumnName="id")
      */
     protected ?PackageProcedure $packageProcedure = null;
 

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Database\Entities;
 
 use App\Database\Schemas\PackageProcedureSchema;
-use App\Enum\ProcedureQueueTypeEnum;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity()
@@ -18,6 +18,15 @@ use Doctrine\ORM\Mapping as ORM;
 class PackageProcedure extends AbstractEntity
 {
     use PackageProcedureSchema;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="App\Database\Entities\PatientProcedure",
+     *     mappedBy="packageProcedure",
+     *     cascade={"persist"}
+     * )
+     */
+    protected PersistentCollection $patientProcedures;
 
     /**
      * @ORM\ManyToOne(
@@ -33,9 +42,10 @@ class PackageProcedure extends AbstractEntity
     /**
      * @ORM\OneToOne (
      *     targetEntity="App\Database\Entities\Procedure",
-     *     mappedBy="packageProcedure",
+     *     inversedBy="packageProcedure",
      *     cascade={"persist"}
      * )
+     * @ORM\JoinColumn(name="procedure_id", referencedColumnName="id")
      */
     public Procedure $procedure;
 

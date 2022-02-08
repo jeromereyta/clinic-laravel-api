@@ -29,7 +29,12 @@ trait PatientProcedureSchema
     protected int $patientVisitId;
 
     /**
-     * @ORM\Column(name="procedureId", type="integer")
+     * @ORM\Column(name="package_procedure_id", type="integer", nullable="true")
+     */
+    protected int $packageProcedureId;
+
+    /**
+     * @ORM\Column(name="procedure_id", type="integer")
      */
     protected int $procedureId;
 

@@ -13,6 +13,7 @@ use App\Http\Controllers\API\FileUpload\UpdateFileTypeController;
 use App\Http\Controllers\API\PackageProcedure\CreatePackageProcedureController;
 use App\Http\Controllers\API\PackageProcedure\EditPackageController;
 use App\Http\Controllers\API\PackageProcedure\EditPackageProcedureController;
+use App\Http\Controllers\API\PackageProcedure\ListPackageProcedureController;
 use App\Http\Controllers\API\Patients\CreatePatientController;
 use App\Http\Controllers\API\Patients\CreatePatientProcedureController;
 use App\Http\Controllers\API\Patients\CreatePatientVisitsController;
@@ -24,6 +25,8 @@ use App\Http\Controllers\API\Patients\ShowPatientVisitController;
 use App\Http\Controllers\API\Patients\ShowPatientVisitsController;
 use App\Http\Controllers\API\Patients\UpdatePatientController;
 use App\Http\Controllers\API\Patients\UploadPatientProfileController;
+use App\Http\Controllers\API\PatientVisits\AddPackageProcedureController;
+use App\Http\Controllers\API\PatientVisits\RemoveProcedureController;
 use App\Http\Controllers\API\Procedures\CreateProcedureController;
 use App\Http\Controllers\API\Procedures\DeleteProcedureController;
 use App\Http\Controllers\API\Procedures\ListProcedureController;
@@ -121,6 +124,11 @@ Route::group([
     Route::post('/patient-visits/upload-file', [
         'as' => 'patient-visit-upload-file',
         'uses' => CreateFileUploadController::class,
+    ]);
+
+    Route::delete('/patient-procedure/{id}', [
+        'as' => 'patient-visit-remove-procedure',
+        'uses' => RemoveProcedureController::class,
     ]);
 
     /**
@@ -225,6 +233,16 @@ Route::group([
     Route::post('/patient-procedures', [
         'as' => 'patient-procedures-create',
         'uses' => CreatePatientProcedureController::class,
+    ]);
+
+    Route::post('/patient-package-procedures', [
+        'as' => 'patient-package-procedures-create',
+        'uses' => AddPackageProcedureController::class,
+    ]);
+
+    Route::get('/packages', [
+        'as' => 'packages-list',
+        'uses' => ListPackageProcedureController::class,
     ]);
 
 });

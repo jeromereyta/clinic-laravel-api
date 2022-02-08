@@ -14,6 +14,8 @@ interface PatientVisitRepositoryInterface
 
     public function create(CreatePatientVisitResource $resource): PatientVisit;
 
+    public function findById(int $id): PatientVisit;
+
     public function findByPatient(Patient $patient): array;
 
     public function findByPatientVisit(int $patient_visit_id): ?PatientVisit;

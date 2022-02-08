@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Patients;
 
 use App\Database\Entities\User;
-use App\Enum\ProcedureQueueTypeEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Patients\CreatePatientProcedureRequest;
 use App\Repositories\Interfaces\PatientProcedureRepositoryInterface;
@@ -14,7 +13,6 @@ use App\Repositories\Interfaces\ProcedureQueueRepositoryInterface;
 use App\Repositories\Interfaces\ProcedureRepositoryInterface;
 use App\Repositories\Interfaces\UserGuestRepositoryInterface;
 use App\Services\PatientService\Resources\CreatePatientProcedureResource;
-use App\Services\ProcedureQueue\Resources\CreateProcedureQueueResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class CreatePatientProcedureController extends AbstractAPIController
@@ -24,8 +22,6 @@ final class CreatePatientProcedureController extends AbstractAPIController
     private PatientVisitRepositoryInterface $patientVisitRepository;
 
     private ProcedureRepositoryInterface $procedureRepository;
-
-    private ProcedureQueueRepositoryInterface $procedureQueueRepository;
 
     private UserGuestRepositoryInterface $userGuestRepository;
 
@@ -38,7 +34,6 @@ final class CreatePatientProcedureController extends AbstractAPIController
     ) {
         $this->patientProcedureRepository = $patientProcedureRepository;
         $this->patientVisitRepository = $patientVisitRepository;
-        $this->procedureQueueRepository = $procedureQueueRepository;
         $this->procedureRepository = $procedureRepository;
         $this->userGuestRepository = $userGuestRepository;
     }
@@ -84,30 +79,12 @@ final class CreatePatientProcedureController extends AbstractAPIController
             ]);
         }
 
-
         $patientProcedures = $this->patientProcedureRepository->createPatientProcedures(new CreatePatientProcedureResource([
             'createdBy' => $userGuest,
             'description' => $request->getDescription(),
             'procedures' => $procedures,
             'patientVisit' => $patientVisit,
         ]));
-
-//        @Todo separate API endpoint for queueing procedure
-//        $latestQueue = $this->procedureQueueRepository->findLatestQueueNumber() ?? 1;
-//
-//        $queueNumber = $latestQueue++;
-//
-//        foreach ($patientProcedures as $patientProcedure) {
-//
-//            $this->procedureQueueRepository->create(new CreateProcedureQueueResource([
-//                'patientProcedure' => $patientProcedure,
-//                'createdBy' => $userGuest,
-//                'status' => new ProcedureQueueTypeEnum(ProcedureQueueTypeEnum::IN_QUEUE),
-//                'queueNumber' => $queueNumber,
-//            ]));
-//
-//            $queueNumber = $latestQueue++;
-//        }
 
         return $this->respondNoContent();
     }

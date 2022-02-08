@@ -27,7 +27,7 @@ final class ShowPatientVisitController extends AbstractAPIController
         try {
             $patientVisit = $this->patientVisitRepository->findByPatientVisit($patientVisitId);
         } catch (Throwable $exception) {
-            dd($exception);
+            return $this->respondError($exception->getMessage());
         }
 
         if ($patientVisit === null) {

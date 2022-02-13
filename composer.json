@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "8.0",
         "doctrine/inflector": "^1.4|^2.0",
         "eonx-com/easy-core": "^3.0",
         "eonx-com/easy-error-handler": "^3.0.4",
@@ -20,6 +20,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "gedmo/doctrine-extensions": "^3.1",
         "guzzlehttp/guzzle": "^7.0.1",
+        "jenssegers/optimus": "^1.1",
         "laravel-doctrine/extensions": "^1.4",
         "laravel-doctrine/migrations": "^2.3",
         "laravel-doctrine/orm": "^1.7",

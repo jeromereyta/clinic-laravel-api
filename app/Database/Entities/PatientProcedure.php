@@ -10,6 +10,7 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @method \App\Database\Entities\ProcedureQueue getProcedureQueue()
  * @method \App\Database\Entities\Procedure getProcedure()
  * @method \App\Database\Entities\PatientVisit getPatientVisit()
  *
@@ -40,7 +41,7 @@ class PatientProcedure extends AbstractEntity
      *     cascade={"persist"}
      * )
      */
-    protected ProcedureQueue $procedureQueue;
+    protected ?ProcedureQueue $procedureQueue = null;
 
     /**
      * @var DateTimeInterface

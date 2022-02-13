@@ -10,15 +10,22 @@ use App\Http\Resources\Patients\PatientVisitResource;
 use App\Http\Resources\Patients\PatientVisitsResource;
 use App\Repositories\Interfaces\PatientRepositoryInterface;
 use App\Repositories\Interfaces\PatientVisitRepositoryInterface;
+use App\Services\Identifiers\Interfaces\IdentifierEncoderInterface;
 use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
 
 final class ShowPatientVisitController extends AbstractAPIController
 {
+    private IdentifierEncoderInterface $identifierEncoder;
+
     private PatientVisitRepositoryInterface $patientVisitRepository;
 
-    public function __construct(PatientVisitRepositoryInterface $patientVisitRepository) {
+    public function __construct(
+        IdentifierEncoderInterface $identifierEncoder,
+        PatientVisitRepositoryInterface $patientVisitRepository
+    ) {
+        $this->identifierEncoder = $identifierEncoder;
         $this->patientVisitRepository = $patientVisitRepository;
     }
 
@@ -36,6 +43,6 @@ final class ShowPatientVisitController extends AbstractAPIController
             ]);
         }
 
-        return new PatientVisitResource($patientVisit);
+        return new PatientVisitResource($patientVisit, $this->identifierEncoder);
     }
 }

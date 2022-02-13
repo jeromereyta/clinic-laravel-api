@@ -34,6 +34,7 @@ use App\Http\Controllers\API\Procedures\UpdateProcedureController;
 use App\Http\Controllers\API\Queue\ListProcedureQueueController;
 use App\Http\Controllers\API\Queue\UpdateProcedureQueueController;
 use App\Http\Controllers\API\RegisterUser\RegisterAdminUserController;
+use App\Http\Controllers\API\Transactions\TransactionListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,8 +61,18 @@ Route::group([
         'as' => 'login-admin',
         'uses' => AdminLoginController::class,
     ]);
+
 });
 
+Route::get('/test', [
+      'as' => 'test',
+        function (){
+            return
+            \json_encode([
+                'test' => 'test connection and api',
+            ]);
+        }]
+);
 
 Route::group([
     'middleware' => 'auth:api',
@@ -245,4 +256,8 @@ Route::group([
         'uses' => ListPackageProcedureController::class,
     ]);
 
+    Route::get('/transactions', [
+        'as' => 'transactions-list',
+        'uses' => TransactionListController::class,
+    ]);
 });

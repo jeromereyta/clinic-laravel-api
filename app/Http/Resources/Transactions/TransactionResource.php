@@ -2,24 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Resources\Patients;
+namespace App\Http\Resources\Transactions;
 
-use App\Database\Entities\PatientVisit;
 use App\Database\Entities\TransactionSummary;
 use App\Exceptions\InvalidResourceTypeException;
-use App\Http\Resources\FileUpload\FileUploadsResource;
+use App\Http\Resources\Patients\PatientVisitResource;
 use App\Http\Resources\Resource;
-use App\Http\Resources\Transactions\TransactionResource;
 use App\Services\Identifiers\Interfaces\IdentifierEncoderInterface;
 use Carbon\Carbon;
 
-final class PatientVisitResource extends Resource
+final class TransactionResource extends Resource
 {
     private IdentifierEncoderInterface $identifierEncoder;
 
     public function __construct($resource, IdentifierEncoderInterface $identifierEncoder)
     {
         $this->identifierEncoder = $identifierEncoder;
+
         parent::__construct($resource);
     }
 
@@ -31,28 +30,19 @@ final class PatientVisitResource extends Resource
      */
     protected function getResponse(): array
     {
-        if (($this->resource instanceof PatientVisit) === false) {
+        if (($this->resource instanceof TransactionSummary) === false) {
             throw new InvalidResourceTypeException(
-                PatientVisit::class,
+                TransactionSummary::class,
                 \get_class($this->resource)
             );
         }
 
-        // did not include updated by since this one record is not updatable
-        $createdAt = $this->resource->getCreatedAt();
-        $localDate = new Carbon($createdAt);
-        $patient = $this->resource->getPatient();
-
-        $files = [];
-
-        if ($this->resource->getFileUploads() !== null) {
-            $files = new FileUploadsResource($this->resource->getFileUploads()->toArray());
-        }
+        $patientVisit = $this->resource->getPatientVisit();
 
         $patientProcedures = [];
 
-        if ($this->resource->getPatientProcedures() !== null) {
-            $patientProcedures = $this->resource->getPatientProcedures();
+        if ($patientVisit->getPatientProcedures() !== null) {
+            $patientProcedures = $patientVisit->getPatientProcedures();
         }
 
         $computedProcedures = [];
@@ -77,33 +67,22 @@ final class PatientVisitResource extends Resource
                 'category_procedure_id' => $procedure->getCategoryProcedureId(),
                 'description' => $procedure->getDescription(),
                 'price' => $price,
-                'package_id' => $packageProcedure?->getPackage()->getId()  ?? null,
+                'package_id' => $packageProcedure !== null ? $packageProcedure->getPackage()->getId(): null,
                 'package_name' => $packageProcedure !== null ? $packageProcedure->getPackage()->getName(): '',
-                'status' => $patientProcedure->getProcedureQueue()?->getStatus() ?? null,
             ];
         }
 
-        $date = new Carbon($localDate->toDateString());
-
-        $todayDate = new Carbon((new Carbon())->toDateString());
-
-        $isPast = $date->lt($todayDate);
 
         return [
             'id' => $this->resource->getId(),
-            'attending_doctor' => $this->resource->getAttendingDoctor(),
-            'patient_code' => $patient->getPatientCode(),
-            'patient_name' => $patient->getName(),
-            'patient_bp' => $this->resource->getPatientBP(),
-            'patient_height' => $this->resource->getPatientHeight(),
-            'patient_weight' => $this->resource->getPatientWeight(),
+            'patient_visit_id' => $this->resource->getPatientVisit()->getId(),
+            'transaction_code' => $this->identifierEncoder->encode((int) $this->resource->getId()) ?? null,
+            'payment_method' => $this->resource->getPaymentMethod(),
             'procedures' => $computedProcedures,
+            'patient' =>  $patientVisit->getPatient()->getName(),
             'remarks' => $this->resource->getRemarks(),
-            'total_summary' => new TransactionResource($this->resource->getTransactionSummary(), $this->identifierEncoder),
-            'files' => $files,
-            'created_by' => $this->resource->getCreatedById(),
-            'is_past' => $isPast,
-            'created_at' => $localDate->setTimezone('Asia/Taipei')->toDayDateTimeString(),
+            'total_amount' => $this->resource->getTotalAmount(),
+            'created_at' => (new Carbon($this->resource->getCreatedAt()))->isoFormat('MMMM Do YYYY, h:mm:ss a')
         ];
     }
 }

@@ -24,6 +24,19 @@ final class TransactionSummaryRepository extends AbstractRepository implements T
     }
 
     /**
+     * @return mixed[]
+     */
+    public function all(): array
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        return $queryBuilder->select('transactions')
+            ->from($this->getEntityClass(), 'transactions')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * @throws OptimisticLockException
      * @throws ORMException
      */

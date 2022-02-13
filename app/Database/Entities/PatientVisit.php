@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @method \App\Database\Entities\Patient getPatient()
- * @method \App\Database\Entities\PatientProcedure getPatientProcedures()
  * @method \App\Database\Entities\FileUpload getFileUploads()
  * @method \App\Database\Entities\TransactionSummary getTransactionSummary()
  *
@@ -115,6 +114,11 @@ class PatientVisit extends AbstractEntity
     public function getPatientHeight(): string
     {
         return $this->patientHeight;
+    }
+
+    public function getPatientProcedures(): ?Collection
+    {
+        return $this->patientProcedures;
     }
 
     public function getPatientWeight(): string

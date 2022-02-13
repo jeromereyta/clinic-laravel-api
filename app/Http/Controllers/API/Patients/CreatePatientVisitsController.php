@@ -11,6 +11,7 @@ use App\Http\Resources\Patients\PatientVisitResource;
 use App\Repositories\Interfaces\PatientRepositoryInterface;
 use App\Repositories\Interfaces\PatientVisitRepositoryInterface;
 use App\Repositories\Interfaces\UserGuestRepositoryInterface;
+use App\Services\Identifiers\Interfaces\IdentifierEncoderInterface;
 use App\Services\PatientService\Interfaces\GeneratePatientCodeServiceInterface;
 use App\Services\PatientService\Resources\CreatePatientResource;
 use App\Services\PatientService\Resources\CreatePatientVisitResource;
@@ -25,13 +26,16 @@ final class CreatePatientVisitsController extends AbstractAPIController
     private PatientVisitRepositoryInterface $patientVisitRepository;
 
     private UserGuestRepositoryInterface $userGuestRepository;
+    private IdentifierEncoderInterface $identifierEncoder;
 
     public function __construct(
+        IdentifierEncoderInterface $identifierEncoder,
         PatientRepositoryInterface $patientRepository,
         PatientVisitRepositoryInterface $patientVisitRepository,
         GeneratePatientCodeServiceInterface $generatePatientCodeService,
         UserGuestRepositoryInterface $userGuestRepository
     ) {
+        $this->identifierEncoder = $identifierEncoder;
         $this->patientRepository = $patientRepository;
         $this->patientVisitRepository = $patientVisitRepository;
         $this->userGuestRepository = $userGuestRepository;
@@ -72,6 +76,6 @@ final class CreatePatientVisitsController extends AbstractAPIController
             'remarks' => $request->getRemarks(),
         ]));
 
-        return new PatientVisitResource($patientVisit);
+        return new PatientVisitResource($patientVisit, $this->identifierEncoder);
     }
 }

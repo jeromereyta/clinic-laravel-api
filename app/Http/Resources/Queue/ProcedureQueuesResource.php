@@ -40,6 +40,7 @@ final class ProcedureQueuesResource extends Resource
 
             $results[$procedure->getName()][] = [
                 'id' => $queue->getId(),
+                'patient_procedure_id' => $patientProcedure->getId(),
                 'patient_name' => $patient->getName(),
                 'patient_code' => $patient->getPatientCode(),
                 'queue_number' =>$counter,

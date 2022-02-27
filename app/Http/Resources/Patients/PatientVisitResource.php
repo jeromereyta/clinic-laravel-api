@@ -12,14 +12,15 @@ use App\Http\Resources\Resource;
 use App\Http\Resources\Transactions\TransactionResource;
 use App\Services\Identifiers\Interfaces\IdentifierEncoderInterface;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 
 final class PatientVisitResource extends Resource
 {
     private IdentifierEncoderInterface $identifierEncoder;
 
-    public function __construct($resource, IdentifierEncoderInterface $identifierEncoder)
+    public function __construct($resource)
     {
-        $this->identifierEncoder = $identifierEncoder;
+        $this->identifierEncoder = app::make(IdentifierEncoderInterface::class);
         parent::__construct($resource);
     }
 

@@ -25,7 +25,7 @@ final class UpdateCategoryProcedureController extends AbstractAPIController
 
     public function __invoke(int $categoryProcedureId, UpdateCategoryProcedureRequest $request): JsonResource
     {
-        $categoryProcedure = $this->getCategoryProcedure();
+        $categoryProcedure = $this->getCategoryProcedure($categoryProcedureId);
 
         if ($categoryProcedure === null) {
             return $this->respondError('Category procedure not found', Response::HTTP_NOT_FOUND);

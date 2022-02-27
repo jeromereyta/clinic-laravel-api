@@ -47,9 +47,19 @@ final class UpdatePatientRequest extends BaseRequest
         return $this->getString('gender');
     }
 
-    public function getName(): string
+    public function getFirstName(): string
     {
-        return $this->getString('name');
+        return $this->getString('first_name');
+    }
+
+    public function getMiddleName(): ?string
+    {
+        return $this->getString('middle_name');
+    }
+
+    public function getLastName(): string
+    {
+        return $this->getString('last_name');
     }
 
     public function getPhoneNumber(): string
@@ -84,7 +94,9 @@ final class UpdatePatientRequest extends BaseRequest
             'civil_status' => 'required|string',
             'email' => 'required|max:255',
             'gender' => 'required|string',
-            'name' => 'required|string',
+            'first_name' => 'required|string',
+            'middle_name' => '',
+            'last_name' => 'required|string',
             'phone_number' => 'required|string',
             'mobile_number' => 'required|string',
             'province' => 'required|string',

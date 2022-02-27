@@ -31,7 +31,7 @@ class User extends AbstractEntity implements JWTSubject, AuthContract
     public DateTimeInterface $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     public ?DateTimeInterface $updatedAt;
 
@@ -134,7 +134,7 @@ class User extends AbstractEntity implements JWTSubject, AuthContract
         return $this;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt = null): self
     {
         $this->updatedAt = $updatedAt;
 

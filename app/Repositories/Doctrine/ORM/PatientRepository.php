@@ -41,7 +41,6 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
 
         $patient->fill([
             'active' => $resource->getActive(),
-            'age' => $resource->getAge(),
             'barangay' => $resource->getBarangay(),
             'birthDate' => $resource->getBirthDate(),
             'city' => $resource->getCity(),
@@ -51,6 +50,9 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
             'email' => $resource->getEmail(),
             'gender' => $resource->getGender(),
             'name' => $resource->getName(),
+            'firstName' => $resource->getFirstName(),
+            'middleName' => $resource->getMiddleName(),
+            'lastName' => $resource->getLastName(),
             'patientCode' => $resource->getPatientCode(),
             'phoneNumber' => $resource->getPhoneNumber(),
             'mobileNumber' => $resource->getMobileNumber(),
@@ -65,6 +67,28 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
         $this->entityManager->flush();
 
         return $patient;
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function findByFirstAndLastName(string $firstName, string $lastName): ?Patient
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        try {
+            return $queryBuilder->select('p')
+                ->from($this->getEntityClass(), 'p')
+                ->where('p.firstName = :firstName')
+                ->setParameter('firstName', $firstName)
+                ->andWhere('p.lastName = :lastName')
+                ->setParameter('lastName', $lastName)
+                ->getQuery()
+                ->getSingleResult();
+        } catch (\Throwable $exception) {
+            return null;
+        }
     }
 
     /**
@@ -124,6 +148,10 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
     public function updatePatient(Patient $patient, CreatePatientResource $resource): Patient
     {
         $patient
+            ->setName($resource->getName())
+            ->setFirstName($resource->getFirstName())
+            ->setMiddleName($resource->getMiddleName())
+            ->setLastName($resource->getLastName())
             ->setBarangay($resource->getBarangay())
             ->setBirthDate($resource->getBirthDate())
             ->setCity($resource->getCity())

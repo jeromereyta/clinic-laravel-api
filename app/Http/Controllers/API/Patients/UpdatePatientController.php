@@ -50,9 +50,23 @@ final class UpdatePatientController extends AbstractAPIController
             return $this->respondNotFound(['message' => 'Patient not found']);
         }
 
-        $updateResource =  new CreatePatientResource([
+        $existName = $this->patientRepository->findByFirstAndLastName($request->getFirstName(), $request->getLastName());
+
+        if ($existName !== null) {
+            return $this->respondUnprocessable([
+                'message' => 'User first and last name already exist.',
+            ]);
+        }
+
+        $name = \sprintf(
+            '%s, %s %s',
+            $request->getLastName(),
+            $request->getMiddleName(),
+            $request->getFirstName(),
+        );
+
+        $updateResource = new CreatePatientResource([
             'active' => true,
-            'age' => '0',
             'barangay' => $request->getBarangay(),
             'birthDate' => $request->getBirthDate(),
             'civilStatus' => $request->getCivilStatus(),
@@ -60,7 +74,10 @@ final class UpdatePatientController extends AbstractAPIController
             'createdBy' => $userGuest,
             'email' => $request->getEmail(),
             'gender' => $request->getGender(),
-            'name' => $request->getName(),
+            'name' => $name,
+            'firstName' => $request->getFirstName(),
+            'middleName' => $request->getMiddleName(),
+            'lastName' => $request->getLastName(),
             'patientCode' => $patientCode,
             'phoneNumber' => $request->getPhoneNumber(),
             'mobileNumber' => $request->getMobileNumber(),
@@ -69,7 +86,6 @@ final class UpdatePatientController extends AbstractAPIController
             'streetAddress' => $request->getStreetAddress(),
             'updatedBy' => $userGuest,
         ]);
-
 
         $patient = $this->patientRepository->updatePatient($patient, $updateResource);
 

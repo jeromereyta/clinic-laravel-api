@@ -122,6 +122,24 @@ class Patient extends AbstractEntity
         return $this->name;
     }
 
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+
+    public function getMiddleName(): ?string
+    {
+        return $this->middleName;
+    }
+
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
     public function getPatientCode(): string
     {
         return $this->patientCode;
@@ -153,13 +171,6 @@ class Patient extends AbstractEntity
     public function setActive(bool $active): void
     {
         $this->active = $active;
-    }
-
-    public function setAge(string $age): self
-    {
-        $this->age = $age;
-
-        return $this;
     }
 
     public function getMobileNumber(): string
@@ -219,6 +230,27 @@ class Patient extends AbstractEntity
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function setMiddleName(?string $middleName): self
+    {
+        $this->middleName = $middleName;
+
+        return $this;
+    }
+
+    public function setLastName(string $lastName): self
+    {
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -352,7 +384,6 @@ class Patient extends AbstractEntity
     {
         return [
             'active' => 'nullable|boolean',
-            'age' => 'required|string',
             'birthDate' => 'required|date',
             'civilStatus' => 'required|string',
             'createdBy' => \sprintf('required|%s', $this->instanceOfRuleAsString(UserGuest::class)),
@@ -372,7 +403,6 @@ class Patient extends AbstractEntity
     {
         return [
             'active' => $this->isActive(),
-            'age' => $this->getAge(),
             'birth_date' => $this->getBirthDate(),
             'civil_status' => $this->getCivilStatus(),
             'created_by_id' => $this->getCreatedById(),

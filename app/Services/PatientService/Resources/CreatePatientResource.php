@@ -12,8 +12,6 @@ final class CreatePatientResource extends DataTransferObject
 {
     public bool $active;
 
-    public string $age;
-
     public string $barangay;
 
     public DateTimeInterface $birthDate;
@@ -25,6 +23,12 @@ final class CreatePatientResource extends DataTransferObject
     public string $email;
 
     public string $name;
+
+    public string $firstName;
+
+    public ?string $middleName = null;
+
+    public string $lastName;
 
     public string $phoneNumber;
 
@@ -47,11 +51,6 @@ final class CreatePatientResource extends DataTransferObject
     public function getActive(): bool
     {
         return $this->active;
-    }
-
-    public function getAge(): string
-    {
-        return $this->age;
     }
 
     public function getBirthDate(): DateTimeInterface
@@ -84,6 +83,21 @@ final class CreatePatientResource extends DataTransferObject
         return $this->name;
     }
 
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function getMiddleName(): ?string
+    {
+        return $this->middleName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
     public function getPatientCode(): string
     {
         return $this->patientCode;
@@ -112,13 +126,6 @@ final class CreatePatientResource extends DataTransferObject
     public function setActive(bool $active): self
     {
         $this->active = $active;
-
-        return $this;
-    }
-
-    public function setAge(string $age): self
-    {
-        $this->age = $age;
 
         return $this;
     }
@@ -161,6 +168,27 @@ final class CreatePatientResource extends DataTransferObject
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function setMiddleName(?string $middleName = null): self
+    {
+        $this->middleName = $middleName;
+
+        return $this;
+    }
+
+    public function setLastName(string $lastName): self
+    {
+        $this->lastName = $lastName;
 
         return $this;
     }

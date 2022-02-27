@@ -16,6 +16,8 @@ interface PatientRepositoryInterface
 
     public function create(CreatePatientResource $resource): Patient;
 
+    public function findByFirstAndLastName(string $firstName, string $lastName): ?Patient;
+
     public function findByPatientCode(string $patientCode): ?Patient;
 
     public function findLatestId(): ?string;

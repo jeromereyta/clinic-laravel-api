@@ -20,6 +20,9 @@ use phpDocumentor\Reflection\Types\Integer;
  * @method string getEmail()
  * @method string getGender()
  * @method string getName()
+ * @method string getFirstName()
+ * @method ?string getMiddleName()
+ * @method string getLastName()
  * @method string getPatientCode()
  * @method string getPhoneNumber()
  * @method string getMobileNuumber()
@@ -37,6 +40,9 @@ use phpDocumentor\Reflection\Types\Integer;
  * @method self setEmail(string $email)
  * @method self setGender(string $gender)
  * @method self setName(string $name)
+ * @method self setFirstName(string $firstName)
+ * @method self setMiddleName(string $middleName)
+ * @method self setLastName(string $lastName)
  * @method self setPatientCode(string $patientCode)
  * @method self setPhoneNumber(string $phoneNumber)
  * @method self setMobileNumber(string $mobileNumber)
@@ -50,11 +56,6 @@ trait PatientSchema
      * @ORM\Column(name="`active`", type="boolean")
      */
     protected bool $active = true;
-
-    /**
-     * @ORM\Column(name="`age`", type="string")
-     */
-    protected string $age;
 
     /**
      * @ORM\Column(name="`barangay`", type="string")
@@ -107,6 +108,21 @@ trait PatientSchema
      * @ORM\Column(name="`name`", type="string")
      */
     protected string $name;
+
+    /**
+     * @ORM\Column(name="`first_name`", type="string")
+     */
+    protected string $firstName;
+
+    /**
+     * @ORM\Column(name="`middle_name`", type="string", nullable=true)
+     */
+    protected string $middleName;
+
+    /**
+     * @ORM\Column(name="`last_name`", type="string")
+     */
+    protected string $lastName;
 
     /**
      * @ORM\Column(name="`patient_code`", type="string")

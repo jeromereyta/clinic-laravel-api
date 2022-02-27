@@ -7,6 +7,7 @@ use App\Database\Entities\UserGuest;
 use App\Http\Requests\BaseRequest;
 use Carbon\Carbon;
 use DateTimeInterface;
+use Illuminate\Validation\Rule;
 
 final class CreatePatientRequest extends BaseRequest
 {
@@ -52,9 +53,19 @@ final class CreatePatientRequest extends BaseRequest
         return $this->getString('gender');
     }
 
-    public function getName(): string
+    public function getFirstName(): string
     {
-        return $this->getString('name');
+        return $this->getString('first_name');
+    }
+
+    public function getMiddleName(): ?string
+    {
+        return $this->getString('middle_name');
+    }
+
+    public function getLastName(): string
+    {
+        return $this->getString('last_name');
     }
 
     public function getPatientBp(): string
@@ -110,7 +121,9 @@ final class CreatePatientRequest extends BaseRequest
             'civil_status' => 'required|string',
             'email' => 'required|max:255',
             'gender' => 'required|string',
-            'name' => 'required|string|unique:App\Database\Entities\Patient,name',
+            'first_name' =>'required|string',
+            'middle_name' => '',
+            'last_name' =>'required|string',
             'patient_bp' => 'required|string',
             'patient_height' => 'required|string',
             'patient_weight' => 'required|string',

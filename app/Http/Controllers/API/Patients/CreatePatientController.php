@@ -56,11 +56,25 @@ final class CreatePatientController extends AbstractAPIController
             ]);
         }
 
+        $existName = $this->patientRepository->findByFirstAndLastName($request->getFirstName(), $request->getLastName());
+
+        if ($existName !== null) {
+            return $this->respondUnprocessable([
+                'message' => 'User first and last name already exist.',
+            ]);
+        }
+
         $patientCode = $this->generatePatientCodeService->generate($this->patientRepository->findLatestId());
+
+        $name = \sprintf(
+            '%s, %s %s',
+            $request->getLastName(),
+            $request->getMiddleName(),
+            $request->getFirstName(),
+        );
 
         $patient = $this->patientRepository->create( new CreatePatientResource([
             'active' => true,
-            'age' => '0',
             'barangay' => $request->getBarangay(),
             'birthDate' => $request->getBirthDate(),
             'civilStatus' => $request->getCivilStatus(),
@@ -68,7 +82,10 @@ final class CreatePatientController extends AbstractAPIController
             'createdBy' => $userGuest,
             'email' => $request->getEmail(),
             'gender' => $request->getGender(),
-            'name' => $request->getName(),
+            'name' => $name,
+            'firstName' => $request->getFirstName(),
+            'middleName' => $request->getMiddleName(),
+            'lastName' => $request->getLastName(),
             'patientCode' => $patientCode,
             'phoneNumber' => $request->getPhoneNumber(),
             'mobileNumber' => $request->getMobileNumber(),

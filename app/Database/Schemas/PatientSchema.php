@@ -117,7 +117,7 @@ trait PatientSchema
     /**
      * @ORM\Column(name="`middle_name`", type="string", nullable=true)
      */
-    protected string $middleName;
+    protected ?string $middleName = null;
 
     /**
      * @ORM\Column(name="`last_name`", type="string")

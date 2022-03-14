@@ -241,7 +241,7 @@ class Patient extends AbstractEntity
         return $this;
     }
 
-    public function setMiddleName(?string $middleName): self
+    public function setMiddleName(?string $middleName = null): self
     {
         $this->middleName = $middleName;
 

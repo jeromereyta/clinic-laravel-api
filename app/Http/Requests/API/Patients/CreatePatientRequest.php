@@ -16,12 +16,12 @@ final class CreatePatientRequest extends BaseRequest
         return true;
     }
 
-    public function getAttendingDoctor(): string
+    public function getAttendingDoctor():  string
     {
         return $this->getString('attending_doctor');
     }
 
-    public function getBarangay(): string
+    public function getBarangay(): ?string
     {
         return $this->getString('barangay');
     }
@@ -33,7 +33,7 @@ final class CreatePatientRequest extends BaseRequest
         return Carbon::parse($birthDate);
     }
 
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->getString('city');
     }
@@ -93,17 +93,17 @@ final class CreatePatientRequest extends BaseRequest
         return $this->getString('mobile_number');
     }
 
-    public function getProvince(): string
+    public function getProvince(): ?string
     {
         return $this->getString('province');
     }
 
-    public function getStreetAddress(): string
+    public function getStreetAddress(): ?string
     {
         return $this->getString('street_address');
     }
 
-    public function getRemarks(): string
+    public function getRemarks(): ?string
     {
         return $this->getString('remarks');
     }
@@ -115,11 +115,11 @@ final class CreatePatientRequest extends BaseRequest
     {
         return [
             'attending_doctor' => 'string',
-            'barangay' => 'required|string',
+            'barangay' => '',
             'birth_date' => 'required|date',
-            'city' => 'required|string',
+            'city' => 'string',
             'civil_status' => 'required|string',
-            'email' => 'required|max:255',
+            'email' => '',
             'gender' => 'required|string',
             'first_name' =>'required|string',
             'middle_name' => '',
@@ -129,9 +129,9 @@ final class CreatePatientRequest extends BaseRequest
             'patient_weight' => 'required|string',
             'phone_number' => 'required|string',
             'mobile_number' => 'required|string',
-            'province' => 'required|string',
-            'street_address' => 'required|string',
-            'remarks' => 'string',
+            'province' => '',
+            'street_address' => '',
+            'remarks' => '',
         ];
     }
 }

@@ -15,7 +15,7 @@ final class UpdatePatientRequest extends BaseRequest
         return true;
     }
 
-    public function getBarangay(): string
+    public function getBarangay(): ?string
     {
         return $this->getString('barangay');
     }
@@ -27,7 +27,7 @@ final class UpdatePatientRequest extends BaseRequest
         return Carbon::parse($birthDate);
     }
 
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->getString('city');
     }
@@ -37,7 +37,7 @@ final class UpdatePatientRequest extends BaseRequest
         return $this->getString('civil_status');
     }
 
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->getString('email');
     }
@@ -72,12 +72,12 @@ final class UpdatePatientRequest extends BaseRequest
         return $this->getString('mobile_number');
     }
 
-    public function getProvince(): string
+    public function getProvince(): ?string
     {
         return $this->getString('province');
     }
 
-    public function getStreetAddress(): string
+    public function getStreetAddress(): ?string
     {
         return $this->getString('street_address');
     }
@@ -88,19 +88,19 @@ final class UpdatePatientRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'barangay' => 'required|string',
+            'barangay' => '',
             'birth_date' => 'required|date',
-            'city' => 'required|string',
+            'city' => '',
             'civil_status' => 'required|string',
-            'email' => 'required|max:255',
+            'email' => '',
             'gender' => 'required|string',
             'first_name' => 'required|string',
             'middle_name' => '',
             'last_name' => 'required|string',
             'phone_number' => 'required|string',
             'mobile_number' => 'required|string',
-            'province' => 'required|string',
-            'street_address' => 'required|string',
+            'province' => '',
+            'street_address' => '',
         ];
     }
 }

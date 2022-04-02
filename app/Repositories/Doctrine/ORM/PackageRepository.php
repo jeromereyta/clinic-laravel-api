@@ -31,6 +31,7 @@ final class PackageRepository extends AbstractRepository implements PackageRepos
             ->addSelect('packageProcedures')
             ->from($this->getEntityClass(), 'package')
             ->innerJoin('package.packageProcedures', 'packageProcedures')
+            ->orderBy('package.id','desc')
             ->getQuery()
             ->getResult();
     }

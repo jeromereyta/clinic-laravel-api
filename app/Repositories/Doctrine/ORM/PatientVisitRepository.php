@@ -25,6 +25,7 @@ final class PatientVisitRepository extends AbstractRepository implements Patient
 
         return $queryBuilder->select('pq')
             ->from($this->getEntityClass(), 'pq')
+            ->orderBy('pq.createdAt','desc')
             ->getQuery()
             ->getResult();
     }
@@ -44,7 +45,7 @@ final class PatientVisitRepository extends AbstractRepository implements Patient
             ->innerJoin('pv.patient', 'p', 'pv.patient_id = p.id')
             ->where('pv.createdAt > :dateToday')
             ->setParameter('dateToday', $dateToday)
-            ->orderBy('pv.createdAt', 'asc')
+            ->orderBy('pv.createdAt', 'desc')
             ->getQuery()
             ->getResult();
     }
@@ -104,6 +105,7 @@ final class PatientVisitRepository extends AbstractRepository implements Patient
             ->setParameters([
                 'patientId' => $patient->getId(),
             ])
+            ->orderBy('pv.createdAt','desc')
             ->getQuery()
             ->getResult();
     }

@@ -88,6 +88,7 @@ final class ProcedureQueueRepository extends AbstractRepository implements Proce
             ->orderBy('queue.queueNumber', 'asc')
             ->where('queue.status NOT IN (:statuses)')
             ->setParameter('statuses', [ProcedureQueueTypeEnum::CANCELLED,ProcedureQueueTypeEnum::DONE] )
+            ->orderBy('queue.id','desc')
             ->getQuery()
             ->getResult();
     }

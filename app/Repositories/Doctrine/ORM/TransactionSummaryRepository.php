@@ -32,6 +32,7 @@ final class TransactionSummaryRepository extends AbstractRepository implements T
 
         return $queryBuilder->select('transactions')
             ->from($this->getEntityClass(), 'transactions')
+            ->orderBy('transactions.id','desc')
             ->getQuery()
             ->getResult();
     }

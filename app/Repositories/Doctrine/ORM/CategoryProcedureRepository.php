@@ -29,6 +29,7 @@ final class CategoryProcedureRepository extends AbstractRepository implements Ca
 
         return $queryBuilder->select('cp')
             ->from($this->getEntityClass(), 'cp')
+            ->orderBy('cp.id','desc')
             ->getQuery()
             ->getResult();
     }

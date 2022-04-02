@@ -27,6 +27,7 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
 
         return $queryBuilder->select('p')
             ->from($this->getEntityClass(), 'p')
+            ->orderBy('p.createdAt','desc')
             ->getQuery()
             ->getResult();
     }

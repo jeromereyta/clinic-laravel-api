@@ -10,21 +10,21 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 final class CreatePatientVisitResource extends DataTransferObject
 {
-    public string $attendingDoctor;
+    public ?string $attendingDoctor = null;
 
     public UserGuest $createdBy;
 
-    public string $patientBp;
+    public ?string $patientBp = null;
 
     public Patient $patient;
 
-    public string $patientHeight;
+    public ?string $patientHeight = null;
 
-    public string $patientWeight;
+    public ?string $patientWeight = null;
 
-    public string $remarks;
+    public ?string $remarks = null;
 
-    public function getAttendingDoctor(): string
+    public function getAttendingDoctor(): ?string
     {
         return $this->attendingDoctor;
     }
@@ -34,7 +34,7 @@ final class CreatePatientVisitResource extends DataTransferObject
         return $this->createdBy;
     }
 
-    public function getPatientBp(): string
+    public function getPatientBp(): ?string
     {
         return $this->patientBp;
     }
@@ -44,22 +44,22 @@ final class CreatePatientVisitResource extends DataTransferObject
         return $this->patient;
     }
 
-    public function getPatientHeight(): string
+    public function getPatientHeight(): ?string
     {
         return $this->patientHeight;
     }
 
-    public function getPatientWeight(): string
+    public function getPatientWeight(): ?string
     {
         return $this->patientWeight;
     }
 
-    public function getRemarks(): string
+    public function getRemarks(): ?string
     {
         return $this->remarks;
     }
 
-    public function setAttendingDoctor(string $attendingDoctor): self
+    public function setAttendingDoctor(?string $attendingDoctor = null): self
     {
         $this->attendingDoctor = $attendingDoctor;
 
@@ -73,7 +73,7 @@ final class CreatePatientVisitResource extends DataTransferObject
         return $this;
     }
 
-    public function setPatientBp(string $patientBp): self
+    public function setPatientBp(?string $patientBp = null): self
     {
         $this->patientBp = $patientBp;
 
@@ -87,21 +87,21 @@ final class CreatePatientVisitResource extends DataTransferObject
         return $this;
     }
 
-    public function setPatientHeight(string $patientHeight): self
+    public function setPatientHeight(?string $patientHeight = null): self
     {
         $this->patientHeight = $patientHeight;
 
         return $this;
     }
 
-    public function setPatientWeight(string $patientWeight): self
+    public function setPatientWeight(?string $patientWeight = null): self
     {
         $this->patientWeight = $patientWeight;
 
         return $this;
     }
 
-    public function setRemarks(string $remarks): self
+    public function setRemarks(?string $remarks = null): self
     {
         $this->remarks = $remarks;
 

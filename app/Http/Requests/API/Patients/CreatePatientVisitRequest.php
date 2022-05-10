@@ -11,12 +11,12 @@ final class CreatePatientVisitRequest extends BaseRequest
         return true;
     }
 
-    public function getAttendingDoctor(): string
+    public function getAttendingDoctor(): ?string
     {
         return $this->getString('attending_doctor');
     }
 
-    public function getPatientBp(): string
+    public function getPatientBp(): ?string
     {
         return $this->getString('patient_bp');
     }
@@ -26,17 +26,17 @@ final class CreatePatientVisitRequest extends BaseRequest
         return $this->getString('patient_code');
     }
 
-    public function getPatientHeight(): string
+    public function getPatientHeight(): ?string
     {
         return $this->getString('patient_height');
     }
 
-    public function getPatientWeight(): string
+    public function getPatientWeight(): ?string
     {
         return $this->getString('patient_weight');
     }
 
-    public function getRemarks(): string
+    public function getRemarks(): ?string
     {
         return $this->getString('remarks');
     }
@@ -48,10 +48,10 @@ final class CreatePatientVisitRequest extends BaseRequest
     {
         return [
             'attending_doctor' => 'string',
-            'patient_bp' => 'required|string',
-            'patient_code' => 'required|string',
-            'patient_height' => 'required|string',
-            'patient_weight' => 'required|string',
+            'patient_bp' => 'string',
+            'patient_code' => 'string',
+            'patient_height' => 'string',
+            'patient_weight' => 'string',
             'remarks' => 'string',
         ];
     }

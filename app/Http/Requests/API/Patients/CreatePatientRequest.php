@@ -16,7 +16,7 @@ final class CreatePatientRequest extends BaseRequest
         return true;
     }
 
-    public function getAttendingDoctor():  string
+    public function getAttendingDoctor():  ?string
     {
         return $this->getString('attending_doctor');
     }
@@ -43,12 +43,12 @@ final class CreatePatientRequest extends BaseRequest
         return $this->getString('civil_status');
     }
 
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->getString('email');
     }
 
-    public function getGender(): string
+    public function getGender(): ?string
     {
         return $this->getString('gender');
     }
@@ -68,17 +68,17 @@ final class CreatePatientRequest extends BaseRequest
         return $this->getString('last_name');
     }
 
-    public function getPatientBp(): string
+    public function getPatientBp(): ?string
     {
         return $this->getString('patient_bp');
     }
 
-    public function getPatientHeight(): string
+    public function getPatientHeight(): ?string
     {
         return $this->getString('patient_height');
     }
 
-    public function getPatientWeight(): string
+    public function getPatientWeight(): ?string
     {
         return $this->getString('patient_weight');
     }
@@ -124,11 +124,11 @@ final class CreatePatientRequest extends BaseRequest
             'first_name' =>'required|string',
             'middle_name' => '',
             'last_name' =>'required|string',
-            'patient_bp' => 'required|string',
-            'patient_height' => 'required|string',
-            'patient_weight' => 'required|string',
-            'phone_number' => 'required|string',
-            'mobile_number' => 'required|string',
+            'patient_bp' => 'string',
+            'patient_height' => 'string',
+            'patient_weight' => 'string',
+            'phone_number' => 'string',
+            'mobile_number' => 'string',
             'province' => '',
             'street_address' => '',
             'remarks' => '',

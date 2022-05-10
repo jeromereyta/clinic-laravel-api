@@ -47,30 +47,30 @@ trait PatientVisitSchema
     protected string $patientId;
 
     /**
-     * @ORM\Column(name="patient_bp", type="string")
+     * @ORM\Column(name="patient_bp", type="string", nullable="true")
      *
-     * @var string
+     * @var ?string
      */
-    protected string $patientBP;
+    protected ?string $patientBP;
 
     /**
-     * @ORM\Column(name="patient_height", type="string")
+     * @ORM\Column(name="patient_height", type="string", nullable="true")
      *
-     * @var string
+     * @var ?string
      */
-    protected string $patientHeight;
+    protected ?string $patientHeight;
 
     /**
-     * @ORM\Column(name="patient_weight", type="string")
+     * @ORM\Column(name="patient_weight", type="string", nullable="true")
      *
-     * @var string
+     * @var ?string
      */
-    protected string $patientWeight;
+    protected ?string $patientWeight;
 
     /**
      * @ORM\Column(name="remarks", type="string", nullable="true")
      *
-     * @var string
+     * @var ?string
      */
-    protected string $remarks;
+    protected ?string $remarks;
 }

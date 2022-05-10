@@ -106,12 +106,12 @@ class PatientVisit extends AbstractEntity
         return $this->patientId;
     }
 
-    public function getPatientBP(): string
+    public function getPatientBP(): ?string
     {
         return $this->patientBP;
     }
 
-    public function getPatientHeight(): string
+    public function getPatientHeight(): ?string
     {
         return $this->patientHeight;
     }
@@ -121,12 +121,12 @@ class PatientVisit extends AbstractEntity
         return $this->patientProcedures;
     }
 
-    public function getPatientWeight(): string
+    public function getPatientWeight(): ?string
     {
         return $this->patientWeight;
     }
 
-    public function getRemarks(): string
+    public function getRemarks(): ?string
     {
         return $this->remarks;
     }
@@ -173,7 +173,7 @@ class PatientVisit extends AbstractEntity
         return $this;
     }
 
-    public function setPatientBP(string $patientBP): self
+    public function setPatientBP(?string $patientBP = null): self
     {
         $this->patientBP = $patientBP;
 
@@ -183,7 +183,7 @@ class PatientVisit extends AbstractEntity
     /**
      * @param string $patientHeight
      */
-    public function setPatientHeight(string $patientHeight): self
+    public function setPatientHeight(?string $patientHeight = null): self
     {
         $this->patientHeight = $patientHeight;
 
@@ -193,14 +193,14 @@ class PatientVisit extends AbstractEntity
     /**
      * @param string $patientWeight
      */
-    public function setPatientWeight(string $patientWeight): self
+    public function setPatientWeight(?string $patientWeight = null): self
     {
         $this->patientWeight = $patientWeight;
 
         return $this;
     }
 
-    public function setRemarks(string $remarks): self
+    public function setRemarks(?string $remarks = null): self
     {
         $this->remarks = $remarks;
 
@@ -216,9 +216,9 @@ class PatientVisit extends AbstractEntity
             'attendingDoctor' => 'string',
             'createdBy' => \sprintf('required|%s', $this->instanceOfRuleAsString(UserGuest::class)),
             'patient' => \sprintf('required|%s', $this->instanceOfRuleAsString(Patient::class)),
-            'patientBp' => 'required|string',
-            'patientHeight' => 'required|string',
-            'patientWeight' => 'required|string',
+            'patientBp' => 'string',
+            'patientHeight' => 'string',
+            'patientWeight' => 'string',
             'remarks' => 'string',
         ];
     }

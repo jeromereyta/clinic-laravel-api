@@ -12,7 +12,7 @@ final class CreatePatientProcedureRequest extends BaseRequest
     }
 
     public function getDescription(): ?string {
-        return $this->getString('note');
+        return $this->getString('note') ?? ' ';
     }
 
     public function getPatientVisitId(): int {
@@ -29,7 +29,7 @@ final class CreatePatientProcedureRequest extends BaseRequest
     public function rules(): array
     {
         return [
-          'note' => 'string',
+          'note' => 'string|nullable',
           'patient_visit_id' => 'required|integer',
           'procedure_ids' => 'required|array',
         ];

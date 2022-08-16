@@ -19,7 +19,7 @@ final class FileUploadRepository extends AbstractRepository implements FileUploa
 {
     protected function getEntityClass(): string
     {
-        return FileType::class;
+        return FileUpload::class;
     }
 
     /**
@@ -75,5 +75,30 @@ final class FileUploadRepository extends AbstractRepository implements FileUploa
             ])
             ->getQuery()
             ->getSingleResult();
+    }
+
+    public function countToday(): int
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        $dateToday = (new Carbon())->toDateString();
+
+        $fromDate = sprintf('%s 00:00:00', $dateToday);
+        $toDate = sprintf('%s 23:59:00', $dateToday);
+
+        try {
+            return (int) $queryBuilder
+                    ->select('count(fu.id)')
+                    ->from($this->getEntityClass(), 'fu')
+                    ->where('fu.createdAt  BETWEEN :fromDate and :toDate')
+                    ->setParameters([
+                        'fromDate' => $fromDate,
+                        'toDate' => $toDate,
+                    ])
+                    ->getQuery()
+                    ->getSingleScalarResult() ?? 0;
+        } catch (NoResultException | NonUniqueResultException $e) {
+            return 0;
+        }
     }
 }

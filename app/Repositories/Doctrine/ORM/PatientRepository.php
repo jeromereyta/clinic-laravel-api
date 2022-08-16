@@ -117,7 +117,7 @@ final class PatientRepository extends AbstractRepository implements PatientRepos
         $expr = $queryBuilder->expr();
 
         try {
-            return $queryBuilder
+            return (string) $queryBuilder
                 ->select($expr->max('p.id'))
                 ->from($this->getEntityClass(), 'p')
                 ->getQuery()

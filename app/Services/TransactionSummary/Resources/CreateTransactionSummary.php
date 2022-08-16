@@ -18,7 +18,21 @@ final class CreateTransactionSummary extends DataTransferObject
 
     public ?string $remarks = null;
 
+    public string $transactionCountThisDay;
+
     public string $totalAmount;
+
+    public function getTransactionCountThisDay(): string
+    {
+        return $this->transactionCountThisDay;
+    }
+
+    public function setTransactionCountThisDay(string $transactionCountThisDay): self
+    {
+        $this->transactionCountThisDay = $transactionCountThisDay;
+
+        return $this;
+    }
 
     public function getCreatedBy(): UserGuest
     {

@@ -26,6 +26,7 @@
         "laravel-doctrine/orm": "^1.7",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "^3.1",
         "spatie/data-transfer-object": "^2.8",
         "tymon/jwt-auth": "^1.0"
     },

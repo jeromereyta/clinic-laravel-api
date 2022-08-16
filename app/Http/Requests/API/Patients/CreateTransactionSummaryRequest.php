@@ -32,7 +32,7 @@ final class CreateTransactionSummaryRequest extends BaseRequest
         return [
             'remarks' => 'string',
             'total_amount' => 'required|string',
-            'patient_visit_id' => 'required|integer',
+            'patient_visit_id' => 'required|integer|unique:App\Database\Entities\TransactionSummary,patientVisitId',
             'payment_method' => 'required|string',
         ];
     }

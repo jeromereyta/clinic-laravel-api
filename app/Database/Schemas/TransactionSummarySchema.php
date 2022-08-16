@@ -12,9 +12,11 @@ use DateTimeInterface;
  * @method string getRemarks()
  * @method string getTotalAmount()
  * @method string getPatientVisitId()
+ * @method string getTransactionCountThisDay()
  * @method self setPaymentMethod(string $paymentMethod)
  * @method self setRemarks(string $remarks)
  * @method self setTotalAmount(string $totalAmount)
+ * @method self setTransactionCountThisDay(string $transactionCountThisDay)
  */
 trait TransactionSummarySchema
 {
@@ -22,6 +24,11 @@ trait TransactionSummarySchema
      * @ORM\Column(name="created_by_id", type="integer")
      */
     protected int $createdById;
+
+    /**
+     * @ORM\Column(name="transaction_count_this_day", type="text")
+     */
+    protected string $transactionCountThisDay;
 
     /**
      * @ORM\Column(name="deleted_at",type="datetime", nullable=true)

@@ -46,6 +46,7 @@ final class TransactionSummaryRepository extends AbstractRepository implements T
         $transactionSummary = new TransactionSummary();
 
         $transactionSummary->fill([
+            'transactionCountThisDay' => $resource->getTransactionCountThisDay(),
             'paymentMethod' => $resource->getPaymentMethod(),
             'remarks' => $resource->getRemarks(),
             'patientVisit' => $resource->getPatientVisit(),
@@ -101,6 +102,33 @@ final class TransactionSummaryRepository extends AbstractRepository implements T
             ->getSingleResult();
     }
 
+    public function findLatestTransactionCountToday(): ?string
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        $expr = $queryBuilder->expr();
+
+        $dateToday = (new Carbon())->toDateString();
+
+        $fromDate = sprintf('%s 00:00:00', $dateToday);
+        $toDate = sprintf('%s 23:59:00', $dateToday);
+
+        try {
+            return (string) $queryBuilder
+                    ->select($expr->max('ts.transactionCountThisDay'))
+                    ->from($this->getEntityClass(), 'ts')
+                    ->where('ts.createdAt  BETWEEN :fromDate and :toDate')
+                    ->setParameters([
+                        'fromDate' => $fromDate,
+                        'toDate' => $toDate,
+                    ])
+                    ->getQuery()
+                    ->getSingleScalarResult() ?? null;
+        } catch (NoResultException | NonUniqueResultException $e) {
+            return null;
+        }
+    }
+
     /**
      * @throws OptimisticLockException
      * @throws ORMException
@@ -111,5 +139,24 @@ final class TransactionSummaryRepository extends AbstractRepository implements T
 
         $this->entityManager->persist($transactionSummary);
         $this->entityManager->flush();
+    }
+
+    public function findAllByDate(Carbon $fromDate, Carbon $toDate): array
+    {
+        $queryBuilder = $this->manager->createQueryBuilder();
+
+        $fromDate = sprintf('%s 00:00:00', $fromDate);
+        $toDate = sprintf('%s 23:59:00', $toDate);
+
+        return $queryBuilder->select('transactions')
+            ->from($this->getEntityClass(), 'transactions')
+            ->where('transactions.createdAt BETWEEN :fromDate and :toDate')
+            ->setParameters([
+                'fromDate' => $fromDate,
+                'toDate' => $toDate,
+            ])
+            ->orderBy('transactions.id','desc')
+            ->getQuery()
+            ->getResult();
     }
 }

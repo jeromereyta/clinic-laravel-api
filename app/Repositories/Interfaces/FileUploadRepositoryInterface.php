@@ -17,4 +17,6 @@ interface FileUploadRepositoryInterface
     public function create(CreateFileUploadResource $resource): FileUpload;
 
     public function findById(int $id): FileUpload;
+
+    public function countToday(): int;
 }

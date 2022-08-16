@@ -9,16 +9,11 @@ use App\Services\PatientService\Interfaces\GeneratePatientCodeServiceInterface;
 
 final class GeneratePatientCodeService implements GeneratePatientCodeServiceInterface
 {
-    /**
-     * @var string
-     */
-    public const KEY_FORMAT = '%s%s';
-
     public function generate(string $latestId): string
     {
         $id = (int) $latestId;
         $id++;
 
-        return \str_pad((string) $id,8,"0",STR_PAD_LEFT);
+        return \str_pad((string) $id,6,"0",STR_PAD_LEFT);
     }
 }

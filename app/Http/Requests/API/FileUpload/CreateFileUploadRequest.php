@@ -31,12 +31,18 @@ final class CreateFileUploadRequest extends BaseRequest
         return $this->getString('path');
     }
 
+    public function getProcedureId(): int
+    {
+        return (int) $this->getString('procedure_id');
+    }
+
     /**
      * @return mixed[]
      */
     public function rules(): array
     {
         return [
+            'procedure_id' => 'int|nullable',
             'file' => 'required',
             'description' => 'required|string',
             'file_type_id' => 'required|int',

@@ -20,6 +20,7 @@ use App\Http\Controllers\API\Patients\CreatePatientVisitsController;
 use App\Http\Controllers\API\Patients\CreateTransactionSummaryController;
 use App\Http\Controllers\API\Patients\ListPatientController;
 use App\Http\Controllers\API\Patients\ListPatientVisitController;
+use App\Http\Controllers\API\Patients\PatientsExportCSVController;
 use App\Http\Controllers\API\Patients\ShowPatientController;
 use App\Http\Controllers\API\Patients\ShowPatientVisitController;
 use App\Http\Controllers\API\Patients\ShowPatientVisitsController;
@@ -35,6 +36,7 @@ use App\Http\Controllers\API\Queue\ListProcedureQueueController;
 use App\Http\Controllers\API\Queue\UpdateProcedureQueueController;
 use App\Http\Controllers\API\RegisterUser\RegisterAdminUserController;
 use App\Http\Controllers\API\Transactions\TransactionListController;
+use App\Http\Controllers\API\Transactions\TransactionsExportCSVController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,6 +75,17 @@ Route::get('/test', [
             ]);
         }]
 );
+
+Route::get('/patients/export', [
+    'as' => 'patient-list-export',
+    'uses' => PatientsExportCSVController::class,
+]);
+
+
+Route::get('/transactions/export', [
+    'as' => 'transactions-list-export',
+    'uses' => TransactionsExportCSVController::class,
+]);
 
 Route::group([
     'middleware' => 'auth:api',

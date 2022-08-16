@@ -13,15 +13,6 @@ use Carbon\Carbon;
 
 final class TransactionResource extends Resource
 {
-    private IdentifierEncoderInterface $identifierEncoder;
-
-    public function __construct($resource, IdentifierEncoderInterface $identifierEncoder)
-    {
-        $this->identifierEncoder = $identifierEncoder;
-
-        parent::__construct($resource);
-    }
-
     /**
      * Return response for this resource.
      *
@@ -32,8 +23,7 @@ final class TransactionResource extends Resource
     {
         if (($this->resource instanceof TransactionSummary) === false) {
             throw new InvalidResourceTypeException(
-                TransactionSummary::class,
-                \get_class($this->resource)
+                TransactionSummary::class
             );
         }
 
@@ -67,16 +57,23 @@ final class TransactionResource extends Resource
                 'category_procedure_id' => $procedure->getCategoryProcedureId(),
                 'description' => $procedure->getDescription(),
                 'price' => $price,
-                'package_id' => $packageProcedure !== null ? $packageProcedure->getPackage()->getId(): null,
+                'package_id' => $packageProcedure?->getPackage()->getId(),
                 'package_name' => $packageProcedure !== null ? $packageProcedure->getPackage()->getName(): '',
             ];
         }
 
+        /** @var TransactionSummary $transaction */
+        $transactionNumber = \sprintf(
+            '%s-%s-%s',
+            $patientVisit->getPatient()->getPatientCode(),
+            $this->resource->getCreatedAt()->format('mdY'),
+            $this->resource->getTransactionCountThisDay(),
+        );
 
         return [
             'id' => $this->resource->getId(),
             'patient_visit_id' => $this->resource->getPatientVisit()->getId(),
-            'transaction_code' => $this->identifierEncoder->encode((int) $this->resource->getId()) ?? null,
+            'transaction_code' => $transactionNumber,
             'payment_method' => $this->resource->getPaymentMethod(),
             'procedures' => $computedProcedures,
             'patient' =>  $patientVisit->getPatient()->getName(),

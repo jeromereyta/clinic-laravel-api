@@ -48,12 +48,7 @@ final class CreateTransactionSummaryController extends AbstractAPIController
 
     public function __invoke(CreateTransactionSummaryRequest $request): JsonResource
     {
-        /** @var User $user */
         $user = $this->getUser();
-
-        if ($user === null) {
-            return $this->respondForbidden();
-        }
 
         $userGuest = $this->userGuestRepository->findByUser($user);
 
@@ -72,12 +67,25 @@ final class CreateTransactionSummaryController extends AbstractAPIController
         }
 
         try {
-            $this->transactionSummaryRepository->create(new CreateTransactionSummary([
-                'paymentMethod' => $request->getPaymentMethod(),
-                'patientVisit' => $patientVisit,
-                'createdBy' => $userGuest,
-                'remarks' => $request->getRemarks(),
-                'totalAmount' => $request->getTotalAmount(),
+            $latestCountToday = $this->transactionSummaryRepository->findLatestTransactionCountToday();
+
+            if ($latestCountToday === "" || $latestCountToday === null) {
+                $latestCountToday = "01";
+            } else {
+                $latestCountToday = (int) $latestCountToday + 1;
+
+                if (strlen((string)$latestCountToday) === 1) {
+                    $latestCountToday = sprintf('0%s', $latestCountToday);
+                }
+            }
+
+             $this->transactionSummaryRepository->create(new CreateTransactionSummary([
+                 'transactionCountThisDay' => $latestCountToday,
+                 'paymentMethod' => $request->getPaymentMethod(),
+                 'patientVisit' => $patientVisit,
+                 'createdBy' => $userGuest,
+                 'remarks' => $request->getRemarks(),
+                 'totalAmount' => $request->getTotalAmount(),
             ]));
         } catch (Exception $exception) {
             return $this->respondUnprocessable([

@@ -162,6 +162,13 @@ final class TransactionSummary extends AbstractEntity
         return $this;
     }
 
+    public function setTransactionCountThisDay(string $transactionCountThisDay): self
+    {
+        $this->transactionCountThisDay = $transactionCountThisDay;
+
+        return $this;
+    }
+
     public function setPatientVisitId(int $patientVisitId): self
     {
         $this->patientVisitId = $patientVisitId;
@@ -191,6 +198,7 @@ final class TransactionSummary extends AbstractEntity
         return [
             'id' => $this->getId(),
             'paymentMethod' => $this->getPaymentMethod(),
+            'transactionCountThisDay' => $this->getTransactionCountThisDay(),
             'createdBy' => $this->getCreatedBy(),
             'patientVisit' => $this->getPatientVisit(),
             'remarks' => $this->getRemarks(),

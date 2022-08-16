@@ -14,9 +14,12 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 abstract class AbstractAPIController
 {
-    public function getUser(): ?Authenticatable
+    public function getUser(): User
     {
-        return JWTAuth::user();
+        /** @var User $user */
+        $user = JWTAuth::user();
+
+        return $user;
     }
 
     /**

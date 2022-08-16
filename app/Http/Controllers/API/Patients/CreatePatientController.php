@@ -86,7 +86,7 @@ final class CreatePatientController extends AbstractAPIController
             'firstName' => $request->getFirstName()  ?? ' ',
             'middleName' => $request->getMiddleName() ?? ' ',
             'lastName' => $request->getLastName() ?? ' ',
-            'patientCode' => $patientCode,
+            'patientCode' => \sprintf('PX%s', $patientCode),
             'phoneNumber' => $request->getPhoneNumber(),
             'mobileNumber' => $request->getMobileNumber(),
             'profilePicture' => '',

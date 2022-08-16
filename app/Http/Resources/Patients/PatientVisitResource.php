@@ -35,7 +35,6 @@ final class PatientVisitResource extends Resource
         if (($this->resource instanceof PatientVisit) === false) {
             throw new InvalidResourceTypeException(
                 PatientVisit::class,
-                \get_class($this->resource)
             );
         }
 
@@ -81,6 +80,7 @@ final class PatientVisitResource extends Resource
                 'package_id' => $packageProcedure?->getPackage()->getId()  ?? null,
                 'package_name' => $packageProcedure !== null ? $packageProcedure->getPackage()->getName(): '',
                 'status' => $patientProcedure->getProcedureQueue()?->getStatus() ?? null,
+                'queue_number' => $patientProcedure->getProcedureQueue()?->getId(),
             ];
         }
 
@@ -95,6 +95,9 @@ final class PatientVisitResource extends Resource
             'attending_doctor' => $this->resource->getAttendingDoctor(),
             'patient_code' => $patient->getPatientCode(),
             'patient_name' => $patient->getName(),
+            'patient_gender' => $patient->getGender(),
+            'patient_birth_date' => $patient->getBirthDate() !== null ? (new Carbon($patient->getBirthDate()))->setTimezone('Asia/Taipei')->toDateString(): null,
+            'patient_age' => $patient->getAge(),
             'patient_bp' => $this->resource->getPatientBP(),
             'patient_height' => $this->resource->getPatientHeight(),
             'patient_weight' => $this->resource->getPatientWeight(),

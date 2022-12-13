@@ -33,7 +33,7 @@ trait PackageProcedureSchema
     /**
      * @ORM\Column(name="deleted_at", type="date"  , nullable="true")
      */
-    protected DateTimeInterface $deletedAt;
+    protected ?DateTimeInterface $deletedAt = null;
 
     /**
      * @ORM\Column(name="package_id", type="integer")

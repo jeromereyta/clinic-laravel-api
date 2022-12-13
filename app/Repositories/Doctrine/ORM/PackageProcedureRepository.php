@@ -59,8 +59,14 @@ final class PackageProcedureRepository extends AbstractRepository implements Pac
     {
         $packageProcedures = $this->findPackageProceduresByPackage($package);
 
+        $dateToday = new Carbon();
+
         foreach ($packageProcedures as $packageProcedure) {
-            $this->entityManager->remove($this->findById($packageProcedure['id']));
+            $model = $this->find((int) $packageProcedure['id']);
+            $model->setDeletedAt($dateToday);
+            $this->entityManager->persist($model);
+
+//            $this->entityManager->remove($this->findById($packageProcedure['id']));
         }
 
         $this->entityManager->flush();
@@ -123,5 +129,26 @@ final class PackageProcedureRepository extends AbstractRepository implements Pac
         $this->entityManager->flush();
 
         return $packageProcedure;
+    }
+
+    public function findByPackageAndProcedure(int $packageId, int $procedureId): ?PackageProcedure
+    {
+        try {
+            $queryBuilder = $this->manager->createQueryBuilder();
+
+            return $queryBuilder->select('p')
+                ->from($this->getEntityClass(), 'p')
+                ->where('p.packageId = :packageId')
+                ->andWhere('p.procedureId = :procedureId')
+                ->setParameters([
+                    'packageId' => $packageId,
+                    'procedureId' => $procedureId,
+                ])
+                ->getQuery()
+                ->getSingleResult();
+
+        } catch (\Exception $exception) {
+            return null;
+        }
     }
 }

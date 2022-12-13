@@ -69,6 +69,10 @@ final class PatientVisitResource extends Resource
                 $price = $packageProcedure->getPrice();
             }
 
+            if ($packageProcedure->getDeletedAt()) {
+                continue;
+            }
+
             $computedProcedures[] = [
                 'patient_procedure_id' => $patientProcedure->getId(),
                 'id' => $procedure->getId(),

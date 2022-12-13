@@ -70,6 +70,7 @@ class EditPackageController extends AbstractAPIController
             } catch (Throwable $throwable) {
                 return $this->respondError($throwable->getMessage());
             }
+
         }
 
         return $this->respondNoContent();

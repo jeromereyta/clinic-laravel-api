@@ -26,6 +26,8 @@ interface PackageProcedureRepositoryInterface
 
     public function findByName(string $name): ?array;
 
+    public function findByPackageAndProcedure(int $packageId, int $procedureId): ?PackageProcedure;
+
     public function updatePackageProcedure(
         PackageProcedure $packageProcedure,
         UpdatePackageProcedureResource $resource

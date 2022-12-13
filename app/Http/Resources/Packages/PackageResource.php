@@ -6,6 +6,8 @@ namespace App\Http\Resources\Packages;
 
 use App\Database\Entities\FileType;
 use App\Database\Entities\Package;
+use App\Database\Entities\PackageProcedure;
+use App\Database\Entities\Procedure;
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Procedures\ProceduresResource;
 use App\Http\Resources\Resource;
@@ -24,7 +26,6 @@ final class PackageResource extends Resource
         if (($this->resource instanceof Package) === false) {
             throw new InvalidResourceTypeException(
                 Package::class,
-                \get_class($this->resource)
             );
         }
 
@@ -33,8 +34,13 @@ final class PackageResource extends Resource
 
         $procedures = [];
 
+        /** @var PackageProcedure $packageProcedure */
         foreach ($packageProcedures as $packageProcedure) {
             $procedure = $packageProcedure->getProcedure();
+
+            if ($packageProcedure->getDeletedAt()) {
+                continue;
+            }
 
             $procedures[] = [
                 'id' => $procedure->getId(),

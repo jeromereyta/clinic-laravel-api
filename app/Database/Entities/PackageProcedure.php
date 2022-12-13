@@ -59,7 +59,7 @@ class PackageProcedure extends AbstractEntity
         return $this->id;
     }
 
-    public function getDeletedAt(): DateTimeInterface
+    public function getDeletedAt(): ?DateTimeInterface
     {
         return $this->deletedAt;
     }

@@ -32,7 +32,7 @@ final class ProcedureRepository extends AbstractRepository implements ProcedureR
 
         return $queryBuilder->select('cp')
             ->from($this->getEntityClass(), 'cp')
-            ->orderBy('cp.id','desc')
+            ->orderBy('cp.name','asc')
             ->getQuery()
             ->getResult();
     }

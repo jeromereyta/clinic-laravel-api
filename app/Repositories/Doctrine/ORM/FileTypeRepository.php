@@ -29,6 +29,7 @@ final class FileTypeRepository extends AbstractRepository implements FileTypeRep
 
         return $queryBuilder->select('ft')
             ->from($this->getEntityClass(), 'ft')
+            ->orderBy('ft.name','asc')
             ->getQuery()
             ->getResult();
     }

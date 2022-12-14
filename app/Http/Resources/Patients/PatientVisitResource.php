@@ -69,7 +69,7 @@ final class PatientVisitResource extends Resource
                 $price = $packageProcedure->getPrice();
             }
 
-            if ($packageProcedure->getDeletedAt()) {
+            if ($packageProcedure?->getDeletedAt()) {
                 continue;
             }
 
